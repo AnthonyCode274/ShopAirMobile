@@ -43,7 +43,7 @@ const AppStackScreens = () => {
           component={RegisterScreen}
         />
         <AppStack.Screen name={TagName.DetailsItem} component={ItemPressed} />
-        <AppStack.Screen name={TagName.ShopCarttt} component={ShopCart} />
+        <AppStack.Screen name={TagName.ShopCart} component={ShopCart} />
       </AppStack.Navigator>
     </>
   );

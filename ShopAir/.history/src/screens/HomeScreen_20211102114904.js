@@ -13,12 +13,12 @@ import {
 import {images, icons, COLORS, FONTS, SIZES} from '../assets/constants';
 import TagNameScreens from '../contexts/TagNameScreens';
 
-
 const ScrollableTab = ({tabList, selectedTab, onPress}) => {
 
   const renderItem = ({item}) => (
     <TouchableOpacity
-      style={{marginHorizontal: SIZES.padding}} onPress={() => onPress(item)}>
+      style={{marginHorizontal: SIZES.padding}}
+      onPress={() => onPress(item)}>
       <Text style={{color: COLORS.secondary, ...FONTS.body2}}>{item.name}</Text>
 
       {selectedTab.id == item.id && (
@@ -361,13 +361,10 @@ const Notification = ({navigation}) => {
           </View>
 
           <View style={{flex: 1, alignItems: 'flex-end'}}>
-            <TouchableOpacity 
-            onPress={() => navigation.navigate(TagNameScreens.ShopCarttt)}
-          
-              // onPress={() => {
-              //   console.log('Cart on clicked');
-              // }}
-              >
+            <TouchableOpacity
+              onPress={() => {
+                console.log('Cart on clicked');
+              }}>
               <Image
                 source={icons.cart}
                 resizeMode="contain"

@@ -13,27 +13,27 @@ import {
 import {images, icons, COLORS, FONTS, SIZES} from '../assets/constants';
 import TagNameScreens from '../contexts/TagNameScreens';
 
-
 const ScrollableTab = ({tabList, selectedTab, onPress}) => {
 
-  const renderItem = ({item}) => (
-    <TouchableOpacity
-      style={{marginHorizontal: SIZES.padding}} onPress={() => onPress(item)}>
-      <Text style={{color: COLORS.secondary, ...FONTS.body2}}>{item.name}</Text>
+  // const renderItem = ({item}) => (
+  //   <TouchableOpacity
+  //     style={{marginHorizontal: SIZES.padding}}
+  //     onPress={() => onPress(item)}>
+  //     <Text style={{color: COLORS.secondary, ...FONTS.body2}}>{item.name}</Text>
 
-      {selectedTab.id == item.id && (
-        <View style={{alignItems: 'center', marginTop: SIZES.base}}>
-          <View
-            style={{
-              width: 10,
-              height: 10,
-              borderRadius: 5,
-              backgroundColor: COLORS.blue,
-            }}></View>
-        </View>
-      )}
-    </TouchableOpacity>
-  );
+  //     {selectedTab.id == item.id && (
+  //       <View style={{alignItems: 'center', marginTop: SIZES.base}}>
+  //         <View
+  //           style={{
+  //             width: 10,
+  //             height: 10,
+  //             borderRadius: 5,
+  //             backgroundColor: COLORS.blue,
+  //           }}></View>
+  //       </View>
+  //     )}
+  //   </TouchableOpacity>
+  // );
 
   return (
     <View style={{marginTop: SIZES.padding}}>
@@ -361,13 +361,10 @@ const Notification = ({navigation}) => {
           </View>
 
           <View style={{flex: 1, alignItems: 'flex-end'}}>
-            <TouchableOpacity 
-            onPress={() => navigation.navigate(TagNameScreens.ShopCarttt)}
-          
-              // onPress={() => {
-              //   console.log('Cart on clicked');
-              // }}
-              >
+            <TouchableOpacity
+              onPress={() => {
+                console.log('Cart on clicked');
+              }}>
               <Image
                 source={icons.cart}
                 resizeMode="contain"

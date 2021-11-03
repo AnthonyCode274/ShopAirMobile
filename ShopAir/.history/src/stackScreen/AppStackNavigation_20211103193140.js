@@ -14,7 +14,7 @@ import TagName from '../contexts/TagNameScreens';
 import LoginScreen from '../screens/LoginScreen';
 import RegisterScreen from '../screens/RegisterScreen';
 import Update from '../contexts/Admin/Update';
-import ShopCart from '../components/Cart/ShopCart';
+import ShopCart from '../components/ShopCart'
 
 // Details Screen
 import ItemPressed from '../screens/Details/ItemPressed';
@@ -43,7 +43,7 @@ const AppStackScreens = () => {
           component={RegisterScreen}
         />
         <AppStack.Screen name={TagName.DetailsItem} component={ItemPressed} />
-        <AppStack.Screen name={TagName.ShopCarttt} component={ShopCart} />
+        <AppStack.Screen name={ShopCart} component={ShopCart} />
       </AppStack.Navigator>
     </>
   );

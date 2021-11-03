@@ -13,7 +13,6 @@ import {
 import {images, icons, COLORS, FONTS, SIZES} from '../assets/constants';
 import TagNameScreens from '../contexts/TagNameScreens';
 
-
 const ScrollableTab = ({tabList, selectedTab, onPress}) => {
 
   const renderItem = ({item}) => (
@@ -361,9 +360,7 @@ const Notification = ({navigation}) => {
           </View>
 
           <View style={{flex: 1, alignItems: 'flex-end'}}>
-            <TouchableOpacity 
-            onPress={() => navigation.navigate(TagNameScreens.ShopCarttt)}
-          
+            <TouchableOpacity
               // onPress={() => {
               //   console.log('Cart on clicked');
               // }}

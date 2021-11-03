@@ -15,7 +15,6 @@ const CURD = "CURD";
 const Header = "header";
 const Update = "update";
 const Sigout = "Sigout";
-const ShopCarttt ="ShopCart";
 
 // details item product
 const DetailsItem = 'DetailsScreen';
@@ -33,6 +32,5 @@ export default {
     NotificationScreen,
     SettingScreen,
     CURD, Header, Update,Sigout,
-    DetailsItem,
-    ShopCarttt
+    DetailsItem
 };
