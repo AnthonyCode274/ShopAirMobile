@@ -99,7 +99,7 @@ const ShopCart = () => {
                             <Text style={{ fontSize: 20, color: '#00C0FF' }}>PHƯƠNG THỨC THANH TOÁN</Text>
                         </View>
                         <View style={{ height: '70%', justifyContent: 'center' }}>
-                            <Text style={{ fontSize: 15, marginLeft: 50, }}>Thanh toán bằng tiền mặt</Text>
+                            <Text style={{ fontSize: 15, marginLeft: 30, }}>Thanh toán bằng tiền mặt</Text>
                         </View>
                     </View>
                     <View style={{ width: '100%', height: 100, backgroundColor: '#EAF6FF', marginTop: 5 }}>

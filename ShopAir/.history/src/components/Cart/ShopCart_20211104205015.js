@@ -41,8 +41,7 @@ const ShopCart = () => {
             <View style={Styles.body}>
                 {/* -------------------------------------------------------------------- */}
                 <View style={{ width: '100%', height: 100, backgroundColor: '#EAF6FF', flexDirection: 'row' }}>
-                    <Image style={{ width: 20, height: 30, marginTop: 15, marginLeft: 10, }} 
-                    source={{uri: 'https://chungcucarillon.vn/wp-content/uploads/2021/08/icon-vi-tri-carillon-7.png'}} />
+                    <Image style={{ width: 20, height: 20, marginTop: 10, marginLeft: 10, }} source={back} />
                     <View style={{}}>
                         <Text style={Styles.text}>Địa chỉ nhận hàng</Text>
                         <Text style={Styles.text1}>Dương Quốc Thắng | 123456789</Text>
@@ -94,12 +93,11 @@ const ShopCart = () => {
                     />
                     <View style={{ width: '100%', height: 100, backgroundColor: 'white', marginTop: 5 }}>
                         <View style={{ flexDirection: 'row', alignItems: 'center', width: '100%', height: '30%', backgroundColor: 'white' }}>
-                            <Image style={{ width: 30, height: 30, marginLeft: 10, }} 
-                            source={{uri: 'https://png.pngtree.com/png-vector/20191028/ourlarge/pngtree-cash-in-hand-icon-cartoon-style-png-image_1893442.jpg'}} />
+                            <Image style={{ width: 20, height: 20, marginLeft: 10, }} source={back} />
                             <Text style={{ fontSize: 20, color: '#00C0FF' }}>PHƯƠNG THỨC THANH TOÁN</Text>
                         </View>
                         <View style={{ height: '70%', justifyContent: 'center' }}>
-                            <Text style={{ fontSize: 15, marginLeft: 50, }}>Thanh toán bằng tiền mặt</Text>
+                            <Text style={{ fontSize: 15, marginLeft: 30, }}>Thanh toán bằng tiền mặt</Text>
                         </View>
                     </View>
                     <View style={{ width: '100%', height: 100, backgroundColor: '#EAF6FF', marginTop: 5 }}>
