@@ -1,13 +1,14 @@
 import React from 'react';
 
 import {NavigationContainer} from '@react-navigation/native';
-import AppStack from './src/stackScreen/AppStackNavigation';
-import {Text, View} from 'react-native';
+import AppStackScreens from '@screens/stackScreen/AppStackNavigation';
+import {screens} from '@screens/screens';
+import { components } from '@components/component';
 
 const App = () => {
   return (
     <NavigationContainer>
-      <AppStack />
+      <components.HeaderHomeScreen />
     </NavigationContainer>
   );
 };
