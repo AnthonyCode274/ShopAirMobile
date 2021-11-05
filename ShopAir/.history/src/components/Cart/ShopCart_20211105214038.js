@@ -29,6 +29,8 @@ const ShopCart = ({navigation}) => {
     // const [quali, setQuali] = useState(1);
 
 
+    const renderItem = ({ item }) => <Item title={item.title} img={item.img} price={item.price} />;
+    const Item =({title, img, price}) => {
     const [count, setCount] = useState(1);
         const onPress = () => setCount(prevCount => prevCount + 1);
         const incrementCount = () => setCount(count + 1);
@@ -38,7 +40,6 @@ const ShopCart = ({navigation}) => {
             }
             return setCount(count - 1);
         }
-     
     return (
         <View>
             <View style={Styles.header}>
@@ -80,8 +81,10 @@ const ShopCart = ({navigation}) => {
                                         </View>
                                         <View style={{ width: '75%', height: '100%', marginLeft: 20 }}>
                                             <Text style={{ fontSize: 40, }}>{item.title}</Text>
-                                            <Text style={{ fontSize: 20, }}>{item.price}</Text>    
-                                            {/* {item.price}                                       */}
+                                            {/* <Text style={{ fontSize: 20, }}>{item.price*(count)}</Text> */}
+                                            <Text style={{ fontSize: 20, fontWeight: "bold", marginLeft: 20 }}>
+                                                {price * count}$
+                                            </Text>
                                             <View style={{ width: '95%', height: '20%', backgroundColor: 'white', flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', marginTop:5}}>
                                                 <TouchableOpacity onPress={decrementCount}>
                                                     <View style={{ backgroundColor: 'white' }}>
@@ -141,6 +144,7 @@ const ShopCart = ({navigation}) => {
             </View>
         </View>
     )
+}
 }
 export default ShopCart;
 export const Styles = StyleSheet.create({

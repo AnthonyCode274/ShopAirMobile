@@ -80,7 +80,7 @@ const ShopCart = ({navigation}) => {
                                         </View>
                                         <View style={{ width: '75%', height: '100%', marginLeft: 20 }}>
                                             <Text style={{ fontSize: 40, }}>{item.title}</Text>
-                                            <Text style={{ fontSize: 20, }}>{item.price}</Text>    
+                                            <Text style={{ fontSize: 20, }}>{item.price*(count)}</Text>    
                                             {/* {item.price}                                       */}
                                             <View style={{ width: '95%', height: '20%', backgroundColor: 'white', flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', marginTop:5}}>
                                                 <TouchableOpacity onPress={decrementCount}>
