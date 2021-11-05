@@ -2,9 +2,7 @@ import React, { useState, useCallback } from 'react'
 import { useNavigation } from '@react-navigation/core';
 import { View, Text, StyleSheet, Image, TouchableOpacity, Pressable } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
-import TagNameScreens from '../../contexts/TagNameScreens';
 export const back = require('../../assets/icons/back_icon.png');
-
 
 const data = [
     {
