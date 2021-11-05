@@ -49,7 +49,7 @@ const MyTabs=() =>{
           }}
         />
          <Tab.Screen
-          name={TagName.TrademarkScreen}
+          name={TagName.TrademakeScreen}
           component={TrademarkScreen}
           options={{
             tabBarLabel: 'Trademark',

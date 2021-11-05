@@ -10,7 +10,7 @@ const HomeScreen = "home";
 const SearchScreen = "search";
 const NotificationScreen = "notification";
 const SettingScreen = "setting";
-const TrademarkScreen ="trademark";
+const TrademakeScreen ="trademake";
 
 const CURD = "CURD";
 const Header = "header";
@@ -34,7 +34,7 @@ export default {
     SearchScreen,
     NotificationScreen,
     SettingScreen,
-    TrademarkScreen,
+    TrademakeScreen,
     CURD, Header, Update,Sigout,
     DetailsItem,
     ShopCarttt,
