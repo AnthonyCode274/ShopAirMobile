@@ -17,7 +17,6 @@ import Update from '../contexts/Admin/Update';
 import ShopCart from '../components/Cart/ShopCart';
 import Successfuly from '../components/Cart/Successfuly';
 
-
 // Details Screen
 import ItemPressed from '../screens/Details/ItemPressed';
 

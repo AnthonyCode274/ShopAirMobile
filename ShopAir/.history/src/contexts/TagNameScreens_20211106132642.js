@@ -17,7 +17,6 @@ const Header = "header";
 const Update = "update";
 const Sigout = "Sigout";
 const ShopCarttt ="ShopCart";
-const Successfuly = "Successfuly";
 
 
 
@@ -40,6 +39,5 @@ export default {
    
     CURD, Header, Update,Sigout,
     DetailsItem,
-    ShopCarttt,
-    Successfuly,
+    ShopCarttt
 };

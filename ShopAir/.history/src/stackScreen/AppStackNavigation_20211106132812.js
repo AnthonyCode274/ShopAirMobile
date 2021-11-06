@@ -15,7 +15,6 @@ import LoginScreen from '../screens/LoginScreen';
 import RegisterScreen from '../screens/RegisterScreen';
 import Update from '../contexts/Admin/Update';
 import ShopCart from '../components/Cart/ShopCart';
-import Successfuly from '../components/Cart/Successfuly';
 
 
 // Details Screen
@@ -46,7 +45,7 @@ const AppStackScreens = () => {
         />
         <AppStack.Screen name={TagName.DetailsItem} component={ItemPressed} />
         <AppStack.Screen name={TagName.ShopCarttt} component={ShopCart} />
-        <AppStack.Screen name={TagName.Successfuly} component={Successfuly} />
+     
 
       </AppStack.Navigator>
     </>

@@ -48,7 +48,7 @@ const MyTabs=() =>{
             ),
           }}
         />
-        <Tab.Screen
+        {/* <Tab.Screen
           name={TagName.Trademark}
           component={Trademark}
           options={{
@@ -57,7 +57,7 @@ const MyTabs=() =>{
               <FontAwesome5 name="trademark" color={color} size={28} />
             ),
           }}
-        />
+        /> */}
         <Tab.Screen
           name={TagName.SearchScreen}
           component={SearchScreen}

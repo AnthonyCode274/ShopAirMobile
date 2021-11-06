@@ -17,8 +17,7 @@ const Header = "header";
 const Update = "update";
 const Sigout = "Sigout";
 const ShopCarttt ="ShopCart";
-const Successfuly = "Successfuly";
-
+const Successfully = "Successfuly";
 
 
 // details item product
@@ -37,9 +36,8 @@ export default {
     SearchScreen,
     NotificationScreen,
     SettingScreen,
-   
+    Successfully,
     CURD, Header, Update,Sigout,
     DetailsItem,
-    ShopCarttt,
-    Successfuly,
+    ShopCarttt
 };

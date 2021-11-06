@@ -5,7 +5,6 @@ import {SafeAreaView, StyleSheet, Text, View,DevSettings, Image} from 'react-nat
 import HomeScreen from '../screens/HomeScreen';
 import SearchScreen from '../screens/SearchScreen';
 import SettingScreen from '../screens/SettingScreen';
-import Trademark from '../screens/Trademark';
 
 // import colors from theme
 import * as theme from '../assets/constants/theme';
@@ -49,8 +48,8 @@ const MyTabs=() =>{
           }}
         />
         <Tab.Screen
-          name={TagName.Trademark}
-          component={Trademark}
+          name={TagName.SettingScreen}
+          component={SettingScreen}
           options={{
             tabBarLabel: 'Trademark',
             tabBarIcon: ({ color }) => (

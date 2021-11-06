@@ -17,7 +17,6 @@ import Update from '../contexts/Admin/Update';
 import ShopCart from '../components/Cart/ShopCart';
 import Successfuly from '../components/Cart/Successfuly';
 
-
 // Details Screen
 import ItemPressed from '../screens/Details/ItemPressed';
 
@@ -46,7 +45,7 @@ const AppStackScreens = () => {
         />
         <AppStack.Screen name={TagName.DetailsItem} component={ItemPressed} />
         <AppStack.Screen name={TagName.ShopCarttt} component={ShopCart} />
-        <AppStack.Screen name={TagName.Successfuly} component={Successfuly} />
+        <AppStack.Screen name={TagName.Successfully} component={Successfuly} />
 
       </AppStack.Navigator>
     </>

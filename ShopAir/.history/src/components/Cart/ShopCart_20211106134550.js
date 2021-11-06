@@ -2,8 +2,9 @@ import React, { useState, useCallback } from 'react'
 import { useNavigation } from '@react-navigation/core';
 import { View, Text, StyleSheet, Image, TouchableOpacity, Pressable } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
-import TagNameScreens from '../../contexts/TagNameScreens';
 export const back = require('../../assets/icons/back_icon.png');
+
+
 
 
 const data = [
@@ -16,29 +17,19 @@ const data = [
 
 
 
-const ShopCart = ({navigation}) => {
+const ShopCart = (navigation) => {
 
-    // const handleSub = useCallback(() => {
-    //     if (quali > 1) {
-    //         setQuali(quali - 1);
-    //     }
-    // }, [quali]);
-    // const handleSum = useCallback(() => {
-    //     setQuali(quali + 1);
-    // }, [quali]);
-    // const [quali, setQuali] = useState(1);
-
-
-    const [count, setCount] = useState(1);
-        const onPress = () => setCount(prevCount => prevCount + 1);
-        const incrementCount = () => setCount(count + 1);
-        const decrementCount = () => {
-            if (count === 1) {
-                return setCount(1);
-            }
-            return setCount(count - 1);
+    const handleSub = useCallback(() => {
+        if (quali > 1) {
+            setQuali(quali - 1);
         }
-     
+    }, [quali]);
+    const handleSum = useCallback(() => {
+        setQuali(quali + 1);
+    }, [quali]);
+    const [quali, setQuali] = useState(1);
+
+
     return (
         <View>
             <View style={Styles.header}>
@@ -80,24 +71,23 @@ const ShopCart = ({navigation}) => {
                                         </View>
                                         <View style={{ width: '75%', height: '100%', marginLeft: 20 }}>
                                             <Text style={{ fontSize: 40, }}>{item.title}</Text>
-                                            <Text style={{ fontSize: 20, }}>{item.price}</Text>    
-                                            {/* {item.price}                                       */}
+                                            <Text style={{ fontSize: 20, }}>{item.price}</Text>
                                             <View style={{ width: '95%', height: '20%', backgroundColor: 'white', flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', marginTop:5}}>
-                                                <TouchableOpacity onPress={decrementCount}>
+                                                <Pressable onPress={handleSub}>
                                                     <View style={{ backgroundColor: 'white' }}>
                                                         <Text style={{ fontSize: 30, }}>-</Text>
                                                     </View>
-                                                </TouchableOpacity>
+                                                </Pressable>
                                                 <View style={{ justifyContent: 'center', alignItems: 'center', marginHorizontal: 20 }}>
                                                     <Text fontType="bold" size={30} center>
-                                                        {count}
+                                                        {quali}
                                                     </Text>
                                                 </View>
-                                                <TouchableOpacity onPress={incrementCount}>
+                                                <Pressable onPress={handleSum}>
                                                     <View style={{ backgroundColor: 'white' }}>
                                                         <Text style={{ fontSize: 30, }}>+</Text>
                                                     </View>
-                                                </TouchableOpacity>
+                                                </Pressable>
                                             </View>
                                         </View>
                                     </View>
@@ -134,8 +124,9 @@ const ShopCart = ({navigation}) => {
                 <View style={{ width: '60%', height: '100%', justifyContent: 'center', marginRight: 5 }}>
                     <Text style={{ textAlign: 'right', }}>Tổng tiền: 2,019,999{'₫'}</Text>
                 </View>
-                <TouchableOpacity style={{ width: '40%', height: '100%', alignItems: 'center', justifyContent: 'center', backgroundColor: 'black' }}
-                 onPress={() => navigation.navigate(TagNameScreens.Successfuly)}>
+                <TouchableOpacity 
+                   onPress={() => navigation.navigate(TagNameScreens.OnboardingScreen)}
+                style={{ width: '40%', height: '100%', alignItems: 'center', justifyContent: 'center', backgroundColor: 'black' }}>
                     <Text style={{ color: 'white' }}>ĐẶT HÀNG</Text>
                 </TouchableOpacity>
             </View>
