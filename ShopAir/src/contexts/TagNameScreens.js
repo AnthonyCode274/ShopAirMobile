@@ -10,13 +10,13 @@ const HomeScreen = 'home';
 const SearchScreen = 'search';
 const NotificationScreen = 'notification';
 const SettingScreen = 'setting';
-const Trademark = 'trademark';
+const TrademarkScreen = 'trademark';
 
 const CURD = 'CURD';
 const Header = 'header';
 const Update = 'update';
 const Sigout = 'Sigout';
-const ShopCarttt = 'ShopCart';
+const ShopCart = 'ShopCart';
 const Successfuly = 'Successfuly';
 
 // details item product
@@ -29,16 +29,15 @@ export default {
   Auth,
   Main,
   HomeScreen,
-  Trademark,
   SearchScreen,
   NotificationScreen,
   SettingScreen,
-
+  TrademarkScreen,
   CURD,
   Header,
   Update,
   Sigout,
   DetailsItem,
-  ShopCarttt,
+  ShopCart,
   Successfuly,
 };

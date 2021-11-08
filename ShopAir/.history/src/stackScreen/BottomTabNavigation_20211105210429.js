@@ -1,13 +1,6 @@
-import React, {useEffect} from 'react';
+import React,{useEffect} from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  View,
-  DevSettings,
-  Image,
-} from 'react-native';
+import {SafeAreaView, StyleSheet, Text, View,DevSettings, Image} from 'react-native';
 
 import HomeScreen from '../screens/HomeScreen';
 import SearchScreen from '../screens/SearchScreen';
@@ -26,7 +19,7 @@ import {StatusBar} from 'react-native';
 
 const Tab = createBottomTabNavigator();
 
-const BottomTabs = () => {
+const MyTabs=() =>{
   return (
     <>
       <StatusBar
@@ -43,6 +36,7 @@ const BottomTabs = () => {
           activeTintColor: theme.colors.light.foreground,
           inactiveTintColor: theme.colors.silver,
         }}>
+
         <Tab.Screen
           name={TagName.HomeScreen}
           component={HomeScreen}
@@ -54,7 +48,7 @@ const BottomTabs = () => {
             ),
           }}
         />
-        <Tab.Screen
+         <Tab.Screen
           name={TagName.TrademarkScreen}
           component={TrademarkScreen}
           options={{
@@ -85,13 +79,15 @@ const BottomTabs = () => {
             ),
           }}
         />
+
+       
       </Tab.Navigator>
     </>
   );
-};
+}
 
 const App = () => {
-  return <BottomTabs />;
+  return <MyTabs />;
 };
 
 export default App;

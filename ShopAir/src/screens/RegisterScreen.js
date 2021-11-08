@@ -41,9 +41,8 @@ const RegisterScreen = ({navigation}) => {
         .createUserWithEmailAndPassword(email, password)
         .then(() => {
           console.log('User account created & signed in!');
-          console.log(email, "   ", password);
+          console.log(email, '   ', password);
           navigation.navigate(TagName.LoginScreen);
-
         })
         .catch((error) => {
           if (error.code === 'auth/email-already-in-use') {
@@ -155,7 +154,6 @@ const RegisterScreen = ({navigation}) => {
               </View>
             )}
           </TouchableOpacity>
-          
         </View>
 
         <View style={styles.loginContainer}>

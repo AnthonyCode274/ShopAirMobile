@@ -1,18 +1,11 @@
-import React, {useEffect} from 'react';
+import React,{useEffect} from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  View,
-  DevSettings,
-  Image,
-} from 'react-native';
+import {SafeAreaView, StyleSheet, Text, View,DevSettings, Image} from 'react-native';
 
 import HomeScreen from '../screens/HomeScreen';
 import SearchScreen from '../screens/SearchScreen';
 import SettingScreen from '../screens/SettingScreen';
-import TrademarkScreen from '../screens/TrademakeScreen';
+import TrademakeScreen from '../screens/TrademakeScreen';
 
 // import colors from theme
 import * as theme from '../assets/constants/theme';
@@ -26,7 +19,7 @@ import {StatusBar} from 'react-native';
 
 const Tab = createBottomTabNavigator();
 
-const BottomTabs = () => {
+const MyTabs=() =>{
   return (
     <>
       <StatusBar
@@ -43,6 +36,7 @@ const BottomTabs = () => {
           activeTintColor: theme.colors.light.foreground,
           inactiveTintColor: theme.colors.silver,
         }}>
+
         <Tab.Screen
           name={TagName.HomeScreen}
           component={HomeScreen}
@@ -54,16 +48,7 @@ const BottomTabs = () => {
             ),
           }}
         />
-        <Tab.Screen
-          name={TagName.TrademarkScreen}
-          component={TrademarkScreen}
-          options={{
-            tabBarLabel: 'Trademark',
-            tabBarIcon: ({color}) => (
-              <FontAwesome5 name="trademark" color={color} size={28} />
-            ),
-          }}
-        />
+
         <Tab.Screen
           name={TagName.SearchScreen}
           component={SearchScreen}
@@ -85,13 +70,24 @@ const BottomTabs = () => {
             ),
           }}
         />
+
+<Tab.Screen
+          name={TagName.TrademakeScreen}
+          component={TrademakeScreen}
+          options={{
+            tabBarLabel: 'Trademake',
+            tabBarIcon: ({color}) => (
+              <FontAwesome5 name="user-alt" color={color} size={28} />
+            ),
+          }}
+        />
       </Tab.Navigator>
     </>
   );
-};
+}
 
 const App = () => {
-  return <BottomTabs />;
+  return <MyTabs />;
 };
 
 export default App;
