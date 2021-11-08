@@ -1,5 +1,6 @@
 import {Dimensions} from 'react-native';
 const {width, height} = Dimensions.get('window');
+import {Platform} from 'react-native';
 
 export const Fonts = {
   largeTitle: {
@@ -20,13 +21,23 @@ export const Fonts = {
   RussoOne: 'RussoOne',
   Satisfy: 'Satisfy_Regular',
   Lato: 'Lato-Regular',
+  fontWeight: {
+    heavy: '700',
+    bold: 'bold',
+    semibold: Platform.OS === 'android' ? 'bold' : '600',
+    regular: 'normal',
+    light: '300',
+  },
+  fontFamily: {
+    default: Platform.OS === 'ios' ? 'System' : 'Roboto',
+  },
 };
 
 export const Colors = {
   // base colors
   primary: '#a6c13c', // Green
   secondary: '#454c5d', // Gray
-
+  border: '#454c5d',
   // Render color
   cam: '#fc0331',
   yellow: '#fcba03',
@@ -34,22 +45,40 @@ export const Colors = {
   blueLight2: '#037bfc',
   tim: '#7b03fc',
   hong: '#fc0373',
-  do: '#fc0331',
-  red: '#ff0000',
-
   // colors
-  black: '#1E1F20',
-  blue: '#000D6A',
+  black: '#000000',
+  blue1: '#000D6A',
   white: '#FFFFFF',
-  lightGray: '#ABAFB8',
   lightGray2: '#EFEFF0',
   lightGray3: '#D4D5D6',
-  gray: '#BEC1D2',
-  blue: '#42B0FF',
+  blue2: '#42B0FF',
   darkGreen: '#59990F',
   darkGray: '#898C95',
   transparentLightGray: '#CCD4D5D6',
   transparentLightGray1: 'rgba(255,255,255,0.7)',
+  text: '#242424',
+  background: '#f9f9f9',
+  orange: '#FE930F',
+  lightGray: '#A5A5A5',
+  gray: '#424242',
+  smoke: '#E6E6E6',
+  placeholder: '#707070',
+  blue3: '#0d5cb6',
+  red: '#E83625',
+  gradient: ['#F04831', '#E73222', '#D9100C'],
+  green: '#088A08',
+  lightGreen: '#29bb89',
+  yellow: '#FFDF00',
+  dark: '#00000060',
+  pink: '#DB3022',
+  sell: '#ff5555',
+  pinkholder: '#ffc9c9',
+  silver: '#C0C0C0',
+  greenStatus: '#2AA952',
+  transparent: '#efefef00',
+  bgiconheader: '#24242480',
+  lightRount: '#EFEFEF',
+  purple: '#9966CC',
 };
 
 export const Sizes = {

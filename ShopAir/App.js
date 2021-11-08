@@ -8,7 +8,7 @@ import { components } from '@components/component';
 const App = () => {
   return (
     <NavigationContainer>
-      <components.HeaderHomeScreen />
+      <screens.bottom.TRADEMARK_SCREEN />
     </NavigationContainer>
   );
 };

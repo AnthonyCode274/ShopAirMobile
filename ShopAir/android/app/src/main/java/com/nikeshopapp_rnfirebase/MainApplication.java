@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
+import com.BV.LinearGradient.LinearGradientPackage;
+import com.kishanjvaghela.cardview.RNCardViewPackage;
 import com.brentvatne.react.ReactVideoPackage;
 import com.reactnativecommunity.viewpager.RNCViewPagerPackage;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
@@ -19,7 +21,7 @@ import androidx.multidex.MultiDexApplication;
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
 import com.reactnativecommunity.viewpager.RNCViewPagerPackage;
-
+import com.kishanjvaghela.cardview.RNCardViewPackage;
 
 public class MainApplication extends MultiDexApplication implements ReactApplication {
 
@@ -36,6 +38,7 @@ public class MainApplication extends MultiDexApplication implements ReactApplica
           List<ReactPackage> packages = new PackageList(this).getPackages();
           // Packages that cannot be autolinked yet can be added manually here, for example:
           // packages.add(new MyReactNativePackage());
+          packages.add(new LinearGradientPackage());
           return packages;
         }
 

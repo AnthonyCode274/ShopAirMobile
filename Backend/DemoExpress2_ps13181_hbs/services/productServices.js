@@ -25,6 +25,7 @@ exports.edit = async function editProduct(product_edit){
     proEdit.price = product_edit.price
     proEdit.date = product_edit.date
     proEdit.saleUpTo = product_edit.saleUpTo
+    proEdit.desProduct = product_edit.desProduct
     proEdit.idLoaiSP = product_edit.idLoaiSP
 
     if (product_edit.imgProduct)

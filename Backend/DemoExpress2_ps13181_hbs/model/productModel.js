@@ -8,6 +8,7 @@ const productSchema = new Schema({
     price: { type: Number },
     date: { type: Date },
     saleUpTo: { type: Number },
+    desProduct: { type: String },
     idLoaiSP: { type: Schema.Types.ObjectId, ref: 'Category' },
     imgProduct: { type: String }
     

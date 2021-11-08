@@ -1,14 +1,9 @@
-import {theme} from '@theme';
-import {getSize} from '@utils/responsive';
+import {Colors} from '@assets';
+import {getSize} from 'helper/responsive';
 import {isNumber} from 'lodash';
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
-import {
-  handleMargin,
-  handlePadding,
-  handleRound,
-  handleSquare,
-} from '../shared';
+import {handleMargin, handlePadding, handleRound, handleSquare} from './shared';
 import styles from './styles';
 
 const Block = ({
@@ -74,12 +69,12 @@ const Block = ({
     column && styles.column,
     shadow && {
       ...styles.shadow,
-      shadowColor: shadowColor ? theme.colors[shadowColor] : theme.colors.black,
+      shadowColor: shadowColor ? Colors[shadowColor] : Colors.black,
       elevation: elevation || 3,
     },
     wrap && {flexWrap: 'wrap'},
     backgroundColor && {
-      backgroundColor: theme.colors[backgroundColor] || backgroundColor,
+      backgroundColor: Colors[backgroundColor] || backgroundColor,
     },
     padding && {...handlePadding(getSize.m(padding))},
     margin && {...handleMargin(getSize.m(margin))},
@@ -108,8 +103,7 @@ const Block = ({
     round && {...handleRound(getSize.s(round))},
     isNumber(opacity) && {opacity: opacity},
     borderColor && {
-      borderColor:
-        theme.colors[borderColor] || theme.colors.border || borderColor,
+      borderColor: Colors[borderColor] || Colors.border || borderColor,
     },
     relative && {position: 'relative'},
     absolute && {position: 'absolute'},
