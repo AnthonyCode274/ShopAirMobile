@@ -25,9 +25,7 @@ const AppStackScreens = () => {
 
   return (
     <>
-      <AppStack.Navigator
-        headerMode="none"
-        initialRouteName={TagName.OnboardingScreen}>
+      <AppStack.Navigator headerMode="none" initialRouteName={TagName.OnboardingScreen}>
         <AppStack.Screen name={TagName.Auth} component={AuthStackScreens} />
         <AppStack.Screen name={TagName.Main} component={BottomTabs} />
         <AppStack.Screen name={TagName.CURD} component={Insert} />
@@ -48,6 +46,7 @@ const AppStackScreens = () => {
         <AppStack.Screen name={TagName.DetailsItem} component={ItemPressed} />
         <AppStack.Screen name={TagName.ShopCarttt} component={ShopCart} />
         <AppStack.Screen name={TagName.Successfuly} component={Successfuly} />
+
       </AppStack.Navigator>
     </>
   );
