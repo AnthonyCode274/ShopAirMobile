@@ -199,7 +199,8 @@
               <!-- User Account -->
               <li class="dropdown user-menu">
                 <button href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                  <img src="https://firebasestorage.googleapis.com/v0/b/nikeshoppingapp-rnfirebase.appspot.com/o/haunh270401.jpg?alt=media&token=0f10b837-1ee6-466f-a0ad-efdc9c50119c" 
+                  <img
+                    src="https://firebasestorage.googleapis.com/v0/b/nikeshoppingapp-rnfirebase.appspot.com/o/haunh270401.jpg?alt=media&token=0f10b837-1ee6-466f-a0ad-efdc9c50119c"
                     class="user-image" alt="User Image" />
                   <span class="d-none d-lg-inline-block">Abdus Salam</span>
                 </button>
@@ -264,7 +265,7 @@
               <label for="idLoaiSP">Category</label>
               <select class="form-control" id="idLoaiSP" name="idLoaiSP">
                 {{#each loaiSP}}
-                  <option value="{{this._id}}">{{this.nameCategory}}</option>
+                <option value="{{this._id}}">{{this.nameCategory}}</option>
                 {{/each}}
               </select>
             </div>
@@ -276,25 +277,29 @@
               </div>
               <div class="form-group col-6">
                 <label for="position">Sale?:</label>
-                <input required type="number" class="form-control" placeholder="Sale"
-                id="saleUpTo" name="saleUpTo" />
+                <input required type="number" class="form-control" placeholder="Sale" id="saleUpTo" name="saleUpTo" />
               </div>
             </div>
-            
+
+            <div class="form-group">
+              <label for="position">Details product:</label>
+              <textarea id="detailsProduct" name="detailsProduct" rows="4" cols="100" class="form-control" placeholder="Write something.."></textarea>
+            </div>
+
             <div class="image-product form-group">
               <label class="form-label" for="customFile">Image product:</label>
               <input type="file" class="form-control" id="image" name="imgProduct" />
             </div>
             <div class="image-product form-group">
-              <img style="max-width: 200px; max-height: 100px; width: auto; height: auto;" id="showImage" src=""
-                alt="your image" />
+              <img style="max-width: 500px; max-height: 500px; width: auto; height: auto;" id="showImage" src=""
+                alt="your image" class=" col-12" />
             </div>
-            <button id="btn_submit" type="submit" class="btn btn-primary">Submit</button>
+            <button id="btn_submit" type="submit" class="btn btn-success col-12">Submit</button>
           </form>
 
         </div>
         <footer class="footer mt-auto">
-          <div class="copyright bg-white">  
+          <div class="copyright bg-white">
             <p>
               &copy; <span id="copy-year">2019</span> Copyright Sleek Dashboard Bootstrap Template by
               <a class="text-primary" href="http://www.iamabdus.com/" target="_blank">Abdus</a>.
@@ -315,6 +320,7 @@
       $("#datepicker").datepicker({
         uiLibrary: "bootstrap4",
       });
+
       var isValidName = false, isValidPrice = false, isValidDate = false;
       function validateProductName() {
         let value = document.getElementById('productName').value
@@ -389,27 +395,6 @@
         readURL(this);
       });
     </script>
-
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCn8TFXGg17HAUcNpkwtxxyT9Io9B_NcM" defer></script>
-    <script src="/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="/assets/plugins/toaster/toastr.min.js"></script>
-    <script src="/assets/plugins/slimscrollbar/jquery.slimscroll.min.js"></script>
-    <script src="/assets/plugins/jquery/jquery.min.js"></script>
-    <script src="/assets/plugins/charts/Chart.min.js"></script>
-    <script src="/assets/plugins/ladda/spin.min.js"></script>
-    <script src="/assets/plugins/ladda/ladda.min.js"></script>
-    <script src="/assets/plugins/jquery-mask-input/jquery.mask.min.js"></script>
-    <script src="/assets/plugins/select2/js/select2.min.js"></script>
-    <script src="/assets/plugins/jvectormap/jquery-jvectormap-2.0.3.min.js"></script>
-    <script src="/assets/plugins/jvectormap/jquery-jvectormap-world-mill.js"></script>
-    <script src="/assets/plugins/daterangepicker/moment.min.js"></script>
-    <script src="/assets/plugins/daterangepicker/daterangepicker.js"></script>
-    <script src="/assets/plugins/jekyll-search.min.js"></script>
-    <script src="/assets/js/sleek.js"></script>
-    <script src="/assets/js/chart.js"></script>
-    <script src="/assets/js/date-range.js"></script>
-    <script src="/assets/js/map.js"></script>
-    <script src="/assets/js/custom.js"></script>
   </div>
 
 </body>

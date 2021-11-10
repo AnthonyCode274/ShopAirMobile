@@ -11,12 +11,13 @@ exports.getProductByID = async function getProductByID(id){
 }
 
 exports.addNew = async function addNew(params) {
-    let {productName, price, date, saleUpTo, idLoaiSP, imgProduct} = params
+    let {productName, price, date, saleUpTo, detailsProduct, idLoaiSP, imgProduct} = params
     let products = {
       productName: productName,
       price: price,
       date: date,
       saleUpTo: saleUpTo,
+      detailsProduct: detailsProduct,
       idLoaiSP: idLoaiSP,
       imgProduct: imgProduct
     }
@@ -24,8 +25,8 @@ exports.addNew = async function addNew(params) {
 }
 
 exports.edit = async function editProduct(id, params){
-    let {productName, price, date, saleUpTo, idLoaiSP, imgProduct} = params
-    let product_edit = {id, productName, price, date, saleUpTo, idLoaiSP, imgProduct}
+    let {productName, price, date, saleUpTo, detailsProduct, idLoaiSP, imgProduct} = params
+    let product_edit = {id, productName, price, date, saleUpTo, detailsProduct, idLoaiSP, imgProduct}
     await productServices.edit(product_edit)
 }
 

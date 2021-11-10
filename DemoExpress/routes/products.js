@@ -114,7 +114,7 @@ router.post("/update/:id", middle, async function (req, res, next) {
   let { body } = req
   if (req.file) 
   {
-    let imgUrl = "http://localhost:"+ process.env.PORT + "/images/" + req.file.originalname
+    let imgUrl = req.file.originalname
     body = {...body, imgProduct: imgUrl}
   }
   await productController.edit(id, body)

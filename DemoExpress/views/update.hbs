@@ -273,27 +273,32 @@
 
             <div class="form-group">
               <div class="row">
-                <div class="form-group">
+                <div class="form-group col-6">
                   <label for="date">Date:</label>
                   <input id="datepicker" width="276" name="date" value="{{formatDate productEdit.date}}" />
                 </div>
-                <div class="form-group">
+                <div class="form-group col-6">
                   <label for="position">Sale?:</label>
                   <input type="number" class="form-control" value="{{productEdit.saleUpTo}}" placeholder="Sale"
                     id="saleUpTo" name="saleUpTo" />
                 </div>
               </div>
-
+            <div class="form-group">
+              <label for="position">Details product:</label>
+              <textarea id="detailsProduct" name="detailsProduct" rows="4" cols="100" class="form-control" placeholder="Write something..">{{productEdit.detailsProduct}}"</textarea>
+            </div>
             </div>
             <div class="image-product form-group">
               <label class="form-label" for="customFile">Image product:</label>
               <input type="file" class="form-control" id="image" name="imgProduct" />
             </div>
             <div class="image-product form-group">
-              <img style="max-width: 200px; max-height: 100px; width: auto; height: auto;" id="showImage"
-                src="http://localhost:9000/images/{{productEdit.imgProduct}}" alt="your image" />
+              <img style="min-width: 100px; min-height: 100px; width: auto; height: auto;" id="showImage"
+                src="http://localhost:9000/images/{{productEdit.imgProduct}}" alt="your image" class=" col-12" />
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <div class=" col-12">
+              <button type="submit" class="btn btn-primary col-12">Submit</button>
+            </div>
           </form>
 
         </div>
