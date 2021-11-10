@@ -6,19 +6,13 @@ var productController = require('../controller/productController');
 var categoryController = require('../controller/categoryController');
 var userController = require('../controller/userController');
 
+
+// router.use(auth.authenticate); // check login for all
+
 router.get("/products-send", async function(req, res){
   let listProducts = await productController.getListProducts();
   res.send(listProducts);
 });
-
-// router.use(auth.authenticate); // check login for all
-
-
-/* Calculator. */
-router.get("/cal", function (req, res, next) {
-  res.render("calculation");
-});
-
 // /* GET home page. */
 router.get("/", async function (req, res, next) {
   let listSP = await productController.getListProducts()
@@ -38,6 +32,7 @@ router.post('/add_new', middle, async function(req, res, next){
   let { body } = req
   if (req.file)
   {
+    // let imgUrl = req.file.originalname
     let imgUrl = req.file.originalname
     body = {...body, imgProduct: imgUrl}
   }
@@ -53,20 +48,20 @@ router.get("/category", async function(req, res){
 });
 
 // Add new category
-router.get("/add_category", function(req, res){
-  res.render("/products/add_category");
+router.get("/add_category", function(req, res, next){
+  res.render("/category/add_category");
 });
 
 router.post('/add_category', async function(req, res, next){
   let { body } = req
   await categoryController.addNew(body);
-  res.redirect('/products/category');
+  res.redirect('category/add_category');
 });
 
 router.get("/edit_category/:id", async function (req, res, next) {
   let id = req.params.id;
   let loaiSP = await categoryController.getCategoryByID(id);
-  res.render('/products/category/edit_category', {categoriesEdit: loaiSP});
+  res.render('category/edit_category', {categoriesEdit: loaiSP});
 });
 /* Submit update product. */
 router.post("/edit_category/:id", async function (req, res, next) {
@@ -112,14 +107,14 @@ router.get("/update/:id", middle, async function (req, res, next) {
   res.render('update', {productEdit: pros, loaiSP});
 });
 
-
+// http://localhost:9000/images/
 /* Submit update product. */
 router.post("/update/:id", middle, async function (req, res, next) {
   let { id } = req.params;
   let { body } = req
   if (req.file) 
   {
-    let imgUrl = req.file.originalname
+    let imgUrl = "http://localhost:"+ process.env.PORT + "/images/" + req.file.originalname
     body = {...body, imgProduct: imgUrl}
   }
   await productController.edit(id, body)
@@ -129,9 +124,9 @@ router.post("/update/:id", middle, async function (req, res, next) {
 
 /* Delete product. */
 router.delete("/delete/:id", async function (req, res, next) {
-  let {id} = req.params
-  await productController.remove(id)
-  res.send({res: true})
+  let id = req.params.id;
+  await productController.remove(id);
+  res.send({res: true});
 });
 
 

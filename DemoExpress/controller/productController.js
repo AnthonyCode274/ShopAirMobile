@@ -29,6 +29,6 @@ exports.edit = async function editProduct(id, params){
     await productServices.edit(product_edit)
 }
 
-exports.remove = async function removeProductByID(id_del){
-    await productServices.remove(id_del)
-}
+exports.remove = async function removeProductByID(id){
+    await productServices.remove(id)
+};

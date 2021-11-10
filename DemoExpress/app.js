@@ -18,7 +18,7 @@ var app = express();
 
 //connect db
 mongoose.connect(process.env.MONGODB, { useNewUrlParser: true, useUnifiedTopology: true })
-.then(() => console.log('DB Connected!'))
+.then(() => console.log(`DB connected with port ${process.env.PORT}!`))
 .catch(err => console.log('DB error: >>' + err))
 
 // view engine setup

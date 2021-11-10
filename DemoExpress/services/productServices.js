@@ -36,7 +36,8 @@ exports.edit = async function editProduct(product_edit){
 }
 
 exports.remove = async function removeProductByID(id){
-  await ProductModel.remove({_id: id});
-}
+  let prod = await ProductModel.remove({_id: id})
+  return await prod;
+};
 
 
