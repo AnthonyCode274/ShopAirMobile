@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
 import {
   StyleSheet,
@@ -8,7 +9,7 @@ import {
 } from 'react-native';
 import database from '@react-native-firebase/database';
 
-import {COLORS, FONTS, SIZES} from '../../assets/constants';
+import {Colors, Sizes} from '@assets';
 
 import TagName from '../TagNameScreens';
 
@@ -16,23 +17,26 @@ const AddFirebase = ({navigation}) => {
   const [name, setName] = useState();
   const [price, setPrice] = useState();
 
-  const dataShoesPushing = (id, names, prices)=>{
-      let key;
+  const dataShoesPushing = (id, names, prices) => {
+    let key;
 
-   if(id == null){
-       key=database().ref().push().key;
-       database().ref('/Product/'+key).update({
-        id:key,
-        Name:names,
-        Price:prices,
-        image:'https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/77099cd4-eb45-4309-9001-4508a44fc634/wildhorse-7-trail-running-shoe-XdK82N.jpg'
-    }).then(()=> navigation.navigate(TagName.HomeScreen)).catch((e)=>console.error(e))
+    if (id == null) {
+      key = database().ref().push().key;
+      database()
+        .ref('/Product/' + key)
+        .update({
+          id: key,
+          Name: names,
+          Price: prices,
+          image:
+            'https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/77099cd4-eb45-4309-9001-4508a44fc634/wildhorse-7-trail-running-shoe-XdK82N.jpg',
+        })
+        .then(() => navigation.navigate(TagName.HomeScreen))
+        .catch((e) => console.error(e));
+    }
+    console.log(key);
+  };
 
-   }
-   console.log(key);
-  
-  }
-  
   return (
     <View style={styles.container}>
       <View
@@ -42,7 +46,7 @@ const AddFirebase = ({navigation}) => {
         }}>
         <Text
           style={{
-            color: COLORS.black,
+            color: Colors.black,
             fontSize: 32,
           }}>
           Insert Data
@@ -51,8 +55,8 @@ const AddFirebase = ({navigation}) => {
       <View style={styles.addContainer}>
         <Text
           style={{
-            color: COLORS.black,
-            fontSize: SIZES.h2,
+            color: Colors.black,
+            fontSize: Sizes.h2,
             marginTop: 20,
           }}>
           Name
@@ -67,8 +71,8 @@ const AddFirebase = ({navigation}) => {
       <View style={styles.addContainer}>
         <Text
           style={{
-            color: COLORS.black,
-            fontSize: SIZES.h2,
+            color: Colors.black,
+            fontSize: Sizes.h2,
             marginTop: 20,
           }}>
           Price
@@ -81,10 +85,12 @@ const AddFirebase = ({navigation}) => {
         />
       </View>
       <View style={styles.Button}>
-        <TouchableOpacity onPress={()=> dataShoesPushing(null,name,price)} style={styles.buttonContainer}>
+        <TouchableOpacity
+          onPress={() => dataShoesPushing(null, name, price)}
+          style={styles.buttonContainer}>
           <Text
             style={{
-              color: COLORS.white,
+              color: Colors.white,
               fontSize: 18,
             }}>
             Add
@@ -121,7 +127,7 @@ const styles = StyleSheet.create({
     marginRight: 50,
   },
   buttonContainer: {
-    backgroundColor: COLORS.black,
+    backgroundColor: Colors.black,
     height: 50,
     borderRadius: 15,
     justifyContent: 'center',
