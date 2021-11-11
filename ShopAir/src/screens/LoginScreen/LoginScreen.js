@@ -43,7 +43,7 @@ const LoginScreen = ({navigation}) => {
       await auth()
         .signInWithEmailAndPassword(email, password)
         .then(() => {
-          navigation.navigate(TextDirectory.mainScreen);
+          navigation.navigate(TextDirectory.appStack.bottomNav);
           console.log('Signed!');
         });
       setShowLoading(false);

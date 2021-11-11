@@ -41,7 +41,7 @@ function Onboarding() {
 
   if (user) {
     console.log(user.email);
-    navigation.navigate(TextDirectory.mainScreen);
+    navigation.navigate(TextDirectory.appStack.bottomNav);
   }
   return (
     <Animated.View style={styles.container}>
@@ -59,7 +59,7 @@ function Onboarding() {
       <View style={styles.Wrapper}>
         <Image
           style={{width: 150, height: 150}}
-          source={images.logo.logo_notText}
+          source={images.logo_lare}
           width={80}
           height={80}
           resizeMode="contain"

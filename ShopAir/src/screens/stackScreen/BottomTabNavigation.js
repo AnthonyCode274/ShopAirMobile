@@ -14,9 +14,7 @@ import {Colors, Sizes} from '@assets';
 import {TextDirectory} from 'helper/TextDirectory';
 import {screens} from '@screens/screens';
 
-import Icon from 'react-native-vector-icons/MaterialIcons';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import {MyBottomTab} from './BottomNav/MyBottomTab';
 import {StatusBar} from 'react-native';
 
 const Tab = createBottomTabNavigator();
@@ -31,22 +29,12 @@ const MyBottomNav = () => {
         barStyle="dark-content"
       />
 
-      <Tab.Navigator
-        initialRouteName={TextDirectory.bottomScreen.homescreen}
-        tabBarOptions={{
-          showLabel: false,
-          activeTintColor: Colors.lightGray,
-          inactiveTintColor: Colors.colors.silver,
-        }}>
+      <Tab.Navigator tabBar={(props) => <MyBottomTab {...props} />}>
         <Tab.Screen
-          name={TextDirectory.bottomScreen.homescreen}
+          name={TextDirectory.bottomScreen.homeScreen}
           component={screens.bottom.HOME_SCREEN}
           options={{
             tabBarLabel: 'Home',
-            tabBarIcon: ({color}) => (
-              <Icon name="home" color={color} size={Sizes.iconBottom} />
-              // <Image source={images_.default.shoesIcon} style={{width: 42, height: 42}} />
-            ),
           }}
         />
         <Tab.Screen
@@ -54,13 +42,6 @@ const MyBottomNav = () => {
           component={screens.bottom.FAVORITE_SCREEN}
           options={{
             tabBarLabel: 'Favorite',
-            tabBarIcon: ({color}) => (
-              <FontAwesome5
-                name="user-alt"
-                color={color}
-                size={Sizes.iconBottom}
-              />
-            ),
           }}
         />
         <Tab.Screen
@@ -68,13 +49,6 @@ const MyBottomNav = () => {
           component={screens.bottom.TRADEMARK_SCREEN}
           options={{
             tabBarLabel: 'TradeMark',
-            tabBarIcon: ({color}) => (
-              <FontAwesome
-                name="search"
-                color={color}
-                size={Sizes.iconBottom}
-              />
-            ),
           }}
         />
 
@@ -83,13 +57,6 @@ const MyBottomNav = () => {
           component={screens.bottom.NOTIFICATION_SCREEN}
           options={{
             tabBarLabel: 'Notification',
-            tabBarIcon: ({color}) => (
-              <FontAwesome5
-                name="user-alt"
-                color={color}
-                size={Sizes.iconBottom}
-              />
-            ),
           }}
         />
 
@@ -98,13 +65,6 @@ const MyBottomNav = () => {
           component={screens.bottom.USER_SCREEN}
           options={{
             tabBarLabel: 'User',
-            tabBarIcon: ({color}) => (
-              <FontAwesome5
-                name="user-alt"
-                color={color}
-                size={Sizes.iconBottom}
-              />
-            ),
           }}
         />
       </Tab.Navigator>

@@ -1,7 +1,7 @@
+import React from 'react';
 import {Colors} from '@assets';
 import {getSize} from 'helper/responsive';
 import {isNumber} from 'lodash';
-import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {handleMargin, handlePadding, handleRound, handleSquare} from './shared';
 import styles from './styles';

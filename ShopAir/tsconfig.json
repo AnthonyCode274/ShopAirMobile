@@ -17,7 +17,7 @@
       "@components/*": ["components/*"],
       "@navigations": ["navigations"],
       "@navigations/*": ["navigations/*"],
-      "@helper": ["helper"],
+      "@helper": ["helper/*"],
       "@screens": ["screens"],
       "@screens/*": ["screens/*"],
       "@theme": ["theme"],

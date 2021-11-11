@@ -25,7 +25,11 @@ exports.edit = async function editProduct(product_edit){
     proEdit.price = product_edit.price
     proEdit.date = product_edit.date
     proEdit.saleUpTo = product_edit.saleUpTo
+<<<<<<< HEAD:DemoExpress/services/productServices.js
     proEdit.desProduct = product_edit.desProduct
+=======
+    proEdit.detailsProduct = product_edit.detailsProduct
+>>>>>>> dab610226ab4dab8510f4a4975d9688bf89c0f77:Backend/DemoExpress2_ps13181_hbs/services/productServices.js
     proEdit.idLoaiSP = product_edit.idLoaiSP
 
     if (product_edit.imgProduct)
@@ -37,7 +41,8 @@ exports.edit = async function editProduct(product_edit){
 }
 
 exports.remove = async function removeProductByID(id){
-  await ProductModel.remove({_id: id});
-}
+  let prod = await ProductModel.remove({_id: id})
+  return await prod;
+};
 
 
