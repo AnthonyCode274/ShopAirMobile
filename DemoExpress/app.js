@@ -18,11 +18,7 @@ var app = express();
 
 //connect db
 mongoose.connect(process.env.MONGODB, { useNewUrlParser: true, useUnifiedTopology: true })
-<<<<<<< HEAD:DemoExpress/app.js
-.then(() => console.log(`Server started with port ${process.env.PORT}!`))
-=======
 .then(() => console.log(`DB connected with port ${process.env.PORT}!`))
->>>>>>> dab610226ab4dab8510f4a4975d9688bf89c0f77:Backend/DemoExpress2_ps13181_hbs/app.js
 .catch(err => console.log('DB error: >>' + err))
 
 // view engine setup
