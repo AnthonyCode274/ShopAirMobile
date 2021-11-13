@@ -13,8 +13,8 @@
           <svg class="brand-icon" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" width="30"
             height="33" viewBox="0 0 30 33">
             <g fill="none" fill-rule="evenodd">
-              <path class="logo-fill-blue" fill="#7DBCFF" d="M0 4v25l8 4V0zM22 4v25l8 4V0z" />
-              <path class="logo-fill-white" fill="#FFF" d="M11 4v25l8 4V0z" />
+              <path class="logo-fill-blue" fill="#7DBCFF" d="M0 4v25l8 4V0zM22 4v25l8 4V0z"></path>
+              <path class="logo-fill-white" fill="#FFF" d="M11 4v25l8 4V0z"></path>
             </g>
           </svg>
           <span class="brand-name">Sleek Dashboard</span>
@@ -30,7 +30,8 @@
             <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#dashboard"
               aria-expanded="false" aria-controls="dashboard">
               <i class="mdi mdi-view-dashboard-outline"></i>
-              <span class="nav-text">Dashboard</span> <b class="caret"></b>
+              <span class="nav-text">Dashboard</span>
+              <b class="caret"></b>
             </a>
             <ul class="collapse show" id="dashboard" data-parent="#sidebar-menu">
               <div class="sub-menu">
@@ -46,17 +47,21 @@
                     <span class="nav-text">Category</span>
                   </a>
                 </li>
-
+                <li>
+                  <a class="sidenav-item-link" href="/products/banner">
+                    <span class="nav-text">Banner</span>
+                  </a>
+                </li>
               </div>
             </ul>
           </li>
-
 
           <li class="has-sub">
             <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#pages"
               aria-expanded="false" aria-controls="pages">
               <i class="mdi mdi-image-filter-none"></i>
-              <span class="nav-text">Pages</span> <b class="caret"></b>
+              <span class="nav-text">Pages</span>
+              <b class="caret"></b>
             </a>
             <ul class="collapse" id="pages" data-parent="#sidebar-menu">
               <div class="sub-menu">
@@ -70,7 +75,8 @@
                 <li class="has-sub">
                   <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse"
                     data-target="#authentication" aria-expanded="false" aria-controls="authentication">
-                    <span class="nav-text">Authentication</span> <b class="caret"></b>
+                    <span class="nav-text">Authentication</span>
+                    <b class="caret"></b>
                   </a>
                   <ul class="collapse" id="authentication">
                     <div class="sub-menu">
@@ -94,13 +100,15 @@
       <div class="sidebar-footer">
         <div class="sidebar-footer-content">
           <h6 class="text-uppercase">
-            Cpu Uses <span class="float-right">40%</span>
+            Cpu Uses
+            <span class="float-right">40%</span>
           </h6>
           <div class="progress progress-xs">
             <div class="progress-bar active" style="width: 40%;" role="progressbar"></div>
           </div>
           <h6 class="text-uppercase">
-            Memory Uses <span class="float-right">65%</span>
+            Memory Uses
+            <span class="float-right">65%</span>
           </h6>
           <div class="progress progress-xs">
             <div class="progress-bar progress-bar-warning" style="width: 65%;" role="progressbar"></div>
@@ -110,11 +118,9 @@
     </div>
   </aside>
 
-
-
   <div class="page-wrapper">
     <!-- Header -->
-    <header class="main-header " id="header">
+    <header class="main-header" id="header">
       <nav class="navbar navbar-static-top navbar-expand-lg">
         <!-- Sidebar toggle button -->
         <button id="sidebar-toggler" class="sidebar-toggle">
@@ -134,7 +140,7 @@
           </div>
         </div>
 
-        <div class="navbar-right ">
+        <div class="navbar-right">
           <ul class="nav navbar-nav">
             <!-- Github Link Button -->
             <!-- <li class="github-link mr-3">
@@ -153,37 +159,42 @@
                 <li class="dropdown-header">You have 5 notifications</li>
                 <li>
                   <a href="#">
-                    <i class="mdi mdi-account-plus"></i> New user registered
-                    <span class=" font-size-12 d-inline-block float-right"><i class="mdi mdi-clock-outline"></i> 10
-                      AM</span>
+                    <i class="mdi mdi-account-plus"></i>
+                    New user registered
+                    <span class="font-size-12 d-inline-block float-right"><i class="mdi mdi-clock-outline"></i>
+                      10 AM</span>
                   </a>
                 </li>
                 <li>
                   <a href="#">
-                    <i class="mdi mdi-account-remove"></i> User deleted
-                    <span class=" font-size-12 d-inline-block float-right"><i class="mdi mdi-clock-outline"></i> 07
-                      AM</span>
+                    <i class="mdi mdi-account-remove"></i>
+                    User deleted
+                    <span class="font-size-12 d-inline-block float-right"><i class="mdi mdi-clock-outline"></i>
+                      07 AM</span>
                   </a>
                 </li>
                 <li>
                   <a href="#">
-                    <i class="mdi mdi-chart-areaspline"></i> Sales report is ready
-                    <span class=" font-size-12 d-inline-block float-right"><i class="mdi mdi-clock-outline"></i> 12
-                      PM</span>
+                    <i class="mdi mdi-chart-areaspline"></i>
+                    Sales report is ready
+                    <span class="font-size-12 d-inline-block float-right"><i class="mdi mdi-clock-outline"></i>
+                      12 PM</span>
                   </a>
                 </li>
                 <li>
                   <a href="#">
-                    <i class="mdi mdi-account-supervisor"></i> New client
-                    <span class=" font-size-12 d-inline-block float-right"><i class="mdi mdi-clock-outline"></i> 10
-                      AM</span>
+                    <i class="mdi mdi-account-supervisor"></i>
+                    New client
+                    <span class="font-size-12 d-inline-block float-right"><i class="mdi mdi-clock-outline"></i>
+                      10 AM</span>
                   </a>
                 </li>
                 <li>
                   <a href="#">
-                    <i class="mdi mdi-server-network-off"></i> Server overloaded
-                    <span class=" font-size-12 d-inline-block float-right"><i class="mdi mdi-clock-outline"></i> 05
-                      AM</span>
+                    <i class="mdi mdi-server-network-off"></i>
+                    Server overloaded
+                    <span class="font-size-12 d-inline-block float-right"><i class="mdi mdi-clock-outline"></i>
+                      05 AM</span>
                   </a>
                 </li>
                 <li class="dropdown-footer">
@@ -206,25 +217,34 @@
                     src="https://firebasestorage.googleapis.com/v0/b/nikeshoppingapp-rnfirebase.appspot.com/o/haunh270401.jpg?alt=media&token=0f10b837-1ee6-466f-a0ad-efdc9c50119c"
                     class="img-circle" alt="User Image" />
                   <div class="d-inline-block">
-                    Abdus Salam <small class="pt-1">abdus@gmail.com</small>
+                    Abdus Salam
+                    <small class="pt-1">abdus@gmail.com</small>
                   </div>
                 </li>
 
                 <li>
                   <a href="profile.html">
-                    <i class="mdi mdi-account"></i> My Profile
+                    <i class="mdi mdi-account"></i>
+                    My Profile
                   </a>
                 </li>
                 <li>
                   <a href="email-inbox.html">
-                    <i class="mdi mdi-email"></i> Message
+                    <i class="mdi mdi-email"></i>
+                    Message
                   </a>
                 </li>
                 <li>
-                  <a href="#"> <i class="mdi mdi-diamond-stone"></i> Projects </a>
+                  <a href="#">
+                    <i class="mdi mdi-diamond-stone"></i>
+                    Projects
+                  </a>
                 </li>
                 <li>
-                  <a href="#"> <i class="mdi mdi-settings"></i> Account Setting </a>
+                  <a href="#">
+                    <i class="mdi mdi-settings"></i>
+                    Account Setting
+                  </a>
                 </li>
 
                 <li class="dropdown-footer">
@@ -236,9 +256,7 @@
         </div>
       </nav>
 
-
     </header>
-
 
     <div class="content-wrapper">
       <div>
@@ -250,7 +268,7 @@
             <div class="card card-table-border-none" id="recent-orders">
               <div class="card-header justify-content-between">
                 <h1>List Category</h1>
-                <div class="date-range-report ">
+                <div class="date-range-report">
                   <span></span>
                 </div>
               </div>
@@ -279,10 +297,10 @@
                     {{#each listCategories}}
                     <tr>
                       <td class="d-none d-md-table-cell">
-                        {{ this._id }}
+                        {{this._id}}
                       </td>
                       <td>
-                        <p class="text-dark res-title-col-table">{{ this.nameCategory }}</p>
+                        <p class="text-dark res-title-col-table">{{this.nameCategory}}</p>
                       </td>
                       <td>
                         <div class="res-crud-lg text-right">
@@ -304,20 +322,19 @@
         </div>
         <!-- END PRODUCT LIST -->
 
-
-
       </div>
 
       <footer class="footer mt-auto">
         <div class="copyright bg-white">
           <p>
-            &copy; <span id="copy-year">2019</span> Copyright Sleek Dashboard Bootstrap Template by
+            &copy;
+            <span id="copy-year">2019</span>
+            Copyright Sleek Dashboard Bootstrap Template by
             <a class="text-primary" href="http://www.iamabdus.com/" target="_blank">Abdus</a>.
           </p>
         </div>
         <script>
-          var d = new Date();
-          var year = d.getFullYear();
+          var d = new Date(); var year = d.getFullYear();
           document.getElementById("copy-year").innerHTML = year;
         </script>
       </footer>
@@ -327,21 +344,19 @@
 
   <script>
     function goToAddNew() {
-      window.location.href = '/products/category/add_category/'
-    }
-    function goToEditCategory() {
+      window.location.href =
+      '/products/category/add_category/'
+    } function goToEditCategory() {
       window.location.href = '/products/edit_category/' + _id
-    }
-    function deleteCategory(id) {
-      $.ajax({
-        type: 'DELETE',
-        url: '/products/category/delete/' + id,
-        success: function (data) {
-          if (data.res == true) {
-            window.location.href = '/products/category'
-          }
-        }
-      });
+    } function
+      deleteCategory(id) {
+        $.ajax({
+          type: 'DELETE', url:
+            '/products/category/delete/' + id, success: function (data) {
+              if (data.res
+                == true) { window.location.href = '/products/category' }
+            }
+        });
     }
   </script>
 

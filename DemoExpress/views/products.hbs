@@ -45,6 +45,11 @@
                                         <span class="nav-text">Category</span>
                                     </a>
                                 </li>
+                                <li>
+                                    <a class="sidenav-item-link" href="/products/banner">
+                                        <span class="nav-text">Banner</span>
+                                    </a>
+                                </li>
                             </div>
                         </ul>
                     </li>
@@ -343,7 +348,7 @@
                                                     Edit
                                                 </button>
                                                 <button type="button" class="btn btn-danger"
-                                                    {{!-- onclick="deleteProduct('{{this._id}}')" --}}
+                                                    onclick="deleteProduct('{{this._id}}')"
                                                     >Remove</button>
                                             </div>
                                         </td>
@@ -382,7 +387,7 @@
         function deleteProduct(id) {
             $.ajax({
                 type: "DELETE", url:
-                    '/products/delete/' + id, success: function (data) {
+                    '/products/deleteProduct/' + id, success: function (data) {
                         if (data.res == true) {
                             window.location.href = '/products'
                         }

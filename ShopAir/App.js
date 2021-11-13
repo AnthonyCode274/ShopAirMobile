@@ -1,16 +1,21 @@
-import React from 'react';
+import React, {Component} from 'react';
 
 import {NavigationContainer} from '@react-navigation/native';
 import AppStackScreens from '@screens/stackScreen/AppStackNavigation';
-import {screens} from '@screens/screens';
-import {components} from '@components/component';
+// import {screens} from '@screens/screens';
+import NetWork from '@components/NetWork';
+import Block from '@components/Block';
+import apiCall from '@utils/apiCall';
 
-const App = () => {
-  return (
-    <NavigationContainer>
-      <AppStackScreens />
-    </NavigationContainer>
-  );
-};
-
-export default App;
+export default class App extends Component {
+  render() {
+    return (
+      <Block flex>
+        <NavigationContainer>
+          <AppStackScreens />
+        </NavigationContainer>
+        <NetWork />
+      </Block>
+    );
+  }
+}

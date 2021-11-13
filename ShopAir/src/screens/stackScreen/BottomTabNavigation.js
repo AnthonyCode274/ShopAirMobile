@@ -38,17 +38,17 @@ const MyBottomNav = () => {
           }}
         />
         <Tab.Screen
-          name={TextDirectory.bottomScreen.favorite}
-          component={screens.bottom.FAVORITE_SCREEN}
-          options={{
-            tabBarLabel: 'Favorite',
-          }}
-        />
-        <Tab.Screen
           name={TextDirectory.bottomScreen.trademark}
           component={screens.bottom.TRADEMARK_SCREEN}
           options={{
             tabBarLabel: 'TradeMark',
+          }}
+        />
+        <Tab.Screen
+          name={TextDirectory.bottomScreen.favorite}
+          component={screens.bottom.FAVORITE_SCREEN}
+          options={{
+            tabBarLabel: 'Favorite',
           }}
         />
 

@@ -11,8 +11,6 @@ router.get("/products", function (req, res, next) {
   res.send({ listProduct, listCategory });
 });
 
-
-
 // api list products
 router.get("/products/:id", function (req, res, next) {
   let {id} = req.params.id

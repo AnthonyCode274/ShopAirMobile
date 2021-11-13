@@ -19,30 +19,50 @@ import styles from './styles';
 import {images} from '@assets';
 import {TextDirectory} from 'helper/TextDirectory';
 import {useNavigation} from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-function Onboarding() {
+const Onboarding = () => {
   const navigation = useNavigation();
 
-  const [initializing, setInitializing] = useState(true);
-  const [user, setUser] = useState();
-
-  // Handle user state changes
-  function onAuthStateChanged(user) {
-    setUser(user);
-    if (initializing) setInitializing(false);
-  }
-
   useEffect(() => {
-    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-    return subscriber; // unsubscribe on unmount
-  },[]);
+    const status = async () => {
+      try {
+        const value = await AsyncStorage.getItem('JUST_ONE');
+        if (value !== null) {
+          navigation.navigate(TextDirectory.appStack.bottomNav);
+          // let's go
+        } else {
+          navigation.navigate(TextDirectory.appStack.auth);
+        }
+      } catch (error) {
+        // Error retrieving data
+        console.log('Empty value..');
+      }
+    };
+    status();
+  }, []);
 
-  if (initializing) return null;
+  // const [initializing, setInitializing] = useState(true);
+  // const [user, setUser] = useState();
 
-  if (user) {
-    console.log(user.email);
-    navigation.navigate(TextDirectory.appStack.bottomNav);
-  }
+  // // Handle user state changes
+  // function onAuthStateChanged(user) {
+  //   setUser(user);
+  //   if (initializing) setInitializing(false);
+  // }
+
+  // useEffect(() => {
+  //   const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+  //   return subscriber; // unsubscribe on unmount
+  // }, []);
+
+  // if (initializing) return null;
+
+  // if (user) {
+  //   console.log(user.email);
+  //   navigation.navigate(TextDirectory.appStack.bottomNav);
+  // }
+
   return (
     <Animated.View style={styles.container}>
       <StatusBar hidden={false} translucent backgroundColor="transparent" />
@@ -89,6 +109,6 @@ function Onboarding() {
       </View>
     </Animated.View>
   );
-}
+};
 
 export default Onboarding;

@@ -21,6 +21,10 @@ const AppStackScreens = () => {
           name={TextDirectory.appStack.bottomNav}
           component={screens.appStackScreen.BOTTOM_NAV}
         />
+        <AppStack.Screen
+          name={TextDirectory.card.destailScreen}
+          component={screens.stackScreen.DetailsItemSelected}
+        />
       </AppStack.Navigator>
     </>
   );

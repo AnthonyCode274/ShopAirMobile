@@ -4,7 +4,7 @@ import {StyleSheet, Text, View} from 'react-native';
 const TradeMarkScreen = () => {
   return (
     <View>
-      <Text></Text>
+      <Text>TradeMarkScreen</Text>
     </View>
   );
 };

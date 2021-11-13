@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   Text,
   View,
@@ -18,10 +18,10 @@ import Fontisto from 'react-native-vector-icons/Fontisto';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Entypo from 'react-native-vector-icons/Entypo';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-
+import {useNavigation} from '@react-navigation/native';
 import styles from './Style';
 import {images} from '@assets/index';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import auth from '@react-native-firebase/auth';
 import {LoginManager, AccessToken} from 'react-native-fbsdk';
 // import GoogleSignin from '@react-native-google-signin/google-signin';
@@ -29,7 +29,9 @@ import {TextDirectory} from 'helper/TextDirectory';
 
 const {width, height} = Dimensions.get('screen');
 
-const LoginScreen = ({navigation}) => {
+const LoginScreen = () => {
+  const navigation = useNavigation();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showLoading, setShowLoading] = useState(false);
@@ -44,6 +46,7 @@ const LoginScreen = ({navigation}) => {
         .signInWithEmailAndPassword(email, password)
         .then(() => {
           navigation.navigate(TextDirectory.appStack.bottomNav);
+          AsyncStorage.setItem('JUST_ONE', 'onbroading');
           console.log('Signed!');
         });
       setShowLoading(false);

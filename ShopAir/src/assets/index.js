@@ -20,6 +20,8 @@ export const Fonts = {
   FiraSans: 'FiraSans-Bold',
   RussoOne: 'RussoOne',
   Satisfy: 'Satisfy_Regular',
+  Roboto_Regular: 'Roboto-Regular',
+  Roboto_Bold: 'Roboto-Bold',
   Lato: 'Lato-Regular',
   fontWeight: {
     heavy: '700',
@@ -49,6 +51,7 @@ export const Colors = {
   black: '#000000',
   blue1: '#000D6A',
   white: '#FFFFFF',
+  whiteLight: '#F9F9F9',
   lightGray2: '#EFEFF0',
   lightGray3: '#D4D5D6',
   blue2: '#42B0FF',
@@ -59,6 +62,7 @@ export const Colors = {
   text: '#242424',
   background: '#f9f9f9',
   orange: '#FE930F',
+  orange2: '#E86C3D',
   lightGray: '#A5A5A5',
   gray: '#424242',
   smoke: '#E6E6E6',
@@ -68,7 +72,6 @@ export const Colors = {
   gradient: ['#F04831', '#E73222', '#D9100C'],
   green: '#088A08',
   lightGreen: '#29bb89',
-  yellow: '#FFDF00',
   dark: '#00000060',
   pink: '#DB3022',
   sell: '#ff5555',
@@ -76,12 +79,15 @@ export const Colors = {
   silver: '#C0C0C0',
   greenStatus: '#2AA952',
   transparent: '#efefef00',
+  transparent2: '#00000000',
   bgiconheader: '#24242480',
   lightRount: '#EFEFEF',
   purple: '#9966CC',
 };
 
 export const Sizes = {
+  width: width,
+  height: height,
   iconBottom: 28,
   // global sizes
   base: 8,
@@ -101,16 +107,14 @@ export const Sizes = {
   body2: 20,
   body3: 16,
   body4: 14,
-
-  // app dimensions
-  width,
-  height,
 };
 
 export const images = {
   logo_lare: require('./images/logo-shopair_large.png'),
   logo_small: require('./images/logo-shopair_small.png'),
   video_nike: require('./images/videonike.mp4'),
+  imageDemo: require('./images/dotoc2.jpeg'),
+  
 };
 
 export const icons = {
@@ -123,7 +127,15 @@ export const icons = {
   notification_selected: require('./icons/notification_selected.png'),
   user: require('./icons/user.png'),
   user_selected: require('./icons/user_selected.png'),
-
+  warning: require('./icons/warning.png'),
   cart: require('./icons/cart_icon.png'),
   menu: require('./icons/menu_icon.png'),
+  next: require('./icons/next.png'),
+  back: require('./icons/arrow.left.png'),
+  oneStar: require('./icons/1star.png'),
+  perhalfStar: require('./icons/0.5star.png'),
+  like: require('./icons/like.png'),
+  gift: require('./icons/gift.png'),
+  protected: require('./icons/protected.png'),
+  chat: require('./icons/chat.png'),
 };

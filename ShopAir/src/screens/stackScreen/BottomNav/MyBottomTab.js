@@ -11,6 +11,8 @@ import {Badge} from 'react-native-elements';
 import Block from '@components/Block';
 import {getSize} from 'helper/responsive';
 import {Colors, Sizes, icons, Fonts} from '@assets';
+import {View} from 'native-base';
+import ShadowTabBar from '@components/ShadowTabBar/ShadowTabBar';
 
 export const MyBottomTab = ({state, descriptors, navigation}) => {
   const {bottom} = useSafeAreaInsets();
@@ -73,30 +75,33 @@ export const MyBottomTab = ({state, descriptors, navigation}) => {
         };
 
         return (
-          <TouchableOpacity
-            key={index}
-            accessibilityRole="button"
-            accessibilityState={isFocused ? {selected: true} : {}}
-            accessibilityLabel={options.tabBarAccessibilityLabel}
-            testID={options.tabBarTestID}
-            onPress={onPress}
-            onLongPress={onLongPress}
-            style={styles.btn}>
-            {index === 3 && (
-              <Badge
-                status="error"
-                containerStyle={styles.notificationContainer}
-                badgeStyle={styles.badgeStyle}
-                textProps={{allowFontScaling: false}}
-                value="3"
+          <>
+            <ShadowTabBar />
+            <TouchableOpacity
+              key={index}
+              accessibilityRole="button"
+              accessibilityState={isFocused ? {selected: true} : {}}
+              accessibilityLabel={options.tabBarAccessibilityLabel}
+              testID={options.tabBarTestID}
+              onPress={onPress}
+              onLongPress={onLongPress}
+              style={styles.buttonContainer}>
+              {index === 3 && (
+                <Badge
+                  status="error"
+                  containerStyle={styles.notificationContainer}
+                  badgeStyle={styles.badgeStyle}
+                  textProps={{allowFontScaling: false}}
+                  value="3"
+                />
+              )}
+              <Image
+                source={isFocused ? iconSelect : icon}
+                style={styles.iconStyle(isFocused)}
               />
-            )}
-            <Image
-              source={isFocused ? iconSelect : icon}
-              style={styles.iconStyle(isFocused)}
-            />
-            <Text style={styles.textLabel(isFocused)}>{label}</Text>
-          </TouchableOpacity>
+              <Text style={styles.textLabel(isFocused)}>{label}</Text>
+            </TouchableOpacity>
+          </>
         );
       })}
     </Block>
@@ -104,12 +109,22 @@ export const MyBottomTab = ({state, descriptors, navigation}) => {
 };
 
 const styles = StyleSheet.create({
-  btn: {flex: 1, alignItems: 'center'},
+  buttonContainer: {
+    flex: 1,
+    alignItems: 'center',
+    shadowColor: Colors.black,
+    shadowOffset: {
+      width: 0,
+      height: -3,
+    },
+    shadowRadius: 2,
+    elevation: 4,
+  },
   textLabel: (isFocused) => ({
     color: isFocused ? Colors.black : Colors.lightGray,
     marginTop: 5,
     fontSize: 10,
-    fontFamily: Fonts.RobotoBold,
+    fontFamily: Fonts.Roboto_Regular,
   }),
   iconStyle: (isFocused) => ({
     width: getSize.s(20),

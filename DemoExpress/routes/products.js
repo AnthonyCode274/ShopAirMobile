@@ -3,16 +3,37 @@ var router = express.Router();
 var auth = require('../utilities/auth');
 var upload = require('../utilities/upload');
 var productController = require('../controller/productController');
+var bannerController = require('../controller/bannerController');
 var categoryController = require('../controller/categoryController');
 var userController = require('../controller/userController');
 
-
 // router.use(auth.authenticate); // check login for all
 
-router.get("/products-send", async function(req, res){
+// Send API product...
+router.get("/products-list", async function(req, res){
   let listProducts = await productController.getListProducts();
   res.send(listProducts);
 });
+
+// Send API banner...
+router.get("/banner-list", async function(req, res){
+  let list = await bannerController.getListBanner();
+  res.send(list);
+});
+
+// Send API Category...
+router.get("/category-list", async function(req, res){
+  let list = await categoryController.getListCategories();
+  res.send(list);
+});
+
+// router.get("/banner", async function(req, res){
+//   let listBanner = await bannerController.getListBanner();
+//   res.send(listBanner);
+// });
+
+
+//////////////>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 // /* GET home page. */
 router.get("/", async function (req, res, next) {
   let listSP = await productController.getListProducts()
@@ -47,13 +68,19 @@ router.get("/category", async function(req, res){
   res.render("category", { listCategories });
 });
 
+router.get("/banner", async function (req, res, next) {
+  let listBanner = await bannerController.getListBanner()
+  // let listBanner = await categoryController.getListCategories();
+  res.render("banner", { listBanner });
+});
+
 // Add new category
 router.get("/add_category", function(req, res, next){
-  res.render("/category/add_category");
+  res.render("/products/category/add_category");
 });
 
 router.post('/add_category', async function(req, res, next){
-  let { body } = req
+  let { body } = req.params
   await categoryController.addNew(body);
   res.redirect('category/add_category');
 });
@@ -72,7 +99,7 @@ router.post("/edit_category/:id", async function (req, res, next) {
 });
 
 /* Delete product. */
-router.delete("/delete/:id", async function (req, res, next) {
+router.delete("/deleteCategory/:id", async function (req, res, next) {
   let {id} = req.params
   await categoryController.remove(id)
   res.send({res: true})
@@ -112,7 +139,7 @@ router.get("/update/:id", middle, async function (req, res, next) {
 router.post("/update/:id", middle, async function (req, res, next) {
   let { id } = req.params;
   let { body } = req
-  if (req.file) 
+  if (req.file)
   {
     let imgUrl = req.file.originalname
     body = {...body, imgProduct: imgUrl}
@@ -123,12 +150,71 @@ router.post("/update/:id", middle, async function (req, res, next) {
 });
 
 /* Delete product. */
-router.delete("/delete/:id", async function (req, res, next) {
+router.delete("/deleteProduct/:id", async function (req, res, next) {
   let id = req.params.id;
   await productController.remove(id);
+  console.log("Remove product with id: " + id)
   res.send({res: true});
 });
 
 
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Start Banner<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<//
+/* GET add new. */
+
+// >>> Banner
+router.get("/banner", async function(req, res){
+  let listBanner = await bannerController.getListBanner();
+  res.render("banner", { listBanner });
+});
+
+router.get("/addNewBanner", async function (req, res, next) {
+  let loaiSP = await categoryController.getListCategories();
+  res.render("banner/addNewBanner", { loaiSP });
+});
+
+router.post('/addNewBanner', middle, async function(req, res, next){
+  let { body } = req
+  if (req.file)
+  {
+    // let imgUrl = req.file.originalname
+    let imgUrl = req.file.originalname
+    body = {...body, imageUrl: imgUrl}
+  }
+  await bannerController.addNew(body)
+  res.redirect('/banner')
+
+});
+
+/* Update Banner. */
+router.get("/updateBanner/:id", middle, async function (req, res, next) {
+    let id = req.params.id;
+    let banner = await bannerController.getBannerByID(id);
+    let loaiSP = await categoryController.getListCategories();
+    res.render('updateBanner', {bannerEdit: banner, loaiSP});
+  });
+  
+  // http://localhost:9000/images/
+  /* Submit update Banner. */
+  router.post("/updateBanner/:id", middle, async function (req, res, next) {
+    let { id } = req.params;
+    let { body } = req
+    if (req.file)
+    {
+      let imgUrl = req.file.originalname
+      body = {...body, imgProduct: imgUrl}
+    }
+    await productController.edit(id, body)
+    res.redirect('/banner')
+  
+  });
+
+/* Delete Banner. */
+router.delete("/deleteBanner/:id", async function (req, res, next) {
+  let id = req.params.id;
+  await bannerController.remove(id);
+  console.log("Removed id: " + id)
+  res.send({res: true});
+});
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>End Banner<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<//
 
 module.exports = router;

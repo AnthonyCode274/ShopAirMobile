@@ -1,4 +1,3 @@
-
 export const TextDirectory = {
   appStack: {
     bottomNav: 'bottom_navigation',
@@ -23,5 +22,7 @@ export const TextDirectory = {
   },
   card: {
     destailScreen: 'details_screen',
-  }
+  },
+  shopCart: 'shop_cart',
+  success: 'success',
 };

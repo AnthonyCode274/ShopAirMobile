@@ -37,8 +37,12 @@ exports.edit = async function editProduct(product_edit){
 }
 
 exports.remove = async function removeProductByID(id){
-  let prod = await ProductModel.remove({_id: id})
-  return await prod;
+  // let prod = await ProductModel.remove({_id: id})
+  try {
+    let prod = await ProductModel.deleteOne({_id: id})
+    return prod;
+  } catch (error) {
+    console.log(error.message)
+  }
+  
 };
-
-
