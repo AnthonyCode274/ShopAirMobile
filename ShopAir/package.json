@@ -8,6 +8,7 @@
     "pins": "npx pod-install -ios",
     "pins-M1": "cd ios && arch -x86_64 pod install && cd ..",
     "android-clean": "cd android && ./gradlew clean && cd ..",
+    "post-install": "cd ios && pod install && cd ..",
     "pod-update": "cd ios && arch -x86_64 pod repo update",
     "android-release": "react-native run-android --variant=release",
     "apk-release": "cd android && ./gradlew clean && ./gradlew assembleRelease && cd ..",
