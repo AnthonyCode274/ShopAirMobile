@@ -15,8 +15,8 @@
       "@assets/*": ["assets/*"],
       "@components": ["components"],
       "@components/*": ["components/*"],
-      "@navigations": ["navigations"],
-      "@navigations/*": ["navigations/*"],
+      "@navigation": ["navigation"],
+      "@navigation/*": ["navigation/*"],
       "@helper": ["helper"],
       "@screens": ["screens"],
       "@screens/*": ["screens/*"],
@@ -26,8 +26,6 @@
       "@utils/*": ["utils/*"],
       "@redux": ["redux"],
       "@redux/*": ["redux/*"]
-      // "@hooks": ["hooks"],
-      // "@hooks/*": ["hooks/*"]
     },
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
