@@ -1,54 +1,57 @@
-import React, {Component} from 'react';
+import React, {useState, useEffect} from 'react';
 import {StyleSheet, Text, View, Animated, StatusBar, Image} from 'react-native';
-import {Colors, images, useEffect} from '@assets';
+import {Colors, images} from '@assets';
 import Block from '@components/Block';
-import {useNavigation} from '@react-navigation/stack';
+import {useNavigation} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {TextDirectory} from 'helper/TextDirectory';
 
-export default class OnBroadingScreen extends Component {
+const OnBroadingScreen = () => {
+  const navigation = useNavigation();
+  const [timerCount, setTimer] = useState(3);
 
-  constructor(props) {
-    super(props);
-  }
+  useEffect(() => {
+    let interval = setInterval(() => {
+      setTimer(lastTimerCount => {
+        lastTimerCount <= 1 && clearInterval(interval);
+        return lastTimerCount - 1;
+      });
+    }, 1000); //each count lasts for a second
+    //cleanup the interval on complete
+    return () => clearInterval(interval);
+  }, []);
 
-  async componentDidMount() {
-    try {
-      const value = await AsyncStorage.getItem('JUST_ONE');
-      if (value !== null) {
-        this.props.navigation.navigate(TextDirectory.rootStack.bottom_navigation);
-        // let's go
-      } else {
-        this.props.navigation.navigate(TextDirectory.login);
-      }
-    } catch (error) {
-      // Error retrieving data
-      console.log('Error:' + error.message);
+  useEffect(() => {
+    if (timerCount === 0) {
+      navigation.navigate(TextDirectory.login)
+    } else {
+      navigation.navigate(TextDirectory.onBroading)
     }
-  }
+  }, [timerCount]);
 
-  render() {
-    return (
-      <Animated.View style={styles.container}>
-        <StatusBar />
-        <Block flex alignCenter justifyCenter>
-          <Block row alignEnd>
-            <Image
-              style={styles.logo}
-              source={images.logo}
-              resizeMode="contain"
-            />
-            <Image
-              style={styles.ball}
-              source={images.ball}
-              resizeMode="contain"
-            />
-          </Block>
+  return (
+    <Animated.View style={styles.container}>
+      <StatusBar />
+      <Block flex alignCenter justifyCenter>
+        <Block row alignEnd>
+          
+          <Image
+            style={styles.logo}
+            source={images.logo}
+            resizeMode="contain"
+          />
+          <Image
+            style={styles.ball}
+            source={images.ball}
+            resizeMode="contain"
+          />
         </Block>
-      </Animated.View>
-    );
-  }
-}
+      </Block>
+    </Animated.View>
+  );
+};
+
+export default OnBroadingScreen;
 
 const styles = StyleSheet.create({
   container: {

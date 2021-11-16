@@ -1,8 +1,15 @@
-import React from 'react'
-import RootStack from '@screens/Navigation/RootStack'
+import React from 'react';
+import {StatusBar, SafeAreaView} from 'react-native';
+import RootStack from '@screens/Navigation/RootStack';
+import {Provider as PaperProvider} from 'react-native-paper';
+import { PaperAppBar } from '@components/AppBar/AppBar';
 
-export default function App() {
+const App = () => {
   return (
-    <RootStack />
-  )
-}
+    <>
+      <RootStack />
+    </>
+  );
+};
+
+export default App;

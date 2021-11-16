@@ -1,11 +1,11 @@
-import * as React from 'react';
+import React, {Component} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {TextDirectory} from 'helper/TextDirectory';
 import AuthStack from './AuthStack';
 import BottomNavigation from './BottomNavigation/BottomNavigation';
 
-const RootStack = () => {
+export default RootStack = () => {
   const Stack = createNativeStackNavigator();
 
   return (
@@ -26,6 +26,4 @@ const RootStack = () => {
       </Stack.Navigator>
     </NavigationContainer>
   );
-};
-
-export default RootStack;
+}
