@@ -5,10 +5,15 @@ import Block from '@components/Block';
 import {useNavigation} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {TextDirectory} from 'helper/TextDirectory';
+import auth from '@react-native-firebase/auth';
+import LoginScreen from '@screens/LoginScreen/LoginScreen';
 
 const OnBroadingScreen = () => {
   const navigation = useNavigation();
+  // Set an initializing state whilst Firebase connects
   const [timerCount, setTimer] = useState(3);
+  const [initializing, setInitializing] = useState(true);
+  const [user, setUser] = useState();
 
   useEffect(() => {
     let interval = setInterval(() => {
@@ -18,23 +23,29 @@ const OnBroadingScreen = () => {
       });
     }, 1000); //each count lasts for a second
     //cleanup the interval on complete
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+      const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+      return subscriber;
+    };
   }, []);
 
-  useEffect(() => {
-    if (timerCount === 0) {
-      navigation.navigate(TextDirectory.login)
-    } else {
-      navigation.navigate(TextDirectory.onBroading)
-    }
-  }, [timerCount]);
+  // Handle user state changes
+  function onAuthStateChanged(user) {
+    setUser(user);
+    if (initializing) setInitializing(false);
+  }
+
+  // if (initializing) return null;
+  if (timerCount === 0 && !user) {
+    return <LoginScreen />
+  }
 
   return (
     <Animated.View style={styles.container}>
       <StatusBar />
       <Block flex alignCenter justifyCenter>
         <Block row alignEnd>
-          
           <Image
             style={styles.logo}
             source={images.logo}

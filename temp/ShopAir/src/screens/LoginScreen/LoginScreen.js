@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {
   Text,
   View,
@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   Image,
+  Alert,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -17,48 +18,43 @@ import {TextDirectory} from 'helper/TextDirectory';
 import TextInputCustomer from '@components/TextInputCustomer/TextInputCustomer';
 import TextCustom from '@components/TextCustom/TextCustom';
 import ButtonCustomer from '@components/ButtonCustomer/ButtonCustomer';
+import auth from '@react-native-firebase/auth';
+import {validator} from 'helper/validator';
+import SimpleAlert from '@components/AlertCustomer/SimpleAlert';
 
 const LoginScreen = () => {
-  const [state, setState] = useState({
-    isLoading: false,
-    email: '',
-    password: '',
-    isSecure: true,
-  });
-  const {isLoading, email, password, isSecure} = state;
-  const updateState = data => setState(() => ({...state, ...data}));
+  const [email, setEmail] = React.useState();
+  const [password, setPassword] = React.useState();
 
   const isValidData = () => {
-    const error = validator({
-      email,
-      password,
-    });
-    if (error) {
-      showError(error);
+    if (email !== '' && password !== '') {
+      return true;
+    } else {
       return false;
     }
-    return true;
   };
 
-  const onLogin = async () => {
+  React.useEffect(() => {
+    console.log(email);
+    console.log(password);
+  }, [{email, password}])
+
+  const createTwoButtonAlert = ({label, mess}) =>
+    Alert.alert(label, mess, [
+      {
+        text: 'Cancel',
+        onPress: () => console.log('Cancel Pressed'),
+        style: 'cancel',
+      },
+      {text: 'OK', onPress: () => console.log('OK Pressed')},
+    ]);
+
+  const onLogin = () => {
     const checkValid = isValidData();
     if (checkValid) {
-      updateState({isLoading: true});
-      try {
-        const res = await actions.login({
-          email,
-          password,
-        });
-        console.log('res==>>>>>', res);
-        if (!res.data.emailVerified) {
-          alert('Please verify your email');
-        }
-        updateState({isLoading: false});
-      } catch (error) {
-        console.log('error raised');
-        showError(error.message);
-        updateState({isLoading: false});
-      }
+      createTwoButtonAlert({label: 'Success', mess: 'Cus'});
+    } else {
+      createTwoButtonAlert({label: 'Failed', mess: 'Fus'});
     }
   };
 
@@ -84,7 +80,7 @@ const LoginScreen = () => {
               textColor={Colors.black}
               placeholder="Enter your email.."
               placeholderTextColor={Colors.placeholderTextColor}
-              onChangeText={email => updateState({email})}
+              onChangeText={email => setEmail({email})}
             />
             <TextInputCustomer
               width={Sizes.width / 1.25}
@@ -94,9 +90,10 @@ const LoginScreen = () => {
               backgroundColor={Colors.gray2}
               textColor={Colors.black}
               borderRadius={5}
+              secureTextEntry={true}
               placeholder="Enter your password.."
               placeholderTextColor={Colors.placeholderTextColor}
-              onChangeText={password => updateState({password})}
+              onChangeText={password => setPassword({password})}
             />
           </Block>
 
@@ -120,7 +117,7 @@ const LoginScreen = () => {
             </TouchableOpacity>
           </Block>
           <ButtonCustomer
-            onPress={() => console.log("login")}
+            onPress={onLogin}
             text="Login"
             textColor={Colors.white}
             fontSize={16}

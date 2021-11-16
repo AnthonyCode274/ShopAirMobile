@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "247700678510",
+    "firebase_url": "https://shopairmobile-default-rtdb.firebaseio.com",
+    "project_id": "shopairmobile",
+    "storage_bucket": "shopairmobile.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:247700678510:android:ed25f8ce2430a46ba3037f",
+        "android_client_info": {
+          "package_name": "com.shopairmobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "247700678510-sos7u2je6a46ocvnv8kiini41gi5rv39.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.shopairmobile",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "247700678510-m207suabdejrbepd0mfc7nkp7h0014ri.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKB-kLiaqdJF9PekScZlOy78bxPpcX8a8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "247700678510-m207suabdejrbepd0mfc7nkp7h0014ri.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

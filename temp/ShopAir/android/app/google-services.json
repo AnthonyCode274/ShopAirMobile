@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "870787123384",
+    "project_id": "shopair-ecommerce",
+    "storage_bucket": "shopair-ecommerce.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:870787123384:android:3cc0ed51a3450342cb4c4d",
+        "android_client_info": {
+          "package_name": "com.shopair"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "870787123384-pf0vbp1i0b166n2rteslc5ci78hc22gd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.shopair",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "870787123384-il4gk349pjqblgnjns68qhk99urt8luc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBz4wz47mR2uYDgZu3HJVw885ZuYgQNIIc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "870787123384-il4gk349pjqblgnjns68qhk99urt8luc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

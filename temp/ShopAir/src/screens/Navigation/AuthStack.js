@@ -9,7 +9,7 @@ const AuthStack = () => {
   return (
     <Stack.Navigator
       headerMode="none"
-      initialRouteName={TextDirectory.login}>
+      initialRouteName={TextDirectory.onBroading}>
       <Stack.Screen
         options={{headerShown: false}}
         name={TextDirectory.onBroading}
@@ -28,20 +28,5 @@ const AuthStack = () => {
     </Stack.Navigator>
   );
 };
-
-// async setBroading() {
-//   try {
-//     const value = await AsyncStorage.setItem('LOGGED', this.setState({value: 'LOGGED_VALUE'}));
-//     if (value !== null) {
-//       // let's go
-//       console.log('Login');
-//     } else {
-//       console.log('Failed');
-//     }
-//   } catch (error) {
-//     // Error retrieving data
-//     console.log('Error:' + error.message);
-//   }
-// }
 
 export default AuthStack;
