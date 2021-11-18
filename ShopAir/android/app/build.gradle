@@ -188,7 +188,6 @@ dependencies {
 
     implementation 'androidx.multidex:multidex:2.0.1'
     implementation project(':@react-native-community_viewpager')
-    implementation project(':react-native-cardview')
     implementation 'com.facebook.android:facebook-android-sdk:[4,5)'
     implementation project(':react-native-linear-gradient')
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"

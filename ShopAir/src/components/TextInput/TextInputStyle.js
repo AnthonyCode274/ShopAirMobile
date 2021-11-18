@@ -1,21 +1,14 @@
-import React from 'react'
-import {
-  Box,
-  Heading,
-  AspectRatio,
-  Image,
-  Text,
-  Center,
-  HStack,
-  Stack,
-  NativeBaseProvider,
-} from "native-base"
+import React from 'react';
+import {StyleSheet, Text, View} from 'react-native';
 
-export const TextInputStyle = () => {
+const TextInputStyle = () => {
   return (
-    <Box rounded="lg">
+    <View>
+      <Text>TextInputStyle</Text>
+    </View>
+  );
+};
 
-    </Box>
-  )
-}
+export default TextInputStyle;
 
+const styles = StyleSheet.create({});

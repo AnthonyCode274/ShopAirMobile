@@ -16,18 +16,16 @@ import {
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import Entypo from 'react-native-vector-icons/Entypo';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {useNavigation} from '@react-navigation/native';
 import styles from './Style';
-import {images} from '@assets/index';
+import {images, Sizes} from '@assets/index';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import auth from '@react-native-firebase/auth';
-import {LoginManager, AccessToken} from 'react-native-fbsdk';
 // import GoogleSignin from '@react-native-google-signin/google-signin';
 import {TextDirectory} from 'helper/TextDirectory';
-
-const {width, height} = Dimensions.get('screen');
+import {LoginButton, LoginManager} from 'react-native-fbsdk-next';
+import Block from '@components/Block';
 
 const LoginScreen = () => {
   const navigation = useNavigation();
@@ -45,7 +43,7 @@ const LoginScreen = () => {
       await auth()
         .signInWithEmailAndPassword(email, password)
         .then(() => {
-          navigation.navigate(TextDirectory.appStack.bottomNav);
+          navigation.navigate(TextDirectory.rootStack.bottomNav);
           AsyncStorage.setItem('JUST_ONE', 'onbroading');
           console.log('Signed!');
         });
@@ -55,61 +53,6 @@ const LoginScreen = () => {
       Alert.alert(e.message);
     }
   };
-
-  const FBLogin = async () => {
-    try {
-      // Attempt login with permissions
-      const result = await LoginManager.logInWithPermissions([
-        'public_profile',
-        'email',
-      ]);
-
-      if (result.isCancelled) {
-        throw 'User cancelled the login process';
-      }
-
-      // Once signed in, get the users AccesToken
-      const data = await AccessToken.getCurrentAccessToken();
-
-      if (!data) {
-        throw 'Something went wrong obtaining access token';
-      }
-
-      // Create a Firebase credential with the AccessToken
-      const facebookCredential = auth.FacebookAuthProvider.credential(
-        data.accessToken,
-      );
-
-      // Sign-in the user with the credential
-      await auth()
-        .signInWithCredential(facebookCredential)
-
-        .catch((error) => {
-          console.log('Something went wrong with sign up: ', error);
-        });
-    } catch (error) {
-      console.log({error});
-    }
-  };
-
-  // const GoogleLogin = async () => {
-  //   try {
-  //     // Get the users ID token
-  //     const { idToken } = await GoogleSignin.signIn();
-
-  //     // Create a Google credential with the token
-  //     const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-
-  //     // Sign-in the user with the credential
-  //     await auth().signInWithCredential(googleCredential)
-
-  //     .catch(error => {
-  //         console.log('Something went wrong with sign up: ', error);
-  //     });
-  //   } catch(error) {
-  //     console.log({error});
-  //   }
-  // }
 
   return (
     <Animated.View style={styles.container}>
@@ -130,7 +73,7 @@ const LoginScreen = () => {
           width={50}
           height={50}
           resizeMode="contain"
-          source={images.logo_small}
+          source={images.logo_lare}
         />
       </View>
       <View style={styles.inputContainer}>
@@ -167,7 +110,9 @@ const LoginScreen = () => {
             onPress={() => setHidePass(!hidePass)}
           />
         </View>
-        <TouchableOpacity style={styles.forgotPass}>
+        <TouchableOpacity
+          style={styles.forgotPass}
+          onPress={() => navigation.navigate(TextDirectory.forgotPassword)}>
           <Text style={styles.textForgot}>Forgot password?</Text>
         </TouchableOpacity>
       </View>
@@ -187,77 +132,28 @@ const LoginScreen = () => {
         </View>
 
         {Platform.OS === 'android' ? (
-          <View
-            style={{
-              flexDirection: 'column',
-              width: '100%',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}>
-            <View style={styles.buttonNetwork}>
+          <Block column width={Sizes.width} alignCenter marginBottom={30}>
+            <Block marginBottom={10}>
+              <LoginButton onLogoutFinished={() => console.log('logout.')} />
+            </Block>
+            <Block>
               <TouchableOpacity
-                onPress={() => FBLogin()}
-                style={{
-                  backgroundColor: '#4867AA',
-                  padding: 10,
-                  borderRadius: 4,
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  maxWidth: width / 1.5,
-                  width: width,
-                }}>
-                <Entypo name="facebook" color="#e6eaf4" size={24} />
-                <Text
-                  style={{
-                    color: '#E6EAF4',
-                    marginLeft: 60,
-                    marginRight: 60,
-                  }}>
-                  Sign In with Facebook
+                onPress={() => navigation.navigate(TextDirectory.register)}>
+                <Text style={{color: '#000', fontWeight: '600'}}>
+                  You don't have account?{' '}
+                  <Text
+                    style={{
+                      color: '#ff2234',
+                      fontSize: 16,
+                      fontWeight: 'bold',
+                    }}>
+                    Register
+                  </Text>
                 </Text>
               </TouchableOpacity>
-
-              <Text style={{}}>OR</Text>
-
-              <TouchableOpacity
-                // onPress={() => GoogleLogin()}
-                style={{
-                  backgroundColor: '#db3236',
-                  padding: 10,
-                  borderRadius: 4,
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  maxWidth: width / 1.5,
-                  width: width,
-                }}>
-                <FontAwesome name="google-plus" color="#e6eaf4" size={24} />
-                <Text
-                  style={{
-                    color: '#E6EAF4',
-                    marginRight: 60,
-                    marginLeft: 60,
-                  }}>
-                  Sign In with Google
-                </Text>
-              </TouchableOpacity>
-            </View>
-          </View>
+            </Block>
+          </Block>
         ) : null}
-
-        <View style={styles.styleRegister}>
-          <TouchableOpacity
-            onPress={() => navigation.navigate(TextDirectory.register)}>
-            <Text style={{color: '#000', fontWeight: '600'}}>
-              You don't have account?{' '}
-              <Text
-                style={{color: '#ff2234', fontSize: 16, fontWeight: 'bold'}}>
-                Register
-              </Text>
-            </Text>
-          </TouchableOpacity>
-        </View>
       </View>
     </Animated.View>
   );

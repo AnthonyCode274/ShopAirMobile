@@ -6,7 +6,6 @@ import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
-import com.kishanjvaghela.cardview.RNCardViewPackage;
 import com.brentvatne.react.ReactVideoPackage;
 import com.reactnativecommunity.viewpager.RNCViewPagerPackage;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
@@ -22,7 +21,6 @@ import androidx.multidex.MultiDexApplication;
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
 import com.reactnativecommunity.viewpager.RNCViewPagerPackage;
-import com.kishanjvaghela.cardview.RNCardViewPackage;
 
 public class MainApplication extends MultiDexApplication implements ReactApplication {
 

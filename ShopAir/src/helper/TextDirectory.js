@@ -1,5 +1,5 @@
 export const TextDirectory = {
-  appStack: {
+  rootStack: {
     bottomNav: 'bottom_navigation',
     auth: 'authentication',
   },
@@ -12,6 +12,7 @@ export const TextDirectory = {
   logout: 'logout',
   register: 'register',
   onBroading: 'onbroading',
+  forgotPassword: 'forgotPassword',
 
   bottomScreen: {
     homeScreen: 'homescreen',

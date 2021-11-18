@@ -14,11 +14,7 @@ const Trademark = ({navigation}) => {
   );
 };
 
-<<<<<<< HEAD:ShopAir/src/screens/SettingScreen/SettingScreen.js
-export default SettingScreen;
-=======
 export default Trademark;
->>>>>>> dab610226ab4dab8510f4a4975d9688bf89c0f77:ShopAir/src/screens/Trademark.js
 
 const styles = StyleSheet.create({
   container: {

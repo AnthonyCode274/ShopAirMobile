@@ -85,12 +85,4 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
-  styleRegister: {
-    bottom: 30,
-  },
-  buttonNetwork: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    top: 100,
-  },
 });

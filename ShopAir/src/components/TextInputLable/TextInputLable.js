@@ -1,44 +1,81 @@
-import React, {Component} from 'react';
-import {View, Text, StyleSheet, TextInput} from 'react-native';
+/* eslint-disable react-native/no-inline-styles */
+import React from 'react';
+import {
+  StyleSheet,
+  View,
+  Image,
+  TextInput,
+  TouchableOpacity,
+} from 'react-native';
+import Block from '@components/Block';
+import {Colors, icons, Sizes} from '@assets';
 
-const TextInputLable = ({
-  label,
+const TextInputWithLabel = ({
+  text,
+  style,
   value,
-  placheHolder,
-  isSecure,
+  width,
+  height,
+  maxWidth,
+  maxHeight,
+  paddingVertical,
+  paddingHorizontal,
+  paddingTop,
+  paddingBottom,
+  paddingLeft,
+  paddingRight,
+  placeholder,
+  borderRadius,
+  placeholderTextColor,
+  textColor,
+  backgroundColor,
   onChangeText,
+  keyboardType,
+  marginTop,
+  marginBottom,
+  marginLeft,
+  marginRight,
+  iconRight,
+  iconLeft,
+  sizeIcon,
+  onPressIconRight,
   ...props
 }) => {
   return (
-    <View style={{marginBottom: 16}}>
-      <Text
-        style={{
-          fontSize: 16,
-          marginBottom: 8,
-          fontWeight: 'bold',
-        }}>
-        {label}
-      </Text>
+    <Block
+      width={width}
+      height={height}
+      row
+      alignCenter
+      marginBottom={marginBottom}
+      marginTop={marginTop}
+      marginLeft={marginLeft}
+      marginRight={marginRight}
+      backgroundColor={backgroundColor}
+      borderRadius={borderRadius}>
+      <Image
+        style={{width: sizeIcon, height: sizeIcon, marginLeft: 10}}
+        source={iconLeft}
+      />
       <TextInput
         value={value}
-        placeholder={placheHolder}
+        width={width - sizeIcon - 20 - paddingHorizontal}
+        placeholder={placeholder}
         onChangeText={onChangeText}
-        style={styles.inputStyle}
-        placeholderTextColor="gray"
+        keyboardType={keyboardType}
+        placeholderTextColor={placeholderTextColor}
+        color={textColor}
+        paddingHorizontal={paddingHorizontal}
         {...props}
       />
-    </View>
+      <TouchableOpacity onPress={onPressIconRight}>
+        <Image
+          style={{width: sizeIcon, height: sizeIcon, marginRight: 10}}
+          source={iconRight}
+        />
+      </TouchableOpacity>
+    </Block>
   );
 };
 
-const styles = StyleSheet.create({
-  inputStyle: {
-    height: 48,
-    borderWidth: 1,
-    borderColor: 'gray',
-    color: 'black',
-    paddingHorizontal: 16,
-  },
-});
-
-export default TextInputLable;
+export default TextInputWithLabel;

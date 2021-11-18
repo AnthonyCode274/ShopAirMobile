@@ -24,13 +24,13 @@ const BannerView = () => {
       id: 1,
       name: 'Banner2',
       imageUrl:
-        'https://firebasestorage.googleapis.com/v0/b/shopairmobile.appspot.com/o/Shoes%20%20Web%20Banners.jpeg?alt=media&token=38f52442-b22e-480b-803a-f1a6f9d93fc8',
+        'https://thethaosi.vn/wp-content/uploads/2019/04/Banner-cover.jpg',
     },
     {
       id: 2,
       name: 'Banner3',
       imageUrl:
-        'https://firebasestorage.googleapis.com/v0/b/shopairmobile.appspot.com/o/maxresdefault.jpeg?alt=media&token=7a11c2e9-da8e-4516-b9ad-5a761f2563f0',
+        'https://thethaosi.vn/wp-content/uploads/2019/04/Banner-cover.jpg',
     },
   ]);
 

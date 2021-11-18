@@ -4,7 +4,7 @@ import {StyleSheet, Text, View} from 'react-native';
 const Header = ({shadowColor, shadowOffsetX, shadowOffsetY}) => {
   return (
     <View>
-      <Text></Text>
+      <Text>Header</Text>
     </View>
   );
 };

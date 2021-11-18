@@ -15,8 +15,7 @@ const HeaderHomeScreen = ({isIconMenuOnLeft, isCart}) => {
       paddingVertical={Sizes.font}
       shadow
       elevation={6}
-      backgroundColor={Colors.white}
-      marginBottom={20}>
+      backgroundColor={Colors.white}>
       <View style={styles.menuContainer}>
         <TouchableOpacity
           onPress={() => {
