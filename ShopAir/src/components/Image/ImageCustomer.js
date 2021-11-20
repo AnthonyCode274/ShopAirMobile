@@ -6,6 +6,7 @@ const ImageCustomer = ({
   source,
   style,
   resizeMode,
+  uri,
   width,
   height,
   maxWidth,
@@ -24,23 +25,46 @@ const ImageCustomer = ({
   ...props
 }) => {
   return (
-    <Block
-      width={width}
-      height={height}
-      marginBottom={marginBottom}
-      marginTop={marginTop}
-      marginLeft={marginLeft}
-      marginRight={marginRight}
-      borderRadius={borderRadius}>
-      <Image
-        source={source}
-        style={{
-          width: width,
-          height: height,
-          resizeMode: resizeMode,
-        }}
-      />
-    </Block>
+    <>
+      {/* {uri !== null ? (
+        <Block
+          width={width}
+          height={height}
+          marginBottom={marginBottom}
+          marginTop={marginTop}
+          marginLeft={marginLeft}
+          marginRight={marginRight}
+          borderRadius={borderRadius}>
+          <Image
+            source={{uri: uri}}
+            style={{
+              width: width,
+              height: height,
+              resizeMode: resizeMode,
+            }}
+          />
+        </Block>
+      ) : null} */}
+      {source !== null ? (
+        <Block
+          width={width}
+          height={height}
+          marginBottom={marginBottom}
+          marginTop={marginTop}
+          marginLeft={marginLeft}
+          marginRight={marginRight}
+          borderRadius={borderRadius}>
+          <Image
+            source={source}
+            style={{
+              width: width,
+              height: height,
+              resizeMode: resizeMode,
+            }}
+          />
+        </Block>
+      ) : null}
+    </>
   );
 };
 

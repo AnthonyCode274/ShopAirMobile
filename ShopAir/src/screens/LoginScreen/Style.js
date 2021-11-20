@@ -1,11 +1,11 @@
+import {Colors} from '@assets';
 import {StyleSheet, Dimensions} from 'react-native';
 const {width, height} = Dimensions.get('window');
-
 
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f4f4f4',
+    backgroundColor: Colors.backgroundLogin,
   },
 
   loginTitle: {
@@ -15,7 +15,7 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   title: {
-    color: '#000',
+    color: Colors.black,
     fontSize: 32,
     fontWeight: 'bold',
   },
@@ -30,7 +30,7 @@ export default StyleSheet.create({
     marginRight: 20,
   },
   inputUsername: {
-    backgroundColor: '#E8E8E8',
+    backgroundColor: Colors.gray4,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
@@ -39,7 +39,7 @@ export default StyleSheet.create({
     marginTop: 10,
   },
   inputPassword: {
-    backgroundColor: '#E8E8E8',
+    backgroundColor: Colors.gray4,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
@@ -66,7 +66,7 @@ export default StyleSheet.create({
     width: width * 0.7,
     height: 50,
     borderRadius: 24,
-    backgroundColor: '#000',
+    backgroundColor: Colors.black,
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 50,
@@ -77,12 +77,17 @@ export default StyleSheet.create({
     textTransform: 'uppercase',
     fontWeight: 'bold',
     letterSpacing: 3,
-    color: '#f3f8ff',
+    color: Colors.whiteLight2,
   },
 
   buttonContainer: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'space-between',
+  },
+  buttonRegister: {
+    color: Colors.red2,
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });

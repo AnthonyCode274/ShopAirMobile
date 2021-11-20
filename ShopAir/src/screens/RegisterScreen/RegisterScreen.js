@@ -22,6 +22,7 @@ import auth from '@react-native-firebase/auth';
 
 import {images} from '@assets';
 import styles from './Style';
+import Block from '@components/Block';
 
 const RegisterScreen = ({navigation}) => {
   const [fullName, setFullName] = useState('');
@@ -153,16 +154,19 @@ const RegisterScreen = ({navigation}) => {
         </View>
 
         <View style={styles.loginContainer}>
-          <TouchableOpacity
-            onPress={() => navigation.navigate(TextDirectory.LoginScreen)}>
-            <Text style={{color: '#000'}}>
-              Do you already have an account?{' '}
+          <Block row alignCenter>
+            <Text style={{color: '#000'}}>Back to </Text>
+            <TouchableOpacity onPress={() => navigation.goBack()}>
               <Text
-                style={{color: '#ff2234', fontSize: 16, fontWeight: 'bold'}}>
+                style={{
+                  color: '#ff2234',
+                  fontSize: 16,
+                  fontWeight: 'bold',
+                }}>
                 Login
               </Text>
-            </Text>
-          </TouchableOpacity>
+            </TouchableOpacity>
+          </Block>
         </View>
       </View>
     </Animated.View>

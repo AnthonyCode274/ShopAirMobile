@@ -37,7 +37,7 @@ export const Fonts = {
 
 export const Colors = {
   // base colors
-  primary: '#a6c13c', // Green
+  backgroundLogin: '#f4f4f4', // Green
   secondary: '#454c5d', // Gray
   border: '#454c5d',
   // Render color
@@ -53,6 +53,7 @@ export const Colors = {
   blue3: '#4267B2',
   white: '#FFFFFF',
   whiteLight: '#F9F9F9',
+  whiteLight2: '#f3f8ff',
   lightGray2: '#EFEFF0',
   lightGray3: '#D4D5D6',
   blue2: '#42B0FF',
@@ -67,10 +68,13 @@ export const Colors = {
   orange2: '#E86C3D',
   lightGray: '#A5A5A5',
   gray: '#424242',
+  gray3: '#DCDCDC',
   gray2: '#C5C5C5',
+  gray4: '#E8E8E8',
   smoke: '#E6E6E6',
   placeholder: '#707070',
   red: '#E83625',
+  red2: '#ff2234',
   gradient: ['#F04831', '#E73222', '#D9100C'],
   green: '#088A08',
   lightGreen: '#29bb89',

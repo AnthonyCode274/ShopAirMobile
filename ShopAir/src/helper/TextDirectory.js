@@ -23,7 +23,7 @@ export const TextDirectory = {
   },
   card: {
     destailScreen: 'details_screen',
+    shopCart: 'shop_cart',
   },
-  shopCart: 'shop_cart',
   success: 'success',
 };

@@ -87,7 +87,6 @@ export const MyBottomTab = ({state, descriptors, navigation}) => {
                 <Badge
                   status="error"
                   containerStyle={styles.notificationContainer}
-                  badgeStyle={styles.badgeStyle}
                   textProps={{allowFontScaling: false}}
                   value="3"
                 />
@@ -136,5 +135,4 @@ const styles = StyleSheet.create({
     top: getSize.s(-7),
     right: getSize.s(21),
   },
-  badgeStyle: {borderColor: Colors.lightGray, borderWidth: 0.25},
 });

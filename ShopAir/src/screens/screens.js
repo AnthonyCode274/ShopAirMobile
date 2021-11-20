@@ -14,6 +14,7 @@ import BottomNavigation from '@navigations/BottomNav/BottomTabNavigation';
 import DetailsItemSelected from './DetailsItemSelected/DetailsItemSelected';
 import HeaderScreen from '@screens/DetailsItemSelected/HeaderDetailsScreen/HeaderDetailsScreen';
 import ForgotPassword from './ForgotPassword/ForgotPassword';
+import ShopCart from './ShopCart/ShopCart';
 
 export const screens = {
   ROOT_STACK: {
@@ -35,6 +36,7 @@ export const screens = {
   },
   stackScreen: {
     DetailsItemSelected: DetailsItemSelected,
+    ShopCart: ShopCart,
   },
   HeaderScreen: HeaderScreen,
 };

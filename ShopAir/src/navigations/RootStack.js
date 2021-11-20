@@ -19,6 +19,14 @@ const RootStack = () => {
           name={TextDirectory.rootStack.bottomNav}
           component={screens.ROOT_STACK.BOTTOM_NAV}
         />
+        <Stack.Screen
+          name={TextDirectory.card.destailScreen}
+          component={screens.stackScreen.DetailsItemSelected}
+        />
+        <Stack.Screen
+          name={TextDirectory.card.shopCart}
+          component={screens.stackScreen.ShopCart}
+        />
       </Stack.Navigator>
     </>
   );

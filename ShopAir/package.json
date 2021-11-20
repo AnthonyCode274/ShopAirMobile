@@ -4,11 +4,13 @@
   "private": true,
   "scripts": {
     "android": "react-native run-android",
+    "run-android": "yarn run android",
     "ios": "react-native run-ios",
     "pins": "npx pod-install -ios",
+    "link": "npx react-native link",
     "pins-M1": "cd ios && arch -x86_64 pod install && cd ..",
     "android-clean": "cd android && ./gradlew clean && cd ..",
-    "post-install": "cd ios && pod install && cd ..",
+    "pod-install": "cd ios && pod install && cd ..",
     "pod-update": "cd ios && arch -x86_64 pod repo update",
     "yarn-install:clean": "rm -rf node_modules/ && yarn install && cd android && ./gradlew clean && cd .. && react-native run-android",
     "android-release": "react-native run-android --variant=release",
@@ -50,6 +52,8 @@
     "react-native-vector-icons": "^8.1.0",
     "react-native-video": "^5.2.0",
     "react-native-webview": "^11.2.3",
+    "react-redux": "^7.2.6",
+    "redux": "^4.1.2",
     "styled-components": "^5.3.3",
     "styled-system": "^5.1.5"
   },

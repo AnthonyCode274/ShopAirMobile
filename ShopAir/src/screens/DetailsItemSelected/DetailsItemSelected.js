@@ -9,18 +9,23 @@ import {
   StatusBar,
   Animated,
   ScrollView,
+  FlatList,
 } from 'react-native';
 
 // import Colors
 import {Colors, Fonts, icons, Sizes} from '@assets';
-
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Block from '@components/Block';
 import HeaderDetailsScreen from './HeaderDetailsScreen/HeaderDetailsScreen';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useNavigation} from '@react-navigation/native';
+import {pathUrl} from 'config/connect';
+import SlideDetailsImage from './SlideDetailsImage';
+import {TextDirectory} from 'helper/TextDirectory';
 
 // const value = await AsyncStorage.getItem('CART_STORAGE');
-const DetailsItemSelected = ({navigation, route}) => {
+const DetailsItemSelected = ({route}) => {
+  const navigation = useNavigation();
   const {
     itemProductName,
     itemPrice,
@@ -31,60 +36,115 @@ const DetailsItemSelected = ({navigation, route}) => {
     itemSaleUp,
   } = route.params;
   const [isLoadCart, setIisLoadCart] = useState(false);
-  const [loadCart, setCart] = useState([]);
+  const [loadCart, setCart] = useState(0);
+  const [timerCount, setTimer] = useState(3);
+  const [loadImage, setImageView] = useState([pathUrl.imageUrl + itemImage]);
 
-  // const handleAddCart = async () => {
-  //   const newArrayCart = loadCart.push(itemProduct);
-  //   try {
-  //     const value = await AsyncStorage.setItem('CART_STORAGE', newArrayCart);
-  //     if (value !== null) {
-  //       console.log('Cart value:' + value);
-  //       // let's go
-  //     } else {
-  //     }
-  //   } catch (error) {
-  //     // Error retrieving data
-  //     console.log('Empty value..');
-  //   }
-  // };
+  const dataSlide = [
+    {
+      id: 0,
+      image:
+        'https://static.nike.com/a/images/f_auto,b_rgb:f5f5f5,w_880/cdaa953b-7f46-4ab7-958c-0a5381cc8ea4/brasilia-winterized-training-duffel-bag-9PRV2D.png',
+    },
+    {
+      id: 1,
+      image:
+        'https://static.nike.com/a/images/f_auto,b_rgb:f5f5f5,w_880/24762689-0c45-40b6-903b-e2d89bd0b60e/brasilia-winterized-training-duffel-bag-9PRV2D.png',
+    },
+    {
+      id: 2,
+      image:
+        'https://static.nike.com/a/images/f_auto,b_rgb:f5f5f5,w_880/7ca95942-9268-4fb4-a8c4-b0eb62e49367/brasilia-winterized-training-duffel-bag-9PRV2D.png',
+    },
+  ];
 
-  // useEffect(() => {
-  //   console.log('Item: ' + itemProduct);
-  //   const status = async () => {
-  //     try {
-  //       const value = await AsyncStorage.getItem('CART_STORAGE');
-  //       if (value !== null) {
-  //         setCart(value);
-  //         console.log('Value: ' + loadCart);
-  //         // let's go
-  //       } else {
-  //       }
-  //     } catch (error) {
-  //       // Error retrieving data
-  //       console.log('Empty value..');
-  //     }
-  //   };
-  //   status();
-  // }, [isLoadCart, itemProduct, loadCart]);
+  useEffect(() => {
+    const status = async () => {
+      const getValue = await AsyncStorage.getItem('@storage_cart');
+      if (getValue > 0) {
+        setCart(getValue);
+      }
+      if (loadCart > 0) {
+        await AsyncStorage.removeItem('@storage_cart');
+        await AsyncStorage.setItem('@storage_cart', loadCart.toString());
+      }
+    };
+    status();
+  }, []);
 
-  // avigation.goBack()
+  useEffect(() => {
+    const status = async () => {
+      const getValue = await AsyncStorage.getItem('@storage_cart');
+      if (getValue > 0) {
+        await AsyncStorage.removeItem('@storage_cart');
+        await AsyncStorage.setItem('@storage_cart', loadCart.toString());
+      } else {
+        await AsyncStorage.setItem('@storage_cart', loadCart.toString());
+      }
+    };
+    status();
+  }, [loadCart]);
+
+  const addCartPressed = () => {
+    setCart(loadCart + 1);
+    console.log(loadCart);
+  };
+
+  const SildeImage = ({item}) => {
+    return (
+      <Block maxHeight={64} marginTop={10} marginRight={6}>
+        <TouchableOpacity
+          onPress={() => {
+            setImageView({image: item.image});
+            console.log(loadImage);
+          }}>
+          <Image
+            source={{uri: item.image}}
+            style={{
+              resizeMode: 'cover',
+              width: 64,
+              height: 54,
+              borderRadius: 5,
+            }}
+          />
+        </TouchableOpacity>
+      </Block>
+    );
+  };
+
   return (
-    <Animated.View>
+    <Animated.View style={{flex: 1}}>
       <Animated.ScrollView showsVerticalScrollIndicator={false} bounces={false}>
         <Block row absolute zIndex={1}>
-          <HeaderDetailsScreen isLoadCart={true} />
-        </Block>
-        <Block maxHeight={Sizes.height / 2}>
-          <Image
-            source={{
-              uri: 'http://10.0.2.2:9000/images/' + itemImage,
+          <HeaderDetailsScreen
+            onPressCart={() => {
+              navigation.navigate(TextDirectory.card.shopCart);
             }}
-            style={{width: '100%', height: '100%'}}
-            resizeMode="cover"
+            cartValue={loadCart}
           />
         </Block>
-        <Block column>
-          <Block column backgroundColor={Colors.white} shadow>
+        <Block maxHeight={Sizes.height / 2.5}>
+          <Image
+            source={{
+              uri: pathUrl.imageUrl + itemImage,
+              // uri: loadImage.image,
+            }}
+            style={{width: '100%', height: '100%'}}
+            resizeMode="contain"
+          />
+        </Block>
+        <Block />
+        <Block column marginBottom={100}>
+          <Block backgroundColor={Colors.white} shadow elevation={6}>
+            <Block alignCenter backgroundColor={Colors.white}>
+              <FlatList
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                data={dataSlide}
+                renderItem={SildeImage}
+                keyExtractor={(item) => `${item.id}`}
+              />
+            </Block>
             <Block row marginHorizontal={10} marginVertical={10}>
               <Block row marginRight={5}>
                 <Star iconName={icons.oneStar} />
@@ -155,39 +215,42 @@ const DetailsItemSelected = ({navigation, route}) => {
                 fontFamily={Fonts.Roboto_Bold}
               />
             </Block>
-
-            <Block
-              marginHorizontal={10}
-              row
-              justifySpaceBetween
-              marginBottom={10}>
-              <Block column alignCenter maxWidth={100}>
-                <Protected iconName={icons.like} />
-                <ProtectedText
-                  text={`See warranty details here`}
-                  fontSize={14}
-                  color={Colors.black}
-                  fontFamily={Fonts.Roboto_Bold}
-                />
-              </Block>
-              <Block column alignCenter maxWidth={100}>
-                <Protected iconName={icons.gift} />
-                <ProtectedText
-                  text={`7 days return for free`}
-                  fontSize={14}
-                  color={Colors.black}
-                  fontFamily={Fonts.Roboto_Bold}
-                />
-              </Block>
-              <Block column alignCenter maxWidth={100}>
-                <Protected iconName={icons.protected} />
-                <ProtectedText
-                  text={`100% genuine product`}
-                  fontSize={14}
-                  color={Colors.black}
-                  fontFamily={Fonts.Roboto_Bold}
-                />
-              </Block>
+          </Block>
+          <Block
+            row
+            marginTop={10}
+            paddingHorizontal={10}
+            paddingVertical={10}
+            justifySpaceBetween
+            backgroundColor={Colors.white}
+            shadow
+            elevation={6}>
+            <Block column alignCenter maxWidth={100}>
+              <Protected iconName={icons.like} />
+              <ProtectedText
+                text={'See warranty details here'}
+                fontSize={14}
+                color={Colors.black}
+                fontFamily={Fonts.Roboto_Bold}
+              />
+            </Block>
+            <Block column alignCenter maxWidth={100}>
+              <Protected iconName={icons.gift} />
+              <ProtectedText
+                text={'7 days return for free'}
+                fontSize={14}
+                color={Colors.black}
+                fontFamily={Fonts.Roboto_Bold}
+              />
+            </Block>
+            <Block column alignCenter maxWidth={100}>
+              <Protected iconName={icons.protected} />
+              <ProtectedText
+                text={'100% genuine product'}
+                fontSize={14}
+                color={Colors.black}
+                fontFamily={Fonts.Roboto_Bold}
+              />
             </Block>
           </Block>
           <Block
@@ -195,7 +258,8 @@ const DetailsItemSelected = ({navigation, route}) => {
             paddingVertical={20}
             paddingHorizontal={10}
             backgroundColor={Colors.white}
-            shadow>
+            shadow
+            elevation={6}>
             <Text
               style={{
                 fontFamily: Fonts.Roboto_Bold,
@@ -225,7 +289,7 @@ const DetailsItemSelected = ({navigation, route}) => {
             </Block>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => console.log('Cart clicked')}>
+          <TouchableOpacity onPress={() => addCartPressed()}>
             <Block column alignCenter>
               <IconFooter iconName={icons.cart} />
               <ProtectedText fontSize={10} text={'Thêm vào giỏ hàng'} />
@@ -290,8 +354,8 @@ const Star = ({iconName}) => {
       source={iconName}
       resizeMode="center"
       style={{
-        width: 20,
-        height: 20,
+        width: 16,
+        height: 16,
       }}
     />
   );
@@ -324,18 +388,4 @@ const Protected = ({iconName}) => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  titleStyle: {
-    fontFamily: Fonts.Roboto_Regular,
-    fontSize: 16,
-    marginBottom: 5,
-  },
-  textPrice: {
-    fontFamily: Fonts.Roboto_Bold,
-    fontSize: 20,
-    color: Colors.black,
-  },
-});
+const styles = StyleSheet.create({});

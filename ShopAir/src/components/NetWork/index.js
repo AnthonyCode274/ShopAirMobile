@@ -4,11 +4,11 @@ import {Text, View} from 'react-native';
 import styles from './styles';
 
 const NetWork = () => {
-  const [isConnection, setIsConnection] = useState(true);
+  const [isConnection, setConnection] = useState(true);
 
   useEffect(() => {
     const unsubscribe = NetInfo.addEventListener((state) => {
-      setIsConnection(state.isConnected);
+      setConnection(state.isConnected);
     });
     return () => {
       unsubscribe();

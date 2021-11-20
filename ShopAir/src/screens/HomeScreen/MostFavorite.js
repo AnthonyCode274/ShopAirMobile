@@ -12,16 +12,18 @@ import {useNavigation} from '@react-navigation/native';
 import {icons, Colors, Fonts, Sizes} from '@assets';
 import Card from '@components/Card/Card';
 import {TextDirectory} from 'helper/TextDirectory';
+import Block from '@components/Block';
+import {Connect, api, pathUrl} from 'config/connect';
+import ImageCustomer from '@components/Image/ImageCustomer';
 
 const MostFavorite = () => {
   const navigation = useNavigation();
-  const apiUrl = 'http://10.0.2.2:9000/products/products-list';
   // Call api
   const [data, setData] = useState([]);
   const [isLoading, setIsloading] = useState(true);
 
   useEffect(() => {
-    fetch(apiUrl)
+    fetch(`${Connect.URL + api.best_sale}`)
       .then((res) => res.json())
       .then((resJson) => setData(resJson))
       .finally(() => setIsloading(false))
@@ -48,7 +50,7 @@ const MostFavorite = () => {
             <View style={styles.imageContainer}>
               <Image
                 source={{
-                  uri: 'http://10.0.2.2:9000/images/' + item.imgProduct,
+                  uri: pathUrl.imageUrl + item.imgProduct,
                 }}
                 resizeMode="cover"
                 style={styles.imageView}
@@ -58,15 +60,15 @@ const MostFavorite = () => {
               <Text style={styles.priceStyle}>${item.price}</Text>
               <Text style={styles.nameStyle}>{item.productName}</Text>
             </View>
+            <View style={styles.heart}>
+              <Text style={styles.nameStyle}>{item.saleUpTo}</Text>
+              <Image
+                style={styles.imageHeart}
+                resizeMode="contain"
+                source={icons.favorire_selected}
+              />
+            </View>
           </TouchableOpacity>
-          <View style={styles.heart}>
-            <Text style={styles.nameStyle}>{item.saleUpTo}</Text>
-            <Image
-              style={styles.imageHeart}
-              resizeMode="contain"
-              source={icons.favorire_selected}
-            />
-          </View>
         </Card>
       </View>
     );
@@ -95,7 +97,7 @@ const styles = StyleSheet.create({
     height: 188,
     maxHeight: 200,
     width: '100%',
-    maxWidth: Sizes.width / 2,
+    maxWidth: 285,
     backgroundColor: Colors.white,
     justifyContent: 'center', //Centered vertically
     alignItems: 'center', // Centered horizontally
@@ -111,7 +113,7 @@ const styles = StyleSheet.create({
     width: 285,
     height: 165,
     maxHeight: 165,
-    maxWidth: Sizes.width / 2,
+    maxWidth: Sizes.width / 2.5,
   },
   labelContainer: {
     backgroundColor: Colors.white,

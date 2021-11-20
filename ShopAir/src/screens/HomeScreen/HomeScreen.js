@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {
   StyleSheet,
@@ -17,18 +17,36 @@ import HeaderHomeScreen from './HeaderHomeScreen';
 import ScrollableViewBestSale from './ScrollableViewBestSale';
 import TopSale from './TopSale';
 import MostFavorite from './MostFavorite';
+import Block from '@components/Block';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {TextDirectory} from 'helper/TextDirectory';
 
 const HomeScreen = () => {
   const navigation = useNavigation();
+  const [loadCart, setCart] = useState(0);
+
+  useEffect(() => {
+    const status = async () => {
+      const getValue = await AsyncStorage.getItem('@storage_cart');
+      if (getValue > 0) {
+        console.log(loadCart);
+        setCart(getValue);
+      }
+    };
+    status();
+  }, []);
 
   return (
     <View style={styles.container}>
-      <HeaderHomeScreen />
+      <HeaderHomeScreen
+        onPressCart={() => navigation.navigate(TextDirectory.card.shopCart)}
+        cartValue={loadCart}
+      />
       <Animated.ScrollView showsVerticalScrollIndicator={false} bounces={false}>
         <View style={{marginTop: 20}} />
         <BannerView />
         <View style={styles.salerContainer}>
-          <View style={styles.titleSaleContainer}>
+          <Block marginHorizontal={20} justifySpaceBetween row>
             <Text style={styles.titleSale}>Bán Chạy nhất</Text>
             <TouchableOpacity
               style={{
@@ -42,11 +60,11 @@ const HomeScreen = () => {
                 source={icons.next}
               />
             </TouchableOpacity>
-          </View>
+          </Block>
           <ScrollableViewBestSale />
         </View>
         <View style={styles.salerContainer2}>
-          <View style={styles.titleSaleContainer}>
+          <Block marginHorizontal={20} justifySpaceBetween row>
             <Text style={styles.titleSale}>Top sale</Text>
             <TouchableOpacity
               style={{
@@ -60,11 +78,11 @@ const HomeScreen = () => {
                 source={icons.next}
               />
             </TouchableOpacity>
-          </View>
+          </Block>
           <TopSale />
         </View>
-        <View style={styles.salerContainer2}>
-          <View style={styles.titleSaleContainer}>
+        <Block column marginTop={10} marginBottom={60}>
+          <Block marginHorizontal={20} justifySpaceBetween row>
             <Text style={styles.titleSale}>Most Favourite</Text>
             <TouchableOpacity
               style={{
@@ -78,9 +96,9 @@ const HomeScreen = () => {
                 source={icons.next}
               />
             </TouchableOpacity>
-          </View>
+          </Block>
           <MostFavorite />
-        </View>
+        </Block>
       </Animated.ScrollView>
     </View>
   );
@@ -95,15 +113,6 @@ const styles = StyleSheet.create({
   salerContainer: {
     marginTop: 30,
     flexDirection: 'column',
-  },
-  salerContainer2: {
-    marginTop: 10,
-    flexDirection: 'column',
-  },
-  titleSaleContainer: {
-    marginHorizontal: 20,
-    justifyContent: 'space-between',
-    flexDirection: 'row',
   },
   titleSale: {
     fontFamily: Fonts.OpenSans,

@@ -2,6 +2,7 @@ import React from 'react';
 import {StyleSheet, View, Image, TextInput} from 'react-native';
 import Block from '@components/Block';
 import {Colors, icons, Sizes} from '@assets';
+import {AntDesign} from 'react-native-vector-icons/AntDesign'
 
 const TextInputCustomer = ({
   text,

@@ -1,4 +1,4 @@
-import {StyleSheet, Dimensions} from 'react-native';
+import {StyleSheet, Dimensions, Platform} from 'react-native';
 const {width, height} = Dimensions.get('window');
 
 export default StyleSheet.create({
@@ -83,7 +83,7 @@ export default StyleSheet.create({
     color: '#f3f8ff',
   },
   loginContainer: {
-    bottom: 30,
+    bottom: Platform.OS === 'android' ? 30 : 10,
   },
 
   buttonContainer: {

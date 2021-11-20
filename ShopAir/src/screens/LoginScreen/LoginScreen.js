@@ -19,7 +19,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {useNavigation} from '@react-navigation/native';
 import styles from './Style';
-import {images, Sizes} from '@assets/index';
+import {Colors, images, Sizes} from '@assets/index';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import auth from '@react-native-firebase/auth';
 // import GoogleSignin from '@react-native-google-signin/google-signin';
@@ -44,7 +44,7 @@ const LoginScreen = () => {
         .signInWithEmailAndPassword(email, password)
         .then(() => {
           navigation.navigate(TextDirectory.rootStack.bottomNav);
-          AsyncStorage.setItem('JUST_ONE', 'onbroading');
+          AsyncStorage.setItem('@isFirstTime', true);
           console.log('Signed!');
         });
       setShowLoading(false);
@@ -125,7 +125,7 @@ const LoginScreen = () => {
                 style={{
                   position: 'absolute',
                 }}>
-                <ActivityIndicator size="large" color="#fff" />
+                <ActivityIndicator size="large" color={Colors.white} />
               </View>
             )}
           </TouchableOpacity>
@@ -139,16 +139,9 @@ const LoginScreen = () => {
             <Block>
               <TouchableOpacity
                 onPress={() => navigation.navigate(TextDirectory.register)}>
-                <Text style={{color: '#000', fontWeight: '600'}}>
+                <Text style={{color: Colors.black, fontWeight: '600'}}>
                   You don't have account?{' '}
-                  <Text
-                    style={{
-                      color: '#ff2234',
-                      fontSize: 16,
-                      fontWeight: 'bold',
-                    }}>
-                    Register
-                  </Text>
+                  <Text style={styles.buttonRegister}>Register</Text>
                 </Text>
               </TouchableOpacity>
             </Block>

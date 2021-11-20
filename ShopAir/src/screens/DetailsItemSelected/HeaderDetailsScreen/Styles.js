@@ -1,20 +1,41 @@
+import { Colors, Fonts } from '@assets';
+import { getSize } from 'helper/responsive';
 import {StyleSheet} from 'react-native';
 
 export default StyleSheet.create({
-  box_container: {
+  container: {
+    justifyContent: 'space-between',
+  },
+  iconStyle: {
+    width: 22,
+    height: 22,
+  },
+  iconStyleHeart: {
+    width: 22,
+    height: 22,
+    tintColor: Colors.red,
+  },
+  sale: {
+    position: 'absolute',
+    zIndex: 1,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    backgroundColor: Colors.orange2,
+    borderRadius: 5,
+    right: 5,
+    top: 5,
+  },
+  textSale: {
+    fontFamily: Fonts.OpenSans,
+    fontWeight: 'bold',
+    fontSize: 14,
+    color: Colors.white,
+  },
+  notificationContainer: {
     flex: 1,
-    backgroundColor: '#F5FCFF',
-    rounded: 'lg',
-    overflow: 'hidden',
-    borderColor: 'coolGray.200',
-    borderWidth: '1',
-    _dark: {borderColor: 'coolGray.600', backgroundColor: 'gray.700'},
-    _web: {
-      shadow: 2,
-      borderWidth: 0,
-    },
-    _light: {
-      backgroundColor: 'gray.50',
-    },
+    position: 'absolute',
+    zIndex: 10,
+    top: getSize.s(-7),
+    right: getSize.s(-10),
   },
 });

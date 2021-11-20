@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useCallback} from 'react';
 import {
   StyleSheet,
   Text,
@@ -14,22 +14,57 @@ import Block from '@components/Block';
 import {Badge} from 'react-native-elements';
 import {getSize} from 'helper/responsive';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import styles from './Styles';
+import ImageCustomer from '@components/Image/ImageCustomer';
 
-const HeaderDetailsScreen = ({isLoadCart}) => {
+const HeaderDetailsScreen = ({cartValue, onPressCart}) => {
   const navigation = useNavigation();
   const [isHeart, setIsHeart] = useState(false);
 
-  const [loadCart, setIsLoadCart] = useState([]);
+  const [cart, setCart] = useState([]);
+
+  useEffect(() => {
+    const getValue = async () => {
+      try {
+        const value = await AsyncStorage.getItem('@storage_cart');
+        if (value !== null) {
+          setCart(value);
+          // let's go
+        }
+      } catch (error) {
+        // Error retrieving data
+        console.log('Empty value..');
+      }
+    };
+    getValue();
+  }, []);
+
+  useEffect(() => {
+    if (cart !== cartValue) {
+      reLoadValueCart();
+    }
+  }, [cart, reLoadValueCart, cartValue]);
+
+  const reLoadValueCart = useCallback(async () => {
+    try {
+      const value = await AsyncStorage.getItem('@storage_cart');
+      if (value !== null) {
+        setCart(value);
+        // let's go
+      }
+    } catch (error) {
+      // Error retrieving data
+      console.log('Empty value..');
+    }
+  }, []);
 
   useEffect(() => {
     const status = async () => {
       try {
-        const value = await AsyncStorage.getItem('CART_STORAGE');
+        const value = await AsyncStorage.getItem('@storage_cart');
         if (value !== null) {
-          console.log('Cart value:' + value);
-          setIsLoadCart(value);
+          setCart(value);
           // let's go
-        } else {
         }
       } catch (error) {
         // Error retrieving data
@@ -37,7 +72,7 @@ const HeaderDetailsScreen = ({isLoadCart}) => {
       }
     };
     status();
-  }, [isLoadCart]);
+  }, []);
 
   return (
     <Block
@@ -59,29 +94,37 @@ const HeaderDetailsScreen = ({isLoadCart}) => {
         )}
         <Block>
           <TouchableOpacity style={{marginLeft: 30}}>
-            <Image
-              source={icons.cart}
-              resizeMode="contain"
-              style={styles.iconStyle}
-            />
-            <Block absolute right={0} top={0}>
-              {loadCart !== null ? (
-                <Badge
-                  status="error"
-                  containerStyle={styles.notificationContainer}
-                  badgeStyle={styles.badgeStyle}
-                  textProps={{allowFontScaling: false}}
-                  value={loadCart}
-                />
-              ) : (
-                <Badge
-                  status="error"
-                  containerStyle={styles.notificationContainer}
-                  badgeStyle={styles.badgeStyle}
-                  textProps={{allowFontScaling: false}}
-                />
-              )}
-            </Block>
+            {cartValue > 0 ? (
+              <Block flex justifyCenter alignEnd>
+                <TouchableOpacity onPress={onPressCart}>
+                  <Block top={0} right={0} bottom={0}>
+                    <Badge
+                      status="error"
+                      containerStyle={styles.notificationContainer}
+                      textProps={{allowFontScaling: false}}
+                      value={cartValue}
+                    />
+                    <ImageCustomer
+                      source={icons.cart}
+                      resizeMode="contain"
+                      width={24}
+                      height={24}
+                    />
+                  </Block>
+                </TouchableOpacity>
+              </Block>
+            ) : (
+              <Block flex justifyCenter alignEnd>
+                <TouchableOpacity onPress={onPressCart}>
+                  <ImageCustomer
+                    source={icons.cart}
+                    resizeMode="contain"
+                    width={24}
+                    height={24}
+                  />
+                </TouchableOpacity>
+              </Block>
+            )}
           </TouchableOpacity>
         </Block>
       </Block>
@@ -132,41 +175,3 @@ const HeartFill = ({onPress}) => {
 };
 
 export default HeaderDetailsScreen;
-
-const styles = StyleSheet.create({
-  container: {
-    justifyContent: 'space-between',
-  },
-  iconStyle: {
-    width: 22,
-    height: 22,
-  },
-  iconStyleHeart: {
-    width: 22,
-    height: 22,
-    tintColor: Colors.red,
-  },
-  sale: {
-    position: 'absolute',
-    zIndex: 1,
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    backgroundColor: Colors.orange2,
-    borderRadius: 5,
-    right: 5,
-    top: 5,
-  },
-  textSale: {
-    fontFamily: Fonts.OpenSans,
-    fontWeight: 'bold',
-    fontSize: 14,
-    color: Colors.white,
-  },
-  notificationContainer: {
-    flex: 1,
-    position: 'absolute',
-    zIndex: 10,
-    top: getSize.s(-7),
-    right: getSize.s(-10),
-  },
-});

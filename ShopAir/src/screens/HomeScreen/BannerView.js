@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {icons, Colors, Fonts, Sizes} from '@assets';
+import Block from '@components/Block';
 
 const BannerView = () => {
   const navigation = useNavigation();
@@ -38,7 +39,7 @@ const BannerView = () => {
     return (
       <TouchableOpacity
         style={styles.container}
-        onPress={() => console.log(`Banner id: ${item.id}`)}>
+        onPress={() => console.log(`${item.id}`)}>
         <View>
           <Image
             source={{uri: item.imageUrl}}

@@ -8,12 +8,13 @@ import {TextDirectory} from 'helper/TextDirectory';
 import auth from '@react-native-firebase/auth';
 import LoginScreen from '@screens/LoginScreen/LoginScreen';
 
-const OnBroading = ({navigation}) => {
-  // const navigation = useNavigation();
-  // Set an initializing state whilst Firebase connects
-  const [timerCount, setTimer] = useState(3);
-  const [initializing, setInitializing] = useState(true);
+const OnBroading = () => {
+  const navigation = useNavigation();
   const [user, setUser] = useState();
+  const [timerCount, setTimer] = useState(3);
+  const [isAppFirstTimeOpen, setIsAppFirstTimeOpen] = useState(false);
+  // Set an initializing state whilst Firebase connects
+  const [initializing, setInitializing] = useState(true);
 
   useEffect(() => {
     let interval = setInterval(() => {
@@ -29,13 +30,25 @@ const OnBroading = ({navigation}) => {
   }, []);
 
   useEffect(() => {
-    try {
-      const value = AsyncStorage.getItem('JUST_ONE');
-      if (timerCount === 0 && value !== null) {
+    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+    return subscriber; // unsubscribe on unmount
+  }, []);
+
+  // Handle user state changes
+  function onAuthStateChanged(user) {
+    setUser(user);
+  }
+
+  useEffect(() => {
+    if (timerCount === 0) {
+      if (user) {
+        console.log(user);
+        navigation.navigate(TextDirectory.rootStack.bottomNav);
+      } else {
         navigation.navigate(TextDirectory.login);
       }
-    } catch (error) {}
-  }, [navigation, timerCount]);
+    }
+  }, [user, navigation, timerCount]);
 
   return (
     <Animated.View style={styles.container}>
