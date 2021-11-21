@@ -4,8 +4,13 @@ var jwt = require('jsonwebtoken');
 var auth = require('../utilities/auth');
 var userController = require('../controller/userController');
 
-/* Product views */
-router.get('/', auth.authenticate, function (req, res, next) {  
+// Get API...
+router.get('/api', function (req, res, next) {  
+  res.redirect('/api');
+});
+
+/* Product views.. */
+router.get('/', function (req, res, next) {  
   res.redirect('/products');
 });
 

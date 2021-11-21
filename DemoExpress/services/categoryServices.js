@@ -6,6 +6,11 @@ exports.getListCategories = async function getListCategories()
     return await CategoryModel.find()
 }
 
+exports.getCategoryByID = async function getCategoryByID(id){
+  let category = await CategoryModel.findById(id)
+  return category
+}
+
 exports.addNew = async function addNew(category_push) {
     let categories = new CategoryModel(category_push);
     await categories.save();

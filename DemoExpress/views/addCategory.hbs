@@ -10,11 +10,25 @@
       <!-- Aplication Brand -->
       <div class="app-brand">
         <a href="/products">
-          <svg class="brand-icon" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" width="30"
-            height="33" viewBox="0 0 30 33">
+          <svg
+            class="brand-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            preserveAspectRatio="xMidYMid"
+            width="30"
+            height="33"
+            viewBox="0 0 30 33"
+          >
             <g fill="none" fill-rule="evenodd">
-              <path class="logo-fill-blue" fill="#7DBCFF" d="M0 4v25l8 4V0zM22 4v25l8 4V0z"></path>
-              <path class="logo-fill-white" fill="#FFF" d="M11 4v25l8 4V0z"></path>
+              <path
+                class="logo-fill-blue"
+                fill="#7DBCFF"
+                d="M0 4v25l8 4V0zM22 4v25l8 4V0z"
+              ></path>
+              <path
+                class="logo-fill-white"
+                fill="#FFF"
+                d="M11 4v25l8 4V0z"
+              ></path>
             </g>
           </svg>
           <span class="brand-name">Sleek Dashboard</span>
@@ -25,21 +39,28 @@
 
         <!-- sidebar menu -->
         <ul class="nav sidebar-inner" id="sidebar-menu">
-
           <li class="has-sub active expand">
-            <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#dashboard"
-              aria-expanded="false" aria-controls="dashboard">
+            <a
+              class="sidenav-item-link"
+              href="javascript:void(0)"
+              data-toggle="collapse"
+              data-target="#dashboard"
+              aria-expanded="false"
+              aria-controls="dashboard"
+            >
               <i class="mdi mdi-view-dashboard-outline"></i>
               <span class="nav-text">Dashboard</span>
               <b class="caret"></b>
             </a>
-            <ul class="collapse show" id="dashboard" data-parent="#sidebar-menu">
+            <ul
+              class="collapse show"
+              id="dashboard"
+              data-parent="#sidebar-menu"
+            >
               <div class="sub-menu">
-
                 <li>
                   <a class="sidenav-item-link" href="/products">
                     <span class="nav-text">Products</span>
-
                   </a>
                 </li>
                 <li class="active">
@@ -48,7 +69,7 @@
                   </a>
                 </li>
                 <li>
-                  <a class="sidenav-item-link" href="/products/banner">
+                  <a class="sidenav-item-link" href="/products/banners">
                     <span class="nav-text">Banner</span>
                   </a>
                 </li>
@@ -57,14 +78,21 @@
           </li>
 
           <li class="has-sub">
-            <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#pages"
-              aria-expanded="false" aria-controls="pages">
+            <a
+              class="sidenav-item-link"
+              href="javascript:void(0)"
+              data-toggle="collapse"
+              data-target="#pages"
+              aria-expanded="false"
+              aria-controls="pages"
+            >
               <i class="mdi mdi-image-filter-none"></i>
               <span class="nav-text">Pages</span>
               <b class="caret"></b>
             </a>
             <ul class="collapse" id="pages" data-parent="#sidebar-menu">
               <div class="sub-menu">
+
                 <li>
                   <a class="sidenav-item-link" href="user-profile.html">
                     <span class="nav-text">User Profile</span>
@@ -73,26 +101,38 @@
                 </li>
 
                 <li class="has-sub">
-                  <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse"
-                    data-target="#authentication" aria-expanded="false" aria-controls="authentication">
+                  <a
+                    class="sidenav-item-link"
+                    href="javascript:void(0)"
+                    data-toggle="collapse"
+                    data-target="#authentication"
+                    aria-expanded="false"
+                    aria-controls="authentication"
+                  >
                     <span class="nav-text">Authentication</span>
                     <b class="caret"></b>
                   </a>
                   <ul class="collapse" id="authentication">
                     <div class="sub-menu">
+
                       <li>
                         <a href="/login">Sign In</a>
                       </li>
+
                       <li>
                         <a href="/register">Sign Up</a>
                       </li>
+
                     </div>
                   </ul>
                 </li>
+
               </div>
             </ul>
           </li>
+
         </ul>
+
       </div>
 
       <hr class="separator" />
@@ -104,14 +144,22 @@
             <span class="float-right">40%</span>
           </h6>
           <div class="progress progress-xs">
-            <div class="progress-bar active" style="width: 40%;" role="progressbar"></div>
+            <div
+              class="progress-bar active"
+              style="width: 40%;"
+              role="progressbar"
+            ></div>
           </div>
           <h6 class="text-uppercase">
             Memory Uses
             <span class="float-right">65%</span>
           </h6>
           <div class="progress progress-xs">
-            <div class="progress-bar progress-bar-warning" style="width: 65%;" role="progressbar"></div>
+            <div
+              class="progress-bar progress-bar-warning"
+              style="width: 65%;"
+              role="progressbar"
+            ></div>
           </div>
         </div>
       </div>
@@ -129,11 +177,23 @@
         <!-- search form -->
         <div class="search-form d-none d-lg-inline-block">
           <div class="input-group">
-            <button type="button" name="search" id="search-btn" class="btn btn-flat">
+            <button
+              type="button"
+              name="search"
+              id="search-btn"
+              class="btn btn-flat"
+            >
               <i class="mdi mdi-magnify"></i>
             </button>
-            <input type="text" name="query" id="search-input" class="form-control" placeholder="'button', 'chart' etc."
-              autofocus autocomplete="off" />
+            <input
+              type="text"
+              name="query"
+              id="search-input"
+              class="form-control"
+              placeholder="'button', 'chart' etc."
+              autofocus
+              autocomplete="off"
+            />
           </div>
           <div id="search-results-container">
             <ul id="search-results"></ul>
@@ -142,15 +202,7 @@
 
         <div class="navbar-right">
           <ul class="nav navbar-nav">
-            <!-- Github Link Button -->
-            <!-- <li class="github-link mr-3">
-                <a class="btn btn-outline-secondary btn-sm" href="https://github.com/tafcoder/sleek-dashboard"
-                  target="_blank">
-                  <span class="d-none d-md-inline-block mr-2">Source Code</span>
-                  <i class="mdi mdi-github-circle"></i>
-                </a>
 
-              </li> -->
             <li class="dropdown notifications-menu">
               <button class="dropdown-toggle" data-toggle="dropdown">
                 <i class="mdi mdi-bell-outline"></i>
@@ -161,7 +213,9 @@
                   <a href="#">
                     <i class="mdi mdi-account-plus"></i>
                     New user registered
-                    <span class="font-size-12 d-inline-block float-right"><i class="mdi mdi-clock-outline"></i>
+                    <span class="font-size-12 d-inline-block float-right"><i
+                        class="mdi mdi-clock-outline"
+                      ></i>
                       10 AM</span>
                   </a>
                 </li>
@@ -169,7 +223,9 @@
                   <a href="#">
                     <i class="mdi mdi-account-remove"></i>
                     User deleted
-                    <span class="font-size-12 d-inline-block float-right"><i class="mdi mdi-clock-outline"></i>
+                    <span class="font-size-12 d-inline-block float-right"><i
+                        class="mdi mdi-clock-outline"
+                      ></i>
                       07 AM</span>
                   </a>
                 </li>
@@ -177,7 +233,9 @@
                   <a href="#">
                     <i class="mdi mdi-chart-areaspline"></i>
                     Sales report is ready
-                    <span class="font-size-12 d-inline-block float-right"><i class="mdi mdi-clock-outline"></i>
+                    <span class="font-size-12 d-inline-block float-right"><i
+                        class="mdi mdi-clock-outline"
+                      ></i>
                       12 PM</span>
                   </a>
                 </li>
@@ -185,7 +243,9 @@
                   <a href="#">
                     <i class="mdi mdi-account-supervisor"></i>
                     New client
-                    <span class="font-size-12 d-inline-block float-right"><i class="mdi mdi-clock-outline"></i>
+                    <span class="font-size-12 d-inline-block float-right"><i
+                        class="mdi mdi-clock-outline"
+                      ></i>
                       10 AM</span>
                   </a>
                 </li>
@@ -193,7 +253,9 @@
                   <a href="#">
                     <i class="mdi mdi-server-network-off"></i>
                     Server overloaded
-                    <span class="font-size-12 d-inline-block float-right"><i class="mdi mdi-clock-outline"></i>
+                    <span class="font-size-12 d-inline-block float-right"><i
+                        class="mdi mdi-clock-outline"
+                      ></i>
                       05 AM</span>
                   </a>
                 </li>
@@ -204,10 +266,16 @@
             </li>
             <!-- User Account -->
             <li class="dropdown user-menu">
-              <button href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+              <button
+                href="#"
+                class="dropdown-toggle nav-link"
+                data-toggle="dropdown"
+              >
                 <img
                   src="https://firebasestorage.googleapis.com/v0/b/nikeshoppingapp-rnfirebase.appspot.com/o/haunh270401.jpg?alt=media&token=0f10b837-1ee6-466f-a0ad-efdc9c50119c"
-                  class="user-image" alt="User Image" />
+                  class="user-image"
+                  alt="User Image"
+                />
                 <span class="d-none d-lg-inline-block">Abdus Salam</span>
               </button>
               <ul class="dropdown-menu dropdown-menu-right">
@@ -215,13 +283,14 @@
                 <li class="dropdown-header">
                   <img
                     src="https://firebasestorage.googleapis.com/v0/b/nikeshoppingapp-rnfirebase.appspot.com/o/haunh270401.jpg?alt=media&token=0f10b837-1ee6-466f-a0ad-efdc9c50119c"
-                    class="img-circle" alt="User Image" />
+                    class="img-circle"
+                    alt="User Image"
+                  />
                   <div class="d-inline-block">
                     Abdus Salam
                     <small class="pt-1">abdus@gmail.com</small>
                   </div>
                 </li>
-
                 <li>
                   <a href="profile.html">
                     <i class="mdi mdi-account"></i>
@@ -259,78 +328,39 @@
     </header>
 
     <div class="content-wrapper">
-      <div>
-
-        <!-- PRODUCT LIST -->
-        <div class="row">
-          <div class="col-12">
-            <!-- Recent Order Table -->
-            <div class="card card-table-border-none" id="recent-orders">
-              <div class="card-header justify-content-between">
-                <h1>List Category</h1>
-                <div class="date-range-report">
-                  <span></span>
-                </div>
-              </div>
-              <div class="btn-add-product">
-                <button type="button" class="btn btn-info btn-add" onclick="goToAddNew()">
-                  Add category
-                </button>
-              </div>
-              <div class="card-body pt-0 pb-5">
-                <table class="table card-table table-responsive table-responsive-large" style="width:100%;">
-                  <!-- Header table -->
-                  <thead>
-                    <tr>
-                      <th class="d-none d-md-table-cell">
-                        <h5>ID Category</h5>
-                      </th>
-                      <th class="res-title-col-table">
-                        <h5>Name Category</h5>
-                      </th>
-                    </tr>
-                  </thead>
-                  <!-- End header table -->
-
-                  <!-- Row in table -->
-                  <tbody id="tb_table">
-                    {{#each listCategories}}
-                    <tr>
-                      <td class="d-none d-md-table-cell">
-                        {{this._id}}
-                      </td>
-                      <td>
-                        <p class="text-dark res-title-col-table">{{this.nameCategory}}</p>
-                      </td>
-                      <td>
-                        <div class="res-crud-lg text-right">
-                          <button type="button" class="btn btn-success" onclick="goToEditCategory('{{this._id}}')">
-                            Edit
-                          </button>
-                          <button type="button" class="btn btn-danger"
-                            onclick="deleteCategory('{{this._id}}')">Remove</button>
-                        </div>
-                      </td>
-                    </tr>
-                    {{/each}}
-                  </tbody>
-                  <!-- End row in table -->
-                </table>
-              </div>
-            </div>
-          </div>
+      <div class="form-insert card card-table-border-none">
+        <div class="title-addproduct">
+          <h1>Add Category</h1>
         </div>
-        <!-- END PRODUCT LIST -->
+
+        <form action="/products/category/addCategory" method="POST">
+          <div class="form-group">
+            <label for="name">Name Category: </label>
+            <input
+              onchange="validateProductName()"
+              type="text"
+              class="form-control"
+              placeholder="Name category"
+              id="nameCategory"
+              name="nameCategory"
+            />
+            <p id="error" style="color: red;"></p>
+          </div>
+          <button id="btn_submit" type="submit" class="btn btn-success col-12">Submit</button>
+        </form>
 
       </div>
-
       <footer class="footer mt-auto">
         <div class="copyright bg-white">
           <p>
             &copy;
             <span id="copy-year">2019</span>
             Copyright Sleek Dashboard Bootstrap Template by
-            <a class="text-primary" href="http://www.iamabdus.com/" target="_blank">Abdus</a>.
+            <a
+              class="text-primary"
+              href="http://www.iamabdus.com/"
+              target="_blank"
+            >Abdus</a>.
           </p>
         </div>
         <script>
@@ -343,24 +373,10 @@
   </div>
 
   <script>
-    function goToAddNew() {
-      window.location.href =
-      '/products/category/addCategory/'
-    } 
-    
-    function goToEditCategory() {
-      window.location.href = '/products/edit_category/' + _id
-    } 
-    
-    function deleteCategory(id) {
-        $.ajax({
-          type: 'DELETE', url:
-            '/products/category/deleteCategory/' + id, success: function (data) {
-              if (data.res
-                == true) { window.location.href = '/products/category' }
-            }
-        });
-    }
-  </script>
+    function validateProductName() { let value =
+    document.getElementById('nameCategory').value if (value.length === 0 ||
+    value.length > 100) { document.getElementById('error').innerText = 'Error!';
+    } else { document.getElementById('error').innerText = ''; } }
 
+  </script>
 </div>

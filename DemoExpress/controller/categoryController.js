@@ -9,9 +9,7 @@ exports.getCategoryByID = async function getCategoryByID(id){
 
 exports.addNew = async function addNew(params) {
     let {nameCategory} = params
-    let categories = {
-        nameCategory: nameCategory,
-    }
+    let categories = { nameCategory: nameCategory, }
     await categoryServices.addNew(categories);
 }
 
