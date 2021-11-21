@@ -9,20 +9,20 @@ exports.getBannerByID = async function getBannerByID(id) {
 };
 
 exports.addNew = async function addNew(params) {
-  let { bannerName, createdDate, idLoaiSP, imageUrl } = params;
-  let products = {
+  let { bannerName, idLoaiSP, imageUrl, createdDate } = params;
+  let banner = {
     bannerName: bannerName,
     createdDate: createdDate,
     idLoaiSP: idLoaiSP,
     imageUrl: imageUrl,
   };
-  await bannerService.addNew(products);
+  await bannerService.addNew(banner);
 };
 
 exports.edit = async function editBanner(id, params) {
-  let { bannerName, createdDate, idLoaiSP, imageUrl } = params;
-  let product_edit = { bannerName, createdDate, idLoaiSP, imageUrl };
-  await bannerService.edit(product_edit);
+  let { bannerName, idLoaiSP, imageUrl, createdDate } = params;
+  let banner_edit = {id, bannerName, idLoaiSP, imageUrl, createdDate };
+  await bannerService.edit(banner_edit);
 };
 
 exports.remove = async function removeProductByID(id) {

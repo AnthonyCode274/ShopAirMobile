@@ -1,41 +1,41 @@
-var categoryServices = require('./categoryServices');
-var BannerModel = require("../model/banner");
+var BannerModel = require("../model/bannerModel");
 
-exports.getListBanner = async function getListBanner(){
-  return await BannerModel.find().populate('idLoaiSP')
-}
-
-exports.getBannerByID = async function getBannerByID(id){
-    let product = await BannerModel.findById(id)
-    // product = {...product, id: product._id}
-    return product
-}
-
-
-exports.addNew = async function addNew(product_push) {
-    let product = new BannerModel(product_push);
-    await product.save();
-}
-
-exports.edit = async function editBanner(product_edit){
-  let proEdit = await BannerModel.findById(product_edit.id);
-  if (proEdit){
-    proEdit.bannerName = product_edit.bannerName
-    proEdit.createdDate = product_edit.createdDate
-    proEdit.imageUrl = product_edit.imageUrl
-    proEdit.idLoaiSP = product_edit.idLoaiSP
-
-    if (product_edit.imageUrl)
-    {
-      proEdit.imageUrl = product_edit.imageUrl
-    }
-    await proEdit.save();
-  }
-}
-
-exports.remove = async function removeBannerByID(id){
-  let prod = await BannerModel.remove({_id: id})
-  return await prod;
+exports.getListBanner = async function getListBanner() {
+  return await BannerModel.find();
 };
 
+exports.getBannerByID = async function getBannerByID(id) {
+  let banner = await BannerModel.findById(id);
+  return banner;
+};
 
+exports.addNew = async function addNew(banner_push) {
+  try {
+    let banner = new BannerModel(banner_push);
+    await banner.save();
+  } catch (error) {
+    console.log("addNew Service" + error.message);
+  }
+};
+
+exports.edit = async function editBanner(banner_edit) {
+  try {
+    let banner = await BannerModel.findById(banner_edit.id);
+    if (banner) {
+      banner.bannerName = banner_edit.bannerName;
+      banner.idLoaiSP = banner_edit.idLoaiSP;
+      banner.createdDate = banner_edit.createdDate;
+      if (banner_edit.imageUrl) {
+        banner.imageUrl = banner_edit.imageUrl;
+      }
+      console.log(banner_edit);
+      await banner.save();
+    }
+  } catch (error) {
+    console.log("edit Service" + error.message);
+  }
+};
+
+exports.remove = async function removeBannerByID(id) {
+  await BannerModel.remove({ _id: id });
+};
