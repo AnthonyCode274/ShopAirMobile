@@ -1,0 +1,262 @@
+<div class="wrapper">
+
+    <div class="page-wrapper">
+        <!-- Header -->
+        <header class="main-header" id="header">
+            <nav class="navbar navbar-static-top navbar-expand-lg">
+                <!-- Sidebar toggle button -->
+                <button id="sidebar-toggler" class="sidebar-toggle">
+                    <span class="sr-only">Toggle navigation</span>
+                </button>
+                <!-- search form -->
+                <div class="search-form d-none d-lg-inline-block">
+                    <div class="input-group">
+                        <button type="button" name="search" id="search-btn" class="btn btn-flat">
+                            <i class="mdi mdi-magnify"></i>
+                        </button>
+                        <input type="text" name="query" id="search-input" class="form-control"
+                            placeholder="'button', 'chart' etc." autofocus autocomplete="off" />
+                    </div>
+                    <div id="search-results-container">
+                        <ul id="search-results"></ul>
+                    </div>
+                </div>
+
+                <div class="navbar-right">
+                    <ul class="nav navbar-nav">
+
+                        <li class="dropdown notifications-menu">
+                            <button class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="mdi mdi-bell-outline"></i>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li class="dropdown-header">You have 5 notifications</li>
+                                <li>
+                                    <a href="#">
+                                        <i class="mdi mdi-account-plus"></i>
+                                        New user registered
+                                        <span class="font-size-12 d-inline-block float-right"><i
+                                                class="mdi mdi-clock-outline"></i>
+                                            10 AM</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="mdi mdi-account-remove"></i>
+                                        User deleted
+                                        <span class="font-size-12 d-inline-block float-right"><i
+                                                class="mdi mdi-clock-outline"></i>
+                                            07 AM</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="mdi mdi-chart-areaspline"></i>
+                                        Sales report is ready
+                                        <span class="font-size-12 d-inline-block float-right"><i
+                                                class="mdi mdi-clock-outline"></i>
+                                            12 PM</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="mdi mdi-account-supervisor"></i>
+                                        New client
+                                        <span class="font-size-12 d-inline-block float-right"><i
+                                                class="mdi mdi-clock-outline"></i>
+                                            10 AM</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="mdi mdi-server-network-off"></i>
+                                        Server overloaded
+                                        <span class="font-size-12 d-inline-block float-right"><i
+                                                class="mdi mdi-clock-outline"></i>
+                                            05 AM</span>
+                                    </a>
+                                </li>
+                                <li class="dropdown-footer">
+                                    <a class="text-center" href="#"> View All </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- User Account -->
+                        <li class="dropdown user-menu">
+                            <button href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                                <img src="https://firebasestorage.googleapis.com/v0/b/nikeshoppingapp-rnfirebase.appspot.com/o/haunh270401.jpg?alt=media&token=0f10b837-1ee6-466f-a0ad-efdc9c50119c"
+                                    class="user-image" alt="User Image" />
+                                <span class="d-none d-lg-inline-block">Abdus Salam</span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <!-- User image -->
+                                <li class="dropdown-header">
+                                    <img src="https://firebasestorage.googleapis.com/v0/b/nikeshoppingapp-rnfirebase.appspot.com/o/haunh270401.jpg?alt=media&token=0f10b837-1ee6-466f-a0ad-efdc9c50119c"
+                                        class="img-circle" alt="User Image" />
+                                    <div class="d-inline-block">
+                                        Abdus Salam
+                                        <small class="pt-1">abdus@gmail.com</small>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <a href="profile.html">
+                                        <i class="mdi mdi-account"></i>
+                                        My Profile
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="email-inbox.html">
+                                        <i class="mdi mdi-email"></i>
+                                        Message
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="mdi mdi-diamond-stone"></i>
+                                        Projects
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="mdi mdi-settings"></i>
+                                        Account Setting
+                                    </a>
+                                </li>
+
+                                <li class="dropdown-footer">
+                                    <a href="/logout"> <i class="mdi mdi-logout"></i> Log Out </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <div class="content-wrapper">
+
+            <!-- PRODUCT LIST -->
+            <div class="row">
+                <div class="col-12">
+                    <!-- Recent Order Table -->
+                    <div class="card card-table-border-none" id="recent-orders">
+                        <div class="card-header justify-content-between">
+                            <h1>Recent Cart</h1>
+                            <div class="date-range-report">
+                                <span></span>
+                            </div>
+
+                        </div>
+                        <div class="btn-add-product">
+                            <button type="button" class="btn btn-info btn-add" onclick="goToAddNew()">
+                                Add Cart
+                            </button>
+                        </div>
+                        <div class="card-body pt-0 pb-5">
+                            <table class="table card-table table-responsive table-responsive-large">
+                                <!-- Header table -->
+                                <thead>
+                                    <tr>
+                                        <th class="d-none d-md-table-cell">
+                                            <h5>ID</h5>
+                                        </th>
+                                        <th>
+                                            <h5>quantity</h5>
+                                        </th>
+                                        <th class="res-title-col-table">
+                                            <h5>User</h5>
+                                        </th>
+                                        <th class="d-none d-md-table-cell">
+                                            <h5>Product</h5>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <!-- End header table -->
+
+                                <!-- Row in table -->
+                                <tbody id="tb_table">
+                                    {{#each listBanner}}
+                                    <tr>
+                                        <td style="
+                                            width: auto;
+                                            max-width: 80px;
+                                            white-space: nowrap;
+                                            nowrap; overflow: 
+                                            hidden; text-overflow: 
+                                            ellipsis; 
+                                            display: -webkit-box;"
+                                            class="d-none d-md-table-cell">
+                                            {{this._id}}
+                                        </td>
+                                        <td style="max-width: 150px;">
+                                            <p class="text-dark res-title-col-table" href="">
+                                                {{this.quantity}}
+                                            </p>
+                                        </td>
+                                        <td style="max-width: 150px;">
+                                            <p class="text-dark res-title-col-table" href="">
+                                                {{this.user}}
+                                            </p>
+                                        </td>
+                                        <td style="max-width: 150px;">
+                                            <p class="text-dark res-title-col-table" href="">
+                                                {{this.product}}
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <div class="res-crud-lg text-right">
+                                                <button type="button" class="btn btn-success"
+                                                    onclick="goToEdit('{{this._id}}')">
+                                                    Edit
+                                                </button>
+                                                <button type="button" class="btn btn-danger"
+                                                    onclick="deleteProduct('{{this._id}}')"
+                                                    >Remove</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    {{/each}}
+
+                                </tbody>
+                                <!-- End row in table -->
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- END PRODUCT LIST -->
+            </div>
+            <footer class="footer mt-auto">
+                <div class="copyright bg-white">
+                    <p>
+                        &copy;
+                        <span id="copy-year">2021</span>
+                        Copyright Sleek Dashboard Bootstrap Template by
+                        <a class="text-primary" href="http://www.iamabdus.com/" target="_blank">Abdus</a>.
+                    </p>
+                </div>
+                <script>
+                    var d = new Date(); var year = d.getFullYear();
+                    document.getElementById("copy-year").innerHTML = year;
+                </script>
+            </footer>
+
+        </div>
+    </div>
+
+    <script>
+        function goToAddNew() { window.location.href = '/products/cart/addCart/' }
+        function goToEdit(id) { window.location.href = '/products/cart/editCart/' + id }
+        function deleteProduct(id) {
+            $.ajax({
+                type: "DELETE", url:
+                    '/products/cart/deleteCart/' + id, success: function (data) {
+                        if (data.res == true) {
+                            window.location.href = '/products/cart'
+                        }
+                    }
+            });
+        }
+    </script>
+
+</div>

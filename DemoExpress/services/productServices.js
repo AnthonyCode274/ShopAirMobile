@@ -46,6 +46,7 @@ exports.remove = async function removeProductByID(id) {
   // let prod = await ProductModel.remove({_id: id})
   try {
     let prod = await ProductModel.deleteOne({ _id: id });
+    
     return prod;
   } catch (error) {
     console.log(error.message);

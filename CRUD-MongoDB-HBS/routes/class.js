@@ -8,6 +8,7 @@ var middle = [auth.authenticate, upload.single("avatar")];
 
 router.get("/", middle, async function (req, res, next) {
   let list = await classCotroller.getListClass();
+  console.log(list);
   res.render("class", { listTable: list, title: "Home" });
 });
 

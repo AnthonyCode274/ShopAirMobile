@@ -191,7 +191,7 @@
           </div>
           <div class="image-product form-group">
             <img style="min-width: 100px; min-height: 100px; width: auto; height: auto;" id="showImage"
-              src="http://localhost:9000/images/{{productEdit.imgProduct}}" alt="your image" class="col-12" />
+              src="{{productEdit.imgProduct}}" alt="your image" class="col-12" />
           </div>
           <div class="col-12">
             <button type="submit" class="btn btn-success col-12">Submit</button>
@@ -218,57 +218,26 @@
   </div>
 
   <script>
-    var isValidName = false,
-      isValidPrice = false,
-      isValidDate = false;
-    function validateProductName() {
-      let value = document.getElementById('productName').value
-      if (!value || value.length === 0 || value.length > 100) {
-        document.getElementById('productNameError').innerText = 'Product name error!';
-        isValidName = false;
-      } else {
-        document.getElementById('productNameError').innerText = ''; isValidName
-          = true;
-      } validateForm();
-    } function validateFormPrice() {
-      let value =
-        document.getElementById('price').value if (!value || value < 0 || value
-          > 1000000000000) {
-        document.getElementById('priceError').innerText =
-          'Error!'; isValidPrice = false;
-      } else {
-        document.getElementById('priceError').innerText = ''; isValidPrice =
-          true;
-      } validateForm();
-    } function validateFormDate() {
-      let value =
-        document.getElementById('datepicker').value var varDate = new
-          Date(value); var today = new Date(); today.setHours(0, 0, 0, 0);
-      console.log('now', today) today = Number(today); if (!varDate || varDate
-        > today) {
-        document.getElementById('dateError').innerText = 'Error!';
-        isValidDate = false;
-      } else {
-        document.getElementById('dateError').innerText = ''; isValidDate = true;
-      } validateForm();
-    } function validateForm() {
-      if (isValidName == false
-        || isValidPrice == false || isValidDate == false) {
-        document.getElementById('btn_submit').disabled = true;
-      } else {
-        document.getElementById('btn_submit').disabled = false;
-      }
-    } function
-      goBack() { window.location.href = "/products"; } function readURL(input) {
-        if (input.files && input.files[0]) {
-          var reader = new FileReader();
-          reader.onload = function (e) {
-            $('#showImage').attr('src',
-              e.target.result); $('#showImage').removeClass('d-none');
-          }
-          reader.readAsDataURL(input.files[0]); // convert to base64 string } }
-          $("#image").change(function () { readURL(this); });
 
+    function goBack() {
+      window.location.href = "/products";
+    }
+    function readURL(input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+          $('#showImage').attr('src', e.target.result);
+          $('#showImage').removeClass('d-none');
+        }
+
+        reader.readAsDataURL(input.files[0]); // convert to base64 string
+      }
+    }
+
+    $("#image").change(function () {
+      readURL(this);
+    });
   </script>
 
 </div>
