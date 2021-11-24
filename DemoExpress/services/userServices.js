@@ -21,21 +21,21 @@ exports.addUser = async function addUser(user_push) {
   }
 };
 
-exports.edit = async function editProduct(product_edit) {
+exports.edit = async function editProduct(user_edit) {
   try {
-    let proEdit = await UserModel.findById(product_edit.id);
-    if (proEdit) {
-      proEdit.productName = product_edit.productName;
-      proEdit.price = product_edit.price;
-      proEdit.date = product_edit.date;
-      proEdit.saleUpTo = product_edit.saleUpTo;
-      proEdit.detailsProduct = product_edit.detailsProduct;
-      proEdit.idLoaiSP = product_edit.idLoaiSP;
-
-      if (product_edit.imgProduct) {
-        proEdit.imgProduct = product_edit.imgProduct;
+    let userEdit = await UserModel.findById(user_edit.id);
+    if (userEdit) {
+      userEdit.username = user_edit.username;
+      userEdit.email = user_edit.email;
+      userEdit.phoneNumber = user_edit.phoneNumber;
+      userEdit.password = user_edit.password;
+      userEdit.location = user_edit.location;
+      userEdit.idSP = user_edit.idSP
+      userEdit.productState = user_edit.productState
+      if (user_edit.avatar) {
+        userEdit.avatar = user_edit.avatar;
       }
-      await proEdit.save();
+      await userEdit.save();
     }
   } catch (error) {
     console.log(error.message);

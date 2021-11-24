@@ -1,6 +1,5 @@
 var CategoryModel = require('../model/categoryModel');
 
-
 exports.getListCategories = async function getListCategories() {
   return await CategoryModel.find()
 }

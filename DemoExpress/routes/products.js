@@ -4,7 +4,7 @@ var auth = require("../utilities/auth");
 var upload = require("../utilities/upload");
 var productController = require("../controller/productController");
 var bannerController = require("../controller/bannerController");
-var cartController = require('../controller/cartController');
+var cartController = require("../controller/cartController");
 var categoryController = require("../controller/categoryController");
 var userController = require("../controller/userController");
 var pathImage = require("../utilities/path");
@@ -15,14 +15,12 @@ var middle = [upload.single("imgProduct")];
 ///////////////////////////////////////////////////////// START PRODUCT /////////////////////////////////////////////////////////
 // /* GET home page. */
 router.get("/", async function (req, res, next) {
-  
   try {
     let listSP = await productController.getListProducts();
     res.render("products", { listSP }); // This is render view hbs...
   } catch (error) {
     console.log("error: " + error.message); // This is render view hbs...
   }
-  
 });
 
 /* GET add new. */
@@ -45,11 +43,12 @@ router.post("/add_new", middle, async function (req, res, next) {
       let imgUrl = pathImage.ImageUrl(req) + req.file.originalname;
       body = { ...body, imgProduct: imgUrl };
     }
+    console.log("body: " , body);
     await productController.addNew(body);
-    res.redirect("/products");
   } catch (error) {
     console.log("error: " + error.message);
   }
+  res.redirect("/products");
 }); // >>> End Insert Product
 
 /* Update product. */
@@ -76,7 +75,6 @@ router.post("/update/:id", middle, async function (req, res, next) {
     }
     console.log(body);
     await productController.edit(id, body);
-    
   } catch (error) {
     console.log("error: " + error.message);
   }
@@ -140,7 +138,7 @@ router.post("/category/editCategory/:id", async function (req, res, next) {
   try {
     let id = req.params.id;
     let { body } = req;
-    await categoryController.edit(id, body);
+    return await categoryController.edit(id, body);
   } catch (error) {
     console.log("error: " + error.message);
   }
@@ -151,7 +149,7 @@ router.post("/category/editCategory/:id", async function (req, res, next) {
 router.delete("/category/deleteCategory/:id", async function (req, res, next) {
   try {
     let { id } = req.params;
-    await categoryController.remove(id);
+    return await categoryController.remove(id);
     res.send({ res: true });
   } catch (error) {
     console.log("error: " + error.message);
@@ -175,13 +173,13 @@ router.get("/banner", async function (req, res) {
 router.get("/banner/addBanner", async function (req, res, next) {
   try {
     let loaiSP = await categoryController.getListCategories();
-    res.render("addBanner", {loaiSP});
+    res.render("addBanner", { loaiSP });
   } catch (error) {
     console.log("error: " + error.message);
   }
 });
 
-router.post("/banner/addBanner" , middleBanner, async function (req, res, next) {
+router.post("/banner/addBanner", middleBanner, async function (req, res, next) {
   try {
     let { body } = req;
     if (req.file) {
@@ -207,23 +205,26 @@ router.get("/banner/editBanner/:id", async function (req, res, next) {
   }
 });
 
-router.post("/banner/editBanner/:id", middleBanner, async function (req, res, next) {
-  try {
-    let id = req.params.id;
-    let { body } = req;
-    if (req.file) {
-      // let imgUrl = req.file.originalname
-      let imageUrl = req.file.originalname;
-      body = { ...body, imageUrl: imageUrl };
+router.post(
+  "/banner/editBanner/:id",
+  middleBanner,
+  async function (req, res, next) {
+    try {
+      let id = req.params.id;
+      let { body } = req;
+      if (req.file) {
+        // let imgUrl = req.file.originalname
+        let imageUrl = req.file.originalname;
+        body = { ...body, imageUrl: imageUrl };
+      }
+      console.log(body);
+      await bannerController.edit(id, body);
+    } catch (error) {
+      console.log("error: " + error.message);
     }
-    console.log(body);
-    await bannerController.edit(id, body);
-    
-  } catch (error) {
-    console.log("error: " + error.message);
+    res.redirect("/products/banner");
   }
-  res.redirect("/products/banner");
-});
+);
 
 /* Delete product. */
 router.delete("/banner/deleteBanner/:id", async function (req, res, next) {
@@ -235,7 +236,6 @@ router.delete("/banner/deleteBanner/:id", async function (req, res, next) {
     console.log("error: " + error.message);
   }
 });
-
 
 ////////////////////////////////////////////////// END BANNER ////////////////////////////////////////////////////////////
 /* Login. */
@@ -255,14 +255,14 @@ router.get("/user", async function (req, res) {
 router.get("/user/addUser", async function (req, res, next) {
   try {
     let listSP = await productController.getListProducts();
-    console.log(listSP);
-    res.render("addUser", {listSP});
+    
+    res.render("addUser", { listSP });
   } catch (error) {
     console.log("error: " + error.message);
   }
 });
 
-router.post("/user/addUser" , middleUser, async function (req, res, next) {
+router.post("/user/addUser", middleUser, async function (req, res, next) {
   try {
     let { body } = req;
     if (req.file) {
@@ -270,13 +270,13 @@ router.post("/user/addUser" , middleUser, async function (req, res, next) {
       let imageUrl = pathImage.ImageUrl(req) + req.file.originalname;
       body = { ...body, avatar: imageUrl };
     }
-    await userController.addUser(body);
     console.log(body);
-    res.redirect("/products/user");
+    await userController.addUser(body);
+    
   } catch (error) {
     console.log("error: " + error.message);
-    res.redirect("/products/user");
   }
+  res.redirect("/products/user");
 });
 
 router.get("/user/editUser/:id", async function (req, res, next) {
@@ -300,7 +300,6 @@ router.post("/user/editUser/:id", middleUser, async function (req, res, next) {
     }
     console.log(body);
     await userController.editUser(id, body);
-    
   } catch (error) {
     console.log("error: " + error.message);
   }
@@ -321,58 +320,55 @@ router.delete("/user/deleteUser/:id", async function (req, res, next) {
 ////////////////////////////////////////////////// END USER ////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////// START CART ////////////////////////////////////////////////////////////
-var middleBanner = [upload.single("imageUrl")];
-router.get("/banner", async function (req, res) {
+router.get("/cart", async function (req, res) {
   try {
-    let listBanner = await bannerController.getListBanner();
-    res.render("banner", { listBanner });
+    let listCart = await cartController.getListCart();
+    res.render("cart", { listCart });
   } catch (error) {
     console.log("error: " + error.message);
   }
 });
 
 // Add new
-router.get("/banner/addBanner", async function (req, res, next) {
+router.get("/cart/addCart", async function (req, res, next) {
   try {
-    let loaiSP = await categoryController.getListCategories();
-    res.render("addBanner", {loaiSP});
+    let listUser = await userController.getAllUser();
+    let listSP = await productController.getListProducts();
+    res.render("addCart", { listUser, listSP });
   } catch (error) {
     console.log("error: " + error.message);
   }
+  
 });
 
-router.post("/banner/addBanner" , middleBanner, async function (req, res, next) {
+router.post("/cart/addCart", async function (req, res, next) {
   try {
     let { body } = req;
-    if (req.file) {
-      // let imgUrl = req.file.originalname
-      let imageUrl = req.file.originalname;
-      body = { ...body, imageUrl: imageUrl };
-    }
-    await bannerController.addNew(body);
-    res.redirect("/products/banner");
+    console.log("Body response: ", body);
+    await cartController.addCart(body);
   } catch (error) {
-    console.log("error: " + error.message);
+    console.log("Error: " + error.message);
   }
+  res.redirect("/products/cart");
 });
 
-router.get("/banner/editCart/:id", async function (req, res, next) {
+router.get("/cart/editCart/:id", async function (req, res, next) {
   try {
     let id = req.params.id;
     let listCart = await cartController.getCartByID(id);
     res.render("editCart", { listCart });
   } catch (error) {
     console.log("error: " + error.message);
+    res.redirect("/products/cart");
   }
 });
 
-router.post("/cart/editCart/:id", middleBanner, async function (req, res, next) {
+router.post("/cart/editCart/:id", async function (req, res, next) {
   try {
     let id = req.params.id;
     let { body } = req;
     console.log(body);
     await cartController.edit(id, body);
-    
   } catch (error) {
     console.log("error: " + error.message);
   }
@@ -382,14 +378,13 @@ router.post("/cart/editCart/:id", middleBanner, async function (req, res, next) 
 /* Delete product. */
 router.delete("/cart/deleteCart/:id", async function (req, res, next) {
   try {
-    let { id } = req.params;
+    let id = req.params.id;
     await cartController.remove(id);
-    res.send({ status: true });
+    res.send({ res: true });
   } catch (error) {
     console.log("error: " + error.message);
   }
 });
-
 
 ////////////////////////////////////////////////// END CART ////////////////////////////////////////////////////////////
 router.get("/login", async function (req, res, next) {

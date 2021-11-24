@@ -5,7 +5,7 @@ const ObjectId = Schema.ObjectId;
 const bannerSchema = new Schema({
     id: {type: ObjectId},
     bannerName: { type: String },
-    idLoaiSP: { type: Schema.Types.ObjectId, ref: 'Category' },
+    idLoaiSP: { type: Schema.Types.ObjectId, ref: 'category' },
     imageUrl: { type: String },
     createdDate: { type: Date }
 })

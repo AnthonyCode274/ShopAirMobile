@@ -1,4 +1,4 @@
-<div>
+<div class="wrapper">
   <div class="page-wrapper">
     <!-- Header -->
     <header class="main-header " id="header">
@@ -119,55 +119,31 @@
     <div class="content-wrapper">
       <div class="form-insert card card-table-border-none">
         <div class="title-addproduct">
-          <h1>Add Products</h1>
+          <h1>Add Cart</h1>
         </div>
 
-        <form action="/products/add_new" method="POST" enctype="multipart/form-data">
+        <form action="/products/cart/addCart" method="POST" enctype="multipart/form-data">
           <div class="form-group">
-            <label>Product Name: </label>
-            <input onchange="validateProductName()" required type="text" class="form-control" placeholder="Enter name"
-              id="productName" name="productName" />
+            <label>Quantity: </label>
+            <input onchange="validateProductName()" required type="number" class="form-control" placeholder="Enter quantity"
+              id="quantity" name="quantity" />
             <p id="productNameError" style="color: red;"></p>
           </div>
           <div class="form-group">
-            <label>Product Price:</label>
-            <input onchange="validateFormPrice()" required type="number" class="form-control" placeholder="Enter price"
-              id="price" name="price" />
-            <p id="priceError" style="color: red;"></p>
-          </div>
-          <div class="form-group">
-            <label>Category</label>
-            <select class="form-control" required id="idLoaiSP" name="idLoaiSP">
-              {{#each loaiSP}}
-              <option value="{{this._id}}">{{this.nameCategory}}</option>
+            <label>Product</label>
+            <select class="form-control" required name="idSP">
+              {{#each listSP}}
+              <option value="{{this._id}}">{{this.productName}}</option>
               {{/each}}
             </select>
           </div>
-          <div class="row">
-            <div class="form-group col-6">
-              <label>Date:</label>
-              <input onchange="validateFormDate()" required id="datepicker" width="276" name="date" />
-              <p id="dateError" style="color: red;"></p>
-            </div>
-            <div class="form-group col-6">
-              <label>Sale?:</label>
-              <input required type="number" class="form-control" placeholder="Sale" id="saleUpTo" name="saleUpTo" />
-            </div>
-          </div>
-
           <div class="form-group">
-            <label>Details product:</label>
-            <textarea id="detailsProduct" name="detailsProduct" rows="4" cols="100" class="form-control"
-              placeholder="Write something.."></textarea>
-          </div>
-
-          <div class="image-product form-group">
-            <label class="form-label" for="customFile">Image product:</label>
-            <input type="file" class="form-control" id="image" name="imgProduct" />
-          </div>
-          <div class="image-product form-group">
-            <img style="max-width: 500px; max-height: 500px; width: auto; height: auto;" id="showImage" src=""
-              alt="your image" class=" col-12" />
+            <label>User</label>
+            <select class="form-control" required name="idUser">
+              {{#each listUser}}
+              <option value="{{this._id}}">{{this.username}}</option>
+              {{/each}}
+            </select>
           </div>
           <button id="btn_submit" type="submit" class="btn btn-success col-12">Submit</button>
         </form>
@@ -192,11 +168,11 @@
 
   <script>
 
-    var isValidName = false, isValidPrice = false, isValidDate = false;
+    var isValidName = false;
     function validateProductName() {
-      let value = document.getElementById('productName').value
+      let value = document.getElementById('quantity').value
       if (!value || value.length === 0 || value.length > 100) {
-        document.getElementById('productNameError').innerText = 'Product name error!';
+        document.getElementById('productNameError').innerText = 'Error!';
         isValidName = false;
       } else {
         document.getElementById('productNameError').innerText = '';
@@ -205,38 +181,8 @@
       validateForm();
     }
 
-    function validateFormPrice() {
-      let value = document.getElementById('price').value
-      if (!value || value < 0 || value > 1000000000000) {
-        document.getElementById('priceError').innerText = 'Error!';
-        isValidPrice = false;
-      } else {
-        document.getElementById('priceError').innerText = '';
-        isValidPrice = true;
-      }
-      validateForm();
-    }
-
-    function validateFormDate() {
-      let value = document.getElementById('datepicker').value
-      var varDate = new Date(value);
-      var today = new Date();
-      today.setHours(0, 0, 0, 0);
-
-      console.log('now', today)
-      today = Number(today);
-      if (!varDate || varDate > today) {
-        document.getElementById('dateError').innerText = 'Error!';
-        isValidDate = false;
-      } else {
-        document.getElementById('dateError').innerText = '';
-        isValidDate = true;
-      }
-      validateForm();
-    }
-
     function validateForm() {
-      if (isValidName == false || isValidPrice == false || isValidDate == false) {
+      if (isValidName == false) {
         document.getElementById('btn_submit').disabled = true;
       }
       else {
@@ -244,27 +190,9 @@
       }
     }
 
-
     function goBack() {
       window.location.href = "/products";
     }
-
-    function readURL(input) {
-      if (input.files && input.files[0]) {
-        var reader = new FileReader();
-
-        reader.onload = function (e) {
-          $('#showImage').attr('src', e.target.result);
-          $('#showImage').removeClass('d-none');
-        }
-
-        reader.readAsDataURL(input.files[0]); // convert to base64 string
-      }
-    }
-
-    $("#image").change(function () {
-      readURL(this);
-    });
     
   </script>
 </div>

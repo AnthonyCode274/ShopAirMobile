@@ -15,7 +15,7 @@ exports.getProductByID = async function getProductByID(id) {
 exports.addNew = async function addNew(product_push) {
   try {
     let product = new ProductModel(product_push);
-    await product.save();
+    return await product.save();
   } catch (error) {
     console.log(error.message);
   }

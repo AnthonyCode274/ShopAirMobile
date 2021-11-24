@@ -5,14 +5,13 @@ exports.getListBanner = async function getListBanner() {
 };
 
 exports.getBannerByID = async function getBannerByID(id) {
-  let banner = await BannerModel.findById(id);
-  return banner;
+  return await BannerModel.findById(id);
 };
 
 exports.addNew = async function addNew(banner_push) {
   try {
     let banner = new BannerModel(banner_push);
-    await banner.save();
+    return await banner.save();
   } catch (error) {
     console.log("addNew Service" + error.message);
   }

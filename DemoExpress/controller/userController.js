@@ -9,23 +9,23 @@ exports.getUserByID = async function getUserByID(id){
 }
 exports.addUser = async function addUser(params) {
     let {username, email, phoneNumber, password, avatar, location, idSP, productState} = params
-    let user = {
+    let user_push = {
       username: username,
       email: email,
       phoneNumber: phoneNumber,
       password: password,
       avatar: avatar,
       location: location,
-      idSP: idSP._id,
-      productState: productState,
+      idSP: idSP,
+      productState: productState
     }
-    await userService.addUser(user);
+    await userService.addUser(user_push);
 }
 
 exports.editUser = async function editUser(id, params){
   let {username, email, phoneNumber, password, avatar, location, idSP, productState} = params
     let userEdit = {id, username, email, phoneNumber, password, avatar, location, idSP, productState}
-    await userService.editUser(userEdit)
+    await userService.edit(userEdit);
 }
 
 exports.remove = async function removeUserByID(id){

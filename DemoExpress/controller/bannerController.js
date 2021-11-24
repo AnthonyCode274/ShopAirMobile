@@ -16,7 +16,7 @@ exports.addNew = async function addNew(params) {
     idLoaiSP: idLoaiSP,
     imageUrl: imageUrl,
   };
-  await bannerService.addNew(banner);
+  return await bannerService.addNew(banner);
 };
 
 exports.edit = async function editBanner(id, params) {
@@ -25,6 +25,6 @@ exports.edit = async function editBanner(id, params) {
   await bannerService.edit(banner_edit);
 };
 
-exports.remove = async function removeProductByID(id) {
+exports.remove = async function removeBannerByID(id) {
   await bannerService.remove(id);
 };

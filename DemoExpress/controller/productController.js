@@ -1,7 +1,5 @@
 var productServices = require('../services/productServices');
 
-
-
 exports.getListProducts = async function getListProducts(){
     return await productServices.getListProducts();
 }

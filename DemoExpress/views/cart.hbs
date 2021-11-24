@@ -162,7 +162,7 @@
                                             <h5>ID</h5>
                                         </th>
                                         <th>
-                                            <h5>quantity</h5>
+                                            <h5>Quantity</h5>
                                         </th>
                                         <th class="res-title-col-table">
                                             <h5>User</h5>
@@ -176,7 +176,7 @@
 
                                 <!-- Row in table -->
                                 <tbody id="tb_table">
-                                    {{#each listBanner}}
+                                    {{#each listCart}}
                                     <tr>
                                         <td style="
                                             width: auto;
@@ -196,12 +196,12 @@
                                         </td>
                                         <td style="max-width: 150px;">
                                             <p class="text-dark res-title-col-table" href="">
-                                                {{this.user}}
+                                                {{this.idUser}}
                                             </p>
                                         </td>
                                         <td style="max-width: 150px;">
                                             <p class="text-dark res-title-col-table" href="">
-                                                {{this.product}}
+                                                {{this.idProduct}}
                                             </p>
                                         </td>
                                         <td>
@@ -245,7 +245,7 @@
     </div>
 
     <script>
-        function goToAddNew() { window.location.href = '/products/cart/addCart/' }
+        function goToAddNew() { window.location.href = '/products/cart/addCart' }
         function goToEdit(id) { window.location.href = '/products/cart/editCart/' + id }
         function deleteProduct(id) {
             $.ajax({
@@ -253,7 +253,7 @@
                     '/products/cart/deleteCart/' + id, success: function (data) {
                         if (data.res == true) {
                             window.location.href = '/products/cart'
-                        }
+                        } 
                     }
             });
         }

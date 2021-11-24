@@ -1,1 +1,269 @@
-<p>edit user page</p>
+<div class="wrapper">
+    <div class="page-wrapper">
+        <!-- Header -->
+        <header class="main-header" id="header">
+            <nav class="navbar navbar-static-top navbar-expand-lg">
+                <!-- Sidebar toggle button -->
+                <button id="sidebar-toggler" class="sidebar-toggle">
+                    <span class="sr-only">Toggle navigation</span>
+                </button>
+                <!-- search form -->
+                <div class="search-form d-none d-lg-inline-block">
+                    <div class="input-group">
+                        <button type="button" name="search" id="search-btn" class="btn btn-flat">
+                            <i class="mdi mdi-magnify"></i>
+                        </button>
+                        <input type="text" name="query" id="search-input" class="form-control"
+                            placeholder="'button', 'chart' etc." autofocus autocomplete="off" />
+                    </div>
+                    <div id="search-results-container">
+                        <ul id="search-results"></ul>
+                    </div>
+                </div>
+
+                <div class="navbar-right">
+                    <ul class="nav navbar-nav">
+
+                        <li class="dropdown notifications-menu">
+                            <button class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="mdi mdi-bell-outline"></i>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li class="dropdown-header">You have 5 notifications</li>
+                                <li>
+                                    <a href="#">
+                                        <i class="mdi mdi-account-plus"></i>
+                                        New user registered
+                                        <span class="font-size-12 d-inline-block float-right"><i
+                                                class="mdi mdi-clock-outline"></i>
+                                            10 AM</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="mdi mdi-account-remove"></i>
+                                        User deleted
+                                        <span class="font-size-12 d-inline-block float-right"><i
+                                                class="mdi mdi-clock-outline"></i>
+                                            07 AM</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="mdi mdi-chart-areaspline"></i>
+                                        Sales report is ready
+                                        <span class="font-size-12 d-inline-block float-right"><i
+                                                class="mdi mdi-clock-outline"></i>
+                                            12 PM</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="mdi mdi-account-supervisor"></i>
+                                        New client
+                                        <span class="font-size-12 d-inline-block float-right"><i
+                                                class="mdi mdi-clock-outline"></i>
+                                            10 AM</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="mdi mdi-server-network-off"></i>
+                                        Server overloaded
+                                        <span class="font-size-12 d-inline-block float-right"><i
+                                                class="mdi mdi-clock-outline"></i>
+                                            05 AM</span>
+                                    </a>
+                                </li>
+                                <li class="dropdown-footer">
+                                    <a class="text-center" href="#"> View All </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- User Account -->
+                        <li class="dropdown user-menu">
+                            <button href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                                <img src="https://firebasestorage.googleapis.com/v0/b/nikeshoppingapp-rnfirebase.appspot.com/o/haunh270401.jpg?alt=media&token=0f10b837-1ee6-466f-a0ad-efdc9c50119c"
+                                    class="user-image" alt="User Image" />
+                                <span class="d-none d-lg-inline-block">Abdus Salam</span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <!-- User image -->
+                                <li class="dropdown-header">
+                                    <img src="assets/img/user/haunh270401.jpg" class="img-circle" alt="User Image" />
+                                    <div class="d-inline-block">
+                                        Abdus Salam
+                                        <small class="pt-1">abdus@gmail.com</small>
+                                    </div>
+                                </li>
+                                <li>
+                                    <a href="profile.html">
+                                        <i class="mdi mdi-account"></i>
+                                        My Profile
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="email-inbox.html">
+                                        <i class="mdi mdi-email"></i>
+                                        Message
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="mdi mdi-diamond-stone"></i>
+                                        Projects
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="mdi mdi-settings"></i>
+                                        Account Setting
+                                    </a>
+                                </li>
+
+                                <li class="dropdown-footer">
+                                    <a href="/logout"> <i class="mdi mdi-logout"></i> Log Out </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+        </header>
+
+        <div class="content-wrapper">
+            <div class="form-insert card card-table-border-none">
+                <div class="title-addproduct">
+                    <h1>Edit User</h1>
+                </div>
+                <div class="form-group">
+                    <label for="id">Id User: </label>
+                    <label>{{userEdit._id}}</label>
+                </div>
+                <form action="/products/user/editUser/{{userEdit._id}}" method="POST" enctype="multipart/form-data">
+
+                    <div class="form-group">
+                        <label for="name">Username: </label>
+                        <input onchange="validateText()" required type="text" class="form-control"
+                            placeholder="Enter username" id="text" name="username" value="{{userEdit.username}}" />
+                        <p id="productNameError" style="color: red;"></p>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Email: </label>
+                        <input onchange="validateText()" required type="email" class="form-control"
+                            placeholder="Enter email" id="text" name="email" value="{{userEdit.email}}" />
+                        <p id="productNameError" style="color: red;"></p>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Phone number: </label>
+                        <input onchange="validateNumber()" required type="text" class="form-control"
+                            placeholder="Enter phone number" id="number" name="phoneNumber"
+                            value="{{userEdit.phoneNumber}}" />
+                        <p id="productNameError" style="color: red;"></p>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Password: </label>
+                        <input onchange="validateText()" required type="password" class="form-control"
+                            placeholder="Enter password" id="text" name="password" value="{{userEdit.password}}" />
+                        <p id="productNameError" style="color: red;"></p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="price">Location:</label>
+                        <input onchange="validateText()" required type="text" class="form-control"
+                            placeholder="Enter location" id="text" name="location" value="{{userEdit.location}}" />
+                        <p id="priceError" style="color: red;"></p>
+                    </div>
+                    <div class="form-group">
+                        <label for="idSP">List SP</label>
+                        <select class="form-control" id="idSP" name="idSP">
+                            {{#each listSP}}
+                            <option value="{{this._id}}">{{this.productName}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <div class="form-check form-group">
+                        <label for="materialUnchecked">Product State:</label>
+                        <input type="checkbox" class="form-control form-check-input" id="materialUnchecked" name="productState" value="{{userEdit.productState}}">
+                        <p id="priceError" style="color: red;"></p>
+                    </div>
+                    {{! Avatar }}
+                    <div class="image-product form-group">
+                        <label class="form-label" for="customFile">Avatar:</label>
+                        <input type="file" class="form-control" id="image" name="avatar" />
+                    </div>
+                    <div class="image-product form-group">
+                        <img style="max-width: 500px; max-height: 500px; width: auto; height: auto;" id="showImage"
+                            src="{{userEdit.avatar}}" alt="your image" class="col-12" />
+                    </div>
+                    <button id="btn_submit" type="submit" class="btn btn-success col-12">Submit</button>
+                </form>
+
+            </div>
+            <footer class="footer mt-auto">
+                <div class="copyright bg-white">
+                    <p>
+                        &copy;
+                        <span id="copy-year">2019</span>
+                        Copyright Sleek Dashboard Bootstrap Template by
+                        <a class="text-primary" href="http://www.iamabdus.com/" target="_blank">Abdus</a>.
+                    </p>
+                </div>
+                <script>
+                    var d = new Date(); var year = d.getFullYear();
+                    document.getElementById("copy-year").innerHTML = year;
+                </script>
+            </footer>
+
+        </div>
+    </div>
+
+    <script>
+
+        var isValid = false; function validateText() {
+            let value =
+                document.getElementById('text').value if (!value || value.length === 0 ||
+                    value.length > 100) {
+                document.getElementById('productNameError').innerText
+                    = 'Error!'; isValid = false;
+            } else {
+                document.getElementById('productNameError').innerText = ''; isValid = true;
+            } validateForm();
+        } function validateNumber() {
+            let value =
+                document.getElementById('number').value if (!value || value.length === 0 ||
+                    value.length > 100) {
+                document.getElementById('productNameError').innerText
+                    = 'Error!'; isValid = false;
+            } else {
+                document.getElementById('productNameError').innerText = ''; isValid = true;
+            } validateForm();
+        } function validateFormDate() {
+            let value =
+                document.getElementById('datepicker').value var varDate = new Date(value);
+            var today = new Date(); today.setHours(0, 0, 0, 0); console.log('now',
+                today) today = Number(today); if (!varDate || varDate > today) {
+                    document.getElementById('dateError').innerText = 'Error!'; isValid = false;
+                } else {
+                document.getElementById('dateError').innerText = ''; isValid =
+                    true;
+            } validateForm();
+        } function validateForm() {
+            if (isValid == true) {
+                document.getElementById('btn_submit').disabled = false;
+            } else {
+                document.getElementById('btn_submit').disabled = true;
+            }
+        } function goBack() { window.location.href = "/products"; } function readURL(input) {
+            if
+                (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#showImage').attr('src', e.target.result);
+                    $('#showImage').removeClass('d-none');
+                }
+                reader.readAsDataURL(input.files[0]); // convert to base64 string } }
+                $("#image").change(function () { readURL(this); });
+    </script>
+</div>

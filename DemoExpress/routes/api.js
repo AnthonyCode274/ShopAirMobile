@@ -37,16 +37,16 @@ router.get("/getCategory/:id", async function (req, res, next) {
 router.post("/category/addCategory", async function (req, res, next) {
   try {
     let { body } = req;
-    // let category = await categoryController.getCategoryByID(id);
-    await categoryController.addNew(body).then(() => {
+    await categoryController.addNew(body)
+    .then(() => {
       res.send({error: false, status: "success"});
-    });
+    })
+    .catch((error) => console.log(error.message));
     
   } catch (error) {
     console.log("error: " + error.message);
   }
 });
-
 //////////////////////////////////////// Banner /////////////////////////////////
 
 

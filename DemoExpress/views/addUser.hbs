@@ -128,32 +128,32 @@
 
                 <form action="/products/user/addUser" method="POST" enctype="multipart/form-data">
                     <div class="form-group">
-                        <label for="name">Username: </label>
+                        <label for="text">Username: </label>
                         <input onchange="validateText()" required type="text" class="form-control"
                             placeholder="Enter username" id="text" name="username" />
                         <p id="productNameError" style="color: red;"></p>
                     </div>
                     <div class="form-group">
-                        <label for="name">Email: </label>
+                        <label for="text">Email: </label>
                         <input onchange="validateText()" required type="email" class="form-control"
                             placeholder="Enter email" id="text" name="email" />
                         <p id="productNameError" style="color: red;"></p>
                     </div>
                     <div class="form-group">
-                        <label for="name">Phone number: </label>
-                        <input onchange="validateNumber()" required type="text" class="form-control"
+                        <label for="number">Phone number: </label>
+                        <input onchange="validateNumber()" required type="number" class="form-control"
                             placeholder="Enter phone number" id="number" name="phoneNumber" />
                         <p id="productNameError" style="color: red;"></p>
                     </div>
                     <div class="form-group">
-                        <label for="name">Password: </label>
+                        <label for="text">Password: </label>
                         <input onchange="validateText()" required type="password" class="form-control"
                             placeholder="Enter password" id="text" name="password" />
                         <p id="productNameError" style="color: red;"></p>
                     </div>
                     
                     <div class="form-group">
-                        <label for="price">Location:</label>
+                        <label for="text">Location:</label>
                         <input onchange="validateText()" required type="text" class="form-control"
                             placeholder="Enter location" id="text" name="location" />
                         <p id="priceError" style="color: red;"></p>
@@ -166,15 +166,13 @@
                             {{/each}}
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label for="price">Product State:</label>
-                        <input onchange="validateNumber()" required type="number" class="form-control"
-                            placeholder="Enter price" id="number" name="productState" />
-                        <p id="priceError" style="color: red;"></p>
+                    <div class="form-check form-group">
+                        <label for="materialUnchecked">Product State:</label>
+                        <input type="checkbox" class="form-control form-check-input" id="materialUnchecked" name="productState" />
                     </div>
                     {{!-- Avatar --}}
                     <div class="image-product form-group">
-                        <label class="form-label" for="customFile">Avatar:</label>
+                        <label class="form-label" for="image">Avatar:</label>
                         <input type="file" class="form-control" id="image" name="avatar" />
                     </div>
                     <div class="image-product form-group">

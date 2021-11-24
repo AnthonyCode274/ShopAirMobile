@@ -9,9 +9,9 @@ const productSchema = new Schema({
     date: { type: Date },
     saleUpTo: { type: Number },
     detailsProduct: {type: String},
-    idLoaiSP: { type: Schema.Types.ObjectId, ref: 'Category' },
+    idLoaiSP: { type: Schema.Types.ObjectId, ref: 'category' },
     imgProduct: { type: String }
     
 })
 
-module.exports = mongoose.model('Product', productSchema)
+module.exports = mongoose.model('product', productSchema)

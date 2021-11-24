@@ -1,4 +1,4 @@
-var cartService = require("../services/cartSevice");
+var cartService = require("../services/cartService");
 
 exports.getListCart = async function getListCart() {
   return await cartService.getListCart();
@@ -9,21 +9,23 @@ exports.getCartByID = async function getCartByID(id) {
 };
 
 exports.addCart = async function addCart(params) {
-  let { quantity, idSP, isUser } = params;
+  let {quantity, idSP, idUser} = params
   let cart = {
     quantity: quantity,
     idSP: idSP,
-    isUser: isUser
+    idUser: idUser,
   };
-  await cartService.addCart(cart);
-};
+  return await cartService.addCart(cart);
+}
 
 exports.edit = async function editCart(id, params) {
-  let { quantity } = params;
-  let cart_edit = { id , quantity };
-  await cartService.edit(cart_edit);
+  let { quantity, idSP, idUser } = params;
+  let cart_edit = { id, quantity, idSP, idUser };
+  let cart = await cartService.edit(cart_edit);
+  return cart
 };
 
 exports.remove = async function removeCartByID(id) {
-  await cartService.remove(id);
+  let removeCart = await cartService.remove(id);
+  return removeCart;
 };

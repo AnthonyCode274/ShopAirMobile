@@ -10,8 +10,8 @@ const userSchema = new Schema({
     password: { type: String },
     avatar: {type: String},
     location: {type: String},
-    idSP: { type: Schema.Types.ObjectId, ref: 'Product' },
-    productState: {type: Boolean},
-})
+    idSP: { type: Schema.Types.ObjectId, ref: 'product' },
+    productState: {type: String},
+});
 
-module.exports = mongoose.model('User', userSchema)
+module.exports = mongoose.model('user', userSchema)

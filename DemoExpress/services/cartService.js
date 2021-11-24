@@ -1,7 +1,9 @@
 var CartModel = require("../model/cartModel");
 
 exports.getListCart = async function getListCart() {
-  return await CartModel.find();
+  let findIdSP = await CartModel.find().populate("idSP");
+  let findIdUser = await CartModel.find().populate("idUser");
+  return findIdSP, findIdUser;
 };
 
 exports.getCartByID = async function getCartByID(id) {
@@ -12,9 +14,9 @@ exports.getCartByID = async function getCartByID(id) {
 exports.addCart = async function addCart(cart_push) {
   try {
     let cart = new CartModel(cart_push);
-    await cart.save();
+    return await cart.save();
   } catch (error) {
-    console.log("addCart Service" + error.message);
+    console.log(error.message);
   }
 };
 
@@ -24,15 +26,22 @@ exports.edit = async function editCart(cart_edit) {
     if (cart) {
       cart.quantity = cart_edit.quantity;
       cart.idSP = cart_edit.idSP;
-      cart.isUser = cart_edit.isUser;
+      cart.idUser = cart_edit.idUser;
       console.log(cart_edit);
-      await cart.save();
+      let cart_save = await cart.save();
+      return cart_save
     }
   } catch (error) {
-    console.log("cart Service" + error.message);
+    console.log(error.message);
   }
 };
 
 exports.remove = async function removeCartByID(id) {
-  await CartModel.remove({ _id: id });
+  try {
+    let prod = await CartModel.deleteOne({ _id: id });
+    return prod;
+  } catch (error) {
+    console.log(error.message);
+  }
 };
+
