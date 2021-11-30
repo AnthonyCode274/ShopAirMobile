@@ -10,6 +10,7 @@ import {
   Animated,
   ScrollView,
   FlatList,
+  ActivityIndicator,
 } from 'react-native';
 
 // import Colors
@@ -17,73 +18,60 @@ import {Colors, Fonts, icons, Sizes} from '@assets';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Block from '@components/Block';
 import HeaderDetailsScreen from './HeaderDetailsScreen/HeaderDetailsScreen';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
-import {pathUrl} from 'config/connect';
+import axios from 'axios';
+import {api_url} from 'config/api';
+import {connect_api} from 'config/connect_api';
+import {pathUrl} from 'config/helper';
 import SlideDetailsImage from './SlideDetailsImage';
 import {TextDirectory} from 'helper/TextDirectory';
 
 // const value = await AsyncStorage.getItem('CART_STORAGE');
 const DetailsItemSelected = ({route}) => {
   const navigation = useNavigation();
-  const {
-    itemProductName,
-    itemPrice,
-    itemDate,
-    itemImage,
-    itemDetailsProduct,
-    itemIdLoaiSP,
-    itemSaleUp,
-  } = route.params;
-  const [isLoadCart, setIisLoadCart] = useState(false);
+  const {productId} = route.params;
   const [loadCart, setCart] = useState(0);
-  const [timerCount, setTimer] = useState(3);
-  const [loadImage, setImageView] = useState([pathUrl.imageUrl + itemImage]);
+  const [items, setItems] = useState([]);
+  const [loadImage, setImageView] = useState([]);
+  const [isLoading, setLoading] = useState(true);
 
-  const dataSlide = [
-    {
-      id: 0,
-      image:
-        'https://static.nike.com/a/images/f_auto,b_rgb:f5f5f5,w_880/cdaa953b-7f46-4ab7-958c-0a5381cc8ea4/brasilia-winterized-training-duffel-bag-9PRV2D.png',
-    },
-    {
-      id: 1,
-      image:
-        'https://static.nike.com/a/images/f_auto,b_rgb:f5f5f5,w_880/24762689-0c45-40b6-903b-e2d89bd0b60e/brasilia-winterized-training-duffel-bag-9PRV2D.png',
-    },
-    {
-      id: 2,
-      image:
-        'https://static.nike.com/a/images/f_auto,b_rgb:f5f5f5,w_880/7ca95942-9268-4fb4-a8c4-b0eb62e49367/brasilia-winterized-training-duffel-bag-9PRV2D.png',
-    },
-  ];
+  const [dataFix, setDataDix] = useState({
+    id: 0,
+    name: 'Username0',
+    price: 234,
+  });
+
+  // useEffect(() => {
+  //   // fetch(`${api_url + connect_api.method.GET.productsDetails + productId}`)
+  //   fetch(`http://10.0.2.2:9000/api/products/details/${productId}`)
+  //     .then((res) => res.json())
+  //     .then((resJson) => setData(resJson))
+  //     .then(console.log(data))
+  //     .finally(() => setLoading(false))
+  //     .catch((error) =>
+  //       console.log(
+  //         'Call api failed DetailsItemSelected at>>> ' + error.message,
+  //       ),
+  //     );
+  // }, []);
+
+  const getDetailsProductWithId = async () => {
+    try {
+      const response = await axios.get(
+        `${api_url + connect_api.method.GET.productsDetails + productId}`,
+      );
+      let jsonParser = JSON.stringify(response.data);
+      setItems(jsonParser);
+    } catch (error) {
+      // handle error
+      console.log('Call api failed DetailsItemSelected at>>> ' + error.message);
+    }
+  };
 
   useEffect(() => {
-    const status = async () => {
-      const getValue = await AsyncStorage.getItem('@storage_cart');
-      if (getValue > 0) {
-        setCart(getValue);
-      }
-      if (loadCart > 0) {
-        await AsyncStorage.removeItem('@storage_cart');
-        await AsyncStorage.setItem('@storage_cart', loadCart.toString());
-      }
-    };
-    status();
-  }, []);
-
-  useEffect(() => {
-    const status = async () => {
-      const getValue = await AsyncStorage.getItem('@storage_cart');
-      if (getValue > 0) {
-        await AsyncStorage.removeItem('@storage_cart');
-        await AsyncStorage.setItem('@storage_cart', loadCart.toString());
-      } else {
-        await AsyncStorage.setItem('@storage_cart', loadCart.toString());
-      }
-    };
-    status();
-  }, [loadCart]);
+    getDetailsProductWithId();
+    console.log('>>>', items);
+  }, [items]);
 
   const addCartPressed = () => {
     setCart(loadCart + 1);
@@ -95,11 +83,11 @@ const DetailsItemSelected = ({route}) => {
       <Block maxHeight={64} marginTop={10} marginRight={6}>
         <TouchableOpacity
           onPress={() => {
-            setImageView({image: item.image});
+            setImageView({image: item.imgProduct});
             console.log(loadImage);
           }}>
           <Image
-            source={{uri: item.image}}
+            source={{uri: item.imgProduct}}
             style={{
               resizeMode: 'cover',
               width: 64,
@@ -111,7 +99,6 @@ const DetailsItemSelected = ({route}) => {
       </Block>
     );
   };
-
   return (
     <Animated.View style={{flex: 1}}>
       <Animated.ScrollView showsVerticalScrollIndicator={false} bounces={false}>
@@ -125,10 +112,7 @@ const DetailsItemSelected = ({route}) => {
         </Block>
         <Block maxHeight={Sizes.height / 2.5}>
           <Image
-            source={{
-              uri: pathUrl.imageUrl + itemImage,
-              // uri: loadImage.image,
-            }}
+            source={{uri: pathUrl.imageUrl + items.imgProduct}}
             style={{width: '100%', height: '100%'}}
             resizeMode="contain"
           />
@@ -137,13 +121,13 @@ const DetailsItemSelected = ({route}) => {
         <Block column marginBottom={100}>
           <Block backgroundColor={Colors.white} shadow elevation={6}>
             <Block alignCenter backgroundColor={Colors.white}>
-              <FlatList
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                data={dataSlide}
-                renderItem={SildeImage}
-                keyExtractor={(item) => `${item.id}`}
-              />
+              {/* <FlatList
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            data={data}
+            renderItem={SildeImage}
+            keyExtractor={(item) => `${item._id}`}
+          /> */}
             </Block>
             <Block row marginHorizontal={10} marginVertical={10}>
               <Block row marginRight={5}>
@@ -203,13 +187,13 @@ const DetailsItemSelected = ({route}) => {
 
             <Block marginHorizontal={10} column marginBottom={10}>
               <TextStyle
-                text={itemProductName}
+                text={items.productName}
                 fontSize={16}
                 color={Colors.black}
                 fontFamily={Fonts.Roboto_Regular}
               />
               <TextStyle
-                text={`$ ${itemPrice}`}
+                text={items.price}
                 fontSize={20}
                 color={Colors.black}
                 fontFamily={Fonts.Roboto_Bold}
@@ -268,8 +252,7 @@ const DetailsItemSelected = ({route}) => {
               }}>
               Infomation
             </Text>
-            <Text>{itemDetailsProduct}</Text>
-            <Text>{itemDetailsProduct}</Text>
+            <Text>{items}</Text>
           </Block>
         </Block>
       </Animated.ScrollView>

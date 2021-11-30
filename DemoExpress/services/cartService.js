@@ -1,9 +1,8 @@
 var CartModel = require("../model/cartModel");
 
 exports.getListCart = async function getListCart() {
-  let findIdSP = await CartModel.find().populate("idSP");
-  let findIdUser = await CartModel.find().populate("idUser");
-  return findIdSP, findIdUser;
+  let findCart = await CartModel.find().populate("idCart");
+  return findCart;
 };
 
 exports.getCartByID = async function getCartByID(id) {

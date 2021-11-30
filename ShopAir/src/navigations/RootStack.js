@@ -10,7 +10,7 @@ const RootStack = () => {
     <>
       <Stack.Navigator
         headerMode="none"
-        initialRouteName={TextDirectory.rootStack.auth}>
+        initialRouteName={TextDirectory.rootStack.bottomNav}>
         <Stack.Screen
           name={TextDirectory.rootStack.auth}
           component={screens.ROOT_STACK.AUTH}

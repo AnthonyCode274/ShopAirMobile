@@ -12,46 +12,55 @@ import {useNavigation} from '@react-navigation/native';
 import {icons, Colors, Fonts, Sizes} from '@assets';
 import Card from '@components/Card/Card';
 import {TextDirectory} from 'helper/TextDirectory';
+import {api_url} from 'config/api';
+import {connect_api} from 'config/connect_api';
+import {pathUrl} from 'config/helper';
+import Block from '@components/Block';
 
 const ScrollableViewBestSale = () => {
   const navigation = useNavigation();
-  const apiUrl = 'http://10.0.2.2:9000/products/products-list';
   // Call api
   const [data, setData] = useState([]);
   const [isLoading, setIsloading] = useState(true);
 
   useEffect(() => {
-    fetch(apiUrl)
+    fetch(`${api_url + connect_api.method.GET.best_sale}`)
       .then((res) => res.json())
       .then((resJson) => setData(resJson))
       .finally(() => setIsloading(false))
-      .catch((error) => console.log('Call api failed at>>> ' + error.message));
+      .catch((error) =>
+        console.log(
+          'Call api failed ScrollableViewBestSale at>>> ' + error.message,
+        ),
+      );
   }, []);
 
   const CardBanner = ({item, index}) => {
     return (
-      <View style={styles.container}>
-        <Card style={styles.card}>
+      <Block
+        flex
+        width="100%"
+        maxWidth={Sizes.width / 2.5}
+        backgroundColor={Colors.white}
+        radius={5}
+        marginLeft={10}
+        marginTop={5}
+        marginBottom={5}
+        shadow>
+        <Block>
           <TouchableOpacity
             style={styles.button}
             onPress={() =>
               navigation.navigate(TextDirectory.card.destailScreen, {
-                itemProductName: item.productName,
-                itemPrice: item.price,
-                itemDate: item.date,
-                itemImage: item.imgProduct,
-                itemDetailsProduct: item.detailsProduct,
-                itemIdLoaiSP: item.idLoaiSP,
-                itemSaleUp: item.saleUpTo,
-                // itemProduct: item,
+                productId: item._id,
               })
             }>
             <View style={styles.imageContainer}>
               <Image
                 source={{
-                  uri: 'http://10.0.2.2:9000/images/' + item.imgProduct,
+                  uri: pathUrl.imageUrl + item.imgProduct,
                 }}
-                resizeMode="cover"
+                resizeMode="contain"
                 style={styles.imageView}
               />
             </View>
@@ -60,8 +69,8 @@ const ScrollableViewBestSale = () => {
               <Text style={styles.nameStyle}>{item.productName}</Text>
             </View>
           </TouchableOpacity>
-        </Card>
-      </View>
+        </Block>
+      </Block>
     );
   };
 
@@ -97,11 +106,9 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   imageView: {
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
-    minWidth: 165,
-    width: 135,
-    height: 145,
+    borderRadius: 10,
+    width: '100%',
+    height: 160,
     maxHeight: 145,
     maxWidth: Sizes.width / 2,
   },
@@ -114,9 +121,9 @@ const styles = StyleSheet.create({
     paddingVertical: 6,
   },
   priceStyle: {
-    fontFamily: Fonts.Roboto_Bold,
+    fontFamily: Fonts.Roboto_Regular,
     fontWeight: 'bold',
-    fontSize: 16,
+    fontSize: 18,
   },
   nameStyle: {
     fontFamily: Fonts.Roboto_Regular,

@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {useState, useEffect} from 'react';
 import {
   StyleSheet,
@@ -13,8 +14,10 @@ import {icons, Colors, Fonts, Sizes} from '@assets';
 import Card from '@components/Card/Card';
 import {TextDirectory} from 'helper/TextDirectory';
 import Block from '@components/Block';
-import {Connect, api, pathUrl} from 'config/connect';
 import ImageCustomer from '@components/Image/ImageCustomer';
+import {api_url} from 'config/api';
+import {connect_api} from 'config/connect_api';
+import {pathUrl} from 'config/helper';
 
 const MostFavorite = () => {
   const navigation = useNavigation();
@@ -23,28 +26,33 @@ const MostFavorite = () => {
   const [isLoading, setIsloading] = useState(true);
 
   useEffect(() => {
-    fetch(`${Connect.URL + api.best_sale}`)
+    fetch(`${api_url + connect_api.method.GET.best_sale}`)
       .then((res) => res.json())
       .then((resJson) => setData(resJson))
       .finally(() => setIsloading(false))
       .catch((error) => console.log('Call api failed at>>> ' + error.message));
   }, [isLoading]);
 
-  const CardBanner = ({item, index}) => {
+  const CardView = ({item, index}) => {
     return (
-      <View style={styles.container}>
-        <Card style={styles.card}>
+      <Block
+        flex
+        width="100%"
+        height={186}
+        maxWidth={Sizes.width / 2}
+        maxHeight={400}
+        backgroundColor={Colors.white}
+        radius={5}
+        marginLeft={10}
+        marginTop={5}
+        marginBottom={5}
+        shadow>
+        <Block>
           <TouchableOpacity
             style={styles.button}
             onPress={() =>
               navigation.navigate(TextDirectory.card.destailScreen, {
-                itemProductName: item.productName,
-                itemPrice: item.price,
-                itemDate: item.date,
-                itemImage: item.imgProduct,
-                itemDetailsProduct: item.detailsProduct,
-                itemIdLoaiSP: item.idLoaiSP,
-                itemSaleUp: item.saleUpTo,
+                ID: item._id,
               })
             }>
             <View style={styles.imageContainer}>
@@ -52,25 +60,43 @@ const MostFavorite = () => {
                 source={{
                   uri: pathUrl.imageUrl + item.imgProduct,
                 }}
-                resizeMode="cover"
+                resizeMode="contain"
                 style={styles.imageView}
               />
             </View>
-            <View style={styles.labelContainer}>
+            <Block row justifySpaceBetween margin={10}>
               <Text style={styles.priceStyle}>${item.price}</Text>
-              <Text style={styles.nameStyle}>{item.productName}</Text>
-            </View>
-            <View style={styles.heart}>
-              <Text style={styles.nameStyle}>{item.saleUpTo}</Text>
-              <Image
-                style={styles.imageHeart}
-                resizeMode="contain"
-                source={icons.favorire_selected}
-              />
-            </View>
+              <Favorite />
+            </Block>
           </TouchableOpacity>
-        </Card>
-      </View>
+        </Block>
+      </Block>
+    );
+  };
+
+  const Favorite = () => {
+    const [favorite, setFavorite] = useState(false);
+    return (
+      <TouchableOpacity
+        onPress={() => {
+          if (favorite === false) {
+            setFavorite(true);
+          } else {
+            setFavorite(false);
+          }
+        }}>
+        <Block>
+          <Image
+            source={icons.favorire_selected}
+            resizeMode="contain"
+            style={{
+              width: 20,
+              height: 20,
+              tintColor: favorite ? Colors.red2 : Colors.black,
+            }}
+          />
+        </Block>
+      </TouchableOpacity>
     );
   };
 
@@ -79,7 +105,7 @@ const MostFavorite = () => {
       horizontal
       showsHorizontalScrollIndicator={false}
       data={data}
-      renderItem={CardBanner}
+      renderItem={CardView}
       keyExtractor={(item) => `${item.id}`}
     />
   );
@@ -122,6 +148,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     paddingHorizontal: 6,
     paddingVertical: 6,
+    justifyContent: 'space-between',
   },
   priceStyle: {
     fontFamily: Fonts.Roboto_Bold,

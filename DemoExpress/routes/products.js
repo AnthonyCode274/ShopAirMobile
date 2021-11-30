@@ -40,7 +40,7 @@ router.post("/add_new", middle, async function (req, res, next) {
     let { body } = req;
     if (req.file) {
       // let imgUrl = req.file.originalname
-      let imgUrl = pathImage.ImageUrl(req) + req.file.originalname;
+      let imgUrl = req.file.originalname;
       body = { ...body, imgProduct: imgUrl };
     }
     console.log("body: " , body);
@@ -70,7 +70,7 @@ router.post("/update/:id", middle, async function (req, res, next) {
     let { id } = req.params;
     let { body } = req;
     if (req.file) {
-      let imgUrl = pathImage.ImageUrl(req) + req.file.originalname;
+      let imgUrl = req.file.originalname;
       body = { ...body, imgProduct: imgUrl };
     }
     console.log(body);
@@ -267,7 +267,7 @@ router.post("/user/addUser", middleUser, async function (req, res, next) {
     let { body } = req;
     if (req.file) {
       // let imgUrl = req.file.originalname
-      let imageUrl = pathImage.ImageUrl(req) + req.file.originalname;
+      let imageUrl = req.file.originalname;
       body = { ...body, avatar: imageUrl };
     }
     console.log(body);
@@ -295,7 +295,7 @@ router.post("/user/editUser/:id", middleUser, async function (req, res, next) {
     let id = req.params.id;
     let { body } = req;
     if (req.file) {
-      let imageUrl = pathImage.ImageUrl(req) + req.file.originalname;
+      let imageUrl = req.file.originalname;
       body = { ...body, avatar: imageUrl };
     }
     console.log(body);
@@ -356,7 +356,10 @@ router.get("/cart/editCart/:id", async function (req, res, next) {
   try {
     let id = req.params.id;
     let listCart = await cartController.getCartByID(id);
-    res.render("editCart", { listCart });
+    let listUser = await userController.getAllUser();
+    let listProduct = await productController.getListProducts();
+    console.log(listCart)
+    res.render("editCart", { cart: listCart, listUser, listProduct });
   } catch (error) {
     console.log("error: " + error.message);
     res.redirect("/products/cart");
@@ -367,7 +370,6 @@ router.post("/cart/editCart/:id", async function (req, res, next) {
   try {
     let id = req.params.id;
     let { body } = req;
-    console.log(body);
     await cartController.edit(id, body);
   } catch (error) {
     console.log("error: " + error.message);
@@ -380,7 +382,7 @@ router.delete("/cart/deleteCart/:id", async function (req, res, next) {
   try {
     let id = req.params.id;
     await cartController.remove(id);
-    res.send({ res: true });
+    res.send({ error: false, status: "success" });
   } catch (error) {
     console.log("error: " + error.message);
   }

@@ -46,7 +46,11 @@ const HomeScreen = () => {
         <View style={{marginTop: 20}} />
         <BannerView />
         <View style={styles.salerContainer}>
-          <Block marginHorizontal={20} justifySpaceBetween row>
+          <Block
+            marginHorizontal={20}
+            justifySpaceBetween
+            row
+            marginVertical={10}>
             <Text style={styles.titleSale}>Bán Chạy nhất</Text>
             <TouchableOpacity
               style={{
@@ -109,6 +113,7 @@ export default HomeScreen;
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
+    backgroundColor: Colors.whiteLight2,
   },
   salerContainer: {
     marginTop: 30,

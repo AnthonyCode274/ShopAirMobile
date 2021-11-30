@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   StyleSheet,
   Text,
@@ -10,30 +10,25 @@ import {
 import {useNavigation} from '@react-navigation/native';
 import {icons, Colors, Fonts, Sizes} from '@assets';
 import Block from '@components/Block';
+import {api_url} from 'config/api';
+import {connect_api} from 'config/connect_api';
+import {pathUrl} from 'config/helper';
 
 const BannerView = () => {
   const navigation = useNavigation();
+  // Call api
+  const [banner, setBanner] = useState([]);
+  const [isLoading, setIsloading] = useState(true);
 
-  const [banner, setBanner] = React.useState([
-    {
-      id: 0,
-      name: 'Banner1',
-      imageUrl:
-        'https://thethaosi.vn/wp-content/uploads/2019/04/Banner-cover.jpg',
-    },
-    {
-      id: 1,
-      name: 'Banner2',
-      imageUrl:
-        'https://thethaosi.vn/wp-content/uploads/2019/04/Banner-cover.jpg',
-    },
-    {
-      id: 2,
-      name: 'Banner3',
-      imageUrl:
-        'https://thethaosi.vn/wp-content/uploads/2019/04/Banner-cover.jpg',
-    },
-  ]);
+  useEffect(() => {
+    fetch(`${api_url + connect_api.method.GET.banner_sale}`)
+      .then((res) => res.json())
+      .then((resJson) => setBanner(resJson))
+      .finally(() => setIsloading(false))
+      .catch((error) =>
+        console.log('Call api failed Banner View at>>> ' + error.message),
+      );
+  }, [isLoading]);
 
   const CardBanner = ({item}) => {
     return (
@@ -42,7 +37,7 @@ const BannerView = () => {
         onPress={() => console.log(`${item.id}`)}>
         <View>
           <Image
-            source={{uri: item.imageUrl}}
+            source={{uri: pathUrl.imageUrl + item.imageUrl}}
             resizeMode="cover"
             style={styles.imageView}
           />

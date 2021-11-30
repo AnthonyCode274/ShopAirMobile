@@ -16,10 +16,11 @@ import {getSize} from 'helper/responsive';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from './Styles';
 import ImageCustomer from '@components/Image/ImageCustomer';
+import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const HeaderDetailsScreen = ({cartValue, onPressCart}) => {
   const navigation = useNavigation();
-  const [isHeart, setIsHeart] = useState(false);
+  const [favorite, setFavorite] = useState(false);
 
   const [cart, setCart] = useState([]);
 
@@ -87,11 +88,22 @@ const HeaderDetailsScreen = ({cartValue, onPressCart}) => {
       marginBottom={20}>
       <OnBack onPress={() => navigation.goBack()} />
       <Block row>
-        {isHeart === true ? (
-          <HeartFill onPress={() => setIsHeart(false)} />
-        ) : (
-          <HeartNotFill onPress={() => setIsHeart(true)} />
-        )}
+        <View style={styles.menuContainer}>
+          <TouchableOpacity
+            onPress={() => {
+              if (favorite === true) {
+                setFavorite(false);
+              } else {
+                setFavorite(true);
+              }
+            }}>
+            <Icons
+              name="heart"
+              size={26}
+              color={favorite ? Colors.red : Colors.gray}
+            />
+          </TouchableOpacity>
+        </View>
         <Block>
           <TouchableOpacity style={{marginLeft: 30}}>
             {cartValue > 0 ? (
@@ -140,34 +152,6 @@ const OnBack = ({onPress}) => {
           source={icons.back}
           resizeMode="contain"
           style={styles.iconStyle}
-        />
-      </TouchableOpacity>
-    </View>
-  );
-};
-
-const HeartNotFill = ({onPress}) => {
-  return (
-    <View style={styles.menuContainer}>
-      <TouchableOpacity onPress={onPress}>
-        <Image
-          source={icons.favorire_selected}
-          resizeMode="contain"
-          style={{width: 22, height: 22, tintColor: Colors.gray}}
-        />
-      </TouchableOpacity>
-    </View>
-  );
-};
-
-const HeartFill = ({onPress}) => {
-  return (
-    <View style={styles.menuContainer}>
-      <TouchableOpacity onPress={onPress}>
-        <Image
-          source={icons.favorire_selected}
-          resizeMode="contain"
-          style={{width: 22, height: 22, tintColor: Colors.red}}
         />
       </TouchableOpacity>
     </View>

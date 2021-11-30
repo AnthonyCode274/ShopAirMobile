@@ -86,7 +86,9 @@
               <ul class="dropdown-menu dropdown-menu-right">
                 <!-- User image -->
                 <li class="dropdown-header">
-                  <img src="assets/img/user/haunh270401.jpg" class="img-circle" alt="User Image" />
+                  <img
+                    src="https://firebasestorage.googleapis.com/v0/b/nikeshoppingapp-rnfirebase.appspot.com/o/haunh270401.jpg?alt=media&token=0f10b837-1ee6-466f-a0ad-efdc9c50119c"
+                    class="img-circle" alt="User Image" />
                   <div class="d-inline-block">
                     Abdus Salam
                     <small class="pt-1">abdus@gmail.com</small>
@@ -134,46 +136,49 @@
     <div class="content-wrapper">
       <div class="form-insert card card-table-border-none">
         <div class="title-addproduct">
-          <h1>Edit Cart</h1>
+          <h1>Update Cart</h1>
         </div>
-
-        <form action="/products/banner/editBanner/{{bannerEdit._id}}" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="id">Id: </label>
+          <label>{{cart._id}}</label>
+        </div>
+        <form action="/products/cart/editCart/{{cart._id}}" method="POST">
           <div class="form-group">
-            <label for="name">Banner Name: </label>
-            <input  type="text" class="form-control" placeholder="Enter name"
-              id="bannerName" name="bannerName" value="{{bannerEdit.bannerName}}" />
-            <p id="productNameError" style="color: red;"></p>
+            <label for="quantity">Quantity: </label>
+            <input type="text" class="form-control" placeholder="Enter quantity" id="productName" name="quantity"
+              value="{{cart.quantity}}" />
           </div>
           <div class="form-group">
-            <label for="idLoaiSP">Category</label>
-            <select class="form-control" id="idLoaiSP" name="idLoaiSP">
-              {{#each loaiSP}}
-              {{#if (soSanh this._id bannerEdit.idLoaiSP)}}
-              <option selected value="{{this._id}}">{{this.nameCategory}}</option>
+            <label for="position">List User</label>
+            <select class="form-control" id="idLoaiSP" name="idUser">
+              {{#each listUser}}
+              {{#if (soSanh this._id cart.idUser)}}
+              <option selected value="{{this._id}}">{{this.username}}</option>
               {{else}}
-              <option value="{{this._id}}">{{this.nameCategory}}</option>
+              <option value="{{this._id}}">{{this.username}}</option>
+              {{!-- {{/else}} --}}
               {{/if}}
               {{/each}}
 
             </select>
           </div>
-          <div class="row">
-            <div class="form-group col-6">
-              <label for="position">Date:</label>
-              <input id="datepicker" width="276" name="createdDate"
-                value="{{formatDate bannerEdit.createdDate}}" />
-              <p id="dateError" style="color: red;"></p>
-            </div>
+          <div class="form-group">
+            <label for="position">List Product</label>
+            <select class="form-control" id="idLoaiSP" name="idSP">
+              {{#each listProduct}}
+              {{#if (soSanh this._id cart.idSP)}}
+              <option selected value="{{this._id}}">{{this.productName}}</option>
+              {{else}}
+              <option value="{{this._id}}">{{this.productName}}</option>
+              {{/if}}
+              {{/each}}
+
+            </select>
           </div>
-          <div class="image-product form-group">
-            <label class="form-label" for="customFile">Image banner:</label>
-            <input type="file" class="form-control" id="image" name="imageUrl" />
+          
+          <div class="col-12">
+            <button type="submit" class="btn btn-success col-12">Submit</button>
           </div>
-          <div class="image-product form-group">
-            <img style="max-width: 500px; max-height: 500px; width: auto; height: auto;" id="showImage"
-              src="http://localhost:9000/images/{{bannerEdit.imageUrl}}" alt="your image" class="col-12" />
-          </div>
-          <button id="btn_submit" type="submit" class="btn btn-success col-12">Submit</button>
         </form>
 
       </div>
@@ -194,5 +199,12 @@
 
     </div>
   </div>
+
+  <script>
+
+    function goBack() {
+      window.location.href = "/products";
+    }
+  </script>
 
 </div>
