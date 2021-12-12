@@ -11,18 +11,20 @@ exports.getCategoryByID = async function getCategoryByID(id) {
 
 exports.addNew = async function addNew(category_push) {
   let categories = new CategoryModel(category_push);
-  await categories.save();
+  return await categories.save();
 }
 
 exports.edit = async function editCategory(category_edit) {
   let categoryEdit = await CategoryModel.findById(category_edit.id);
   if (categoryEdit) {
-    categoryEdit.nameCategory = category_edit.nameCategory
-    await categoryEdit.save();
+    categoryEdit.categoryName = category_edit.categoryName
+    categoryEdit.image = category_edit.image
+
+    return await categoryEdit.save();
   }
 }
 
 
 exports.remove = async function removeCategoryByID(id) {
-  await CategoryModel.remove({ _id: id });
+  return await CategoryModel.remove({ _id: id });
 }

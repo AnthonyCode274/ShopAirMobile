@@ -13,7 +13,7 @@ exports.addNew = async function addNew(banner_push) {
     let banner = new BannerModel(banner_push);
     return await banner.save();
   } catch (error) {
-    console.log("addNew Service" + error.message);
+    console.log(error.message);
   }
 };
 
@@ -22,19 +22,23 @@ exports.edit = async function editBanner(banner_edit) {
     let banner = await BannerModel.findById(banner_edit.id);
     if (banner) {
       banner.bannerName = banner_edit.bannerName;
-      banner.idLoaiSP = banner_edit.idLoaiSP;
-      banner.createdDate = banner_edit.createdDate;
-      if (banner_edit.imageUrl) {
-        banner.imageUrl = banner_edit.imageUrl;
+      if (banner_edit.bannerImage) {
+        banner.bannerImage = banner_edit.bannerImage;
       }
-      console.log(banner_edit);
-      await banner.save();
+      banner.productId = banner_edit.productId;
+      banner.sortedNumber = banner_edit.sortedNumber;
+      banner.bannerDetails = banner_edit.bannerDetails;
+      banner.productGroupId = banner_edit.productGroupId;
+      banner.bannerList = banner_edit.bannerList;
+      banner.productInputType = banner_edit.productInputType;
+      
+      return await banner.save();
     }
   } catch (error) {
-    console.log("edit Service" + error.message);
+    console.log(error.message);
   }
 };
 
 exports.remove = async function removeBannerByID(id) {
-  await BannerModel.remove({ _id: id });
+  return await BannerModel.remove({ _id: id });
 };

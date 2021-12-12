@@ -3,11 +3,15 @@ const Schema = mongoose.Schema;
 const ObjectId = Schema.ObjectId;
 
 const bannerSchema = new Schema({
-    id: {type: ObjectId},
+    bannerId: {type: ObjectId},
     bannerName: { type: String },
-    idLoaiSP: { type: Schema.Types.ObjectId, ref: 'category' },
-    imageUrl: { type: String },
-    createdDate: { type: Date }
+    bannerImage: { type: String },
+    productId: { type: Schema.Types.ObjectId, ref: 'productId' },
+    sortedNumber: { type: Number },
+    bannerDetails: { type: String },
+    productGroupId: { type: Schema.Types.ObjectId, ref: 'productGroupId' },
+    bannerList: { type: Array },
+    productInputType: { type: Number },
 })
 
 module.exports = mongoose.model('banner', bannerSchema)

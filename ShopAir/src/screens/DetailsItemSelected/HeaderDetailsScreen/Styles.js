@@ -1,5 +1,5 @@
-import { Colors, Fonts } from '@assets';
-import { getSize } from 'helper/responsive';
+import {Colors, Fonts} from '@assets';
+import {getSize} from 'helper/responsive';
 import {StyleSheet} from 'react-native';
 
 export default StyleSheet.create({

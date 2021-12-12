@@ -3,15 +3,24 @@ const Schema = mongoose.Schema;
 const ObjectId = Schema.ObjectId;
 
 const productSchema = new Schema({
-    id: {type: ObjectId},
+    productId: {type: ObjectId},
     productName: { type: String },
     price: { type: Number },
-    date: { type: Date },
+    productImage: { type: String },
+    categoryId: { type: Schema.Types.ObjectId, ref: 'categoryId' },
+    createdDate: { type: Date },
+    createdBy: { type: Schema.Types.ObjectId, ref: 'shopOwnerId' },
+    updatedDate: { type: Date },
+    updatedBy: { type: Schema.Types.ObjectId, ref: 'shopOwnerId' },
+    listImage: { type: Array },
+    rateNumber: { type: Number },
+    soldNumber: { type: Number },
     saleUpTo: { type: Number },
-    detailsProduct: {type: String},
-    idLoaiSP: { type: Schema.Types.ObjectId, ref: 'category' },
-    imgProduct: { type: String }
-    
+    productDetails: {type: String},
+    productInputType: { type: Number },
+    sortedNumber: { type: Number },
+    favoriteId: { type: Schema.Types.ObjectId, ref: 'favoriteId' },
+    flastSaleId: { type: Schema.Types.ObjectId, ref: 'flastSaleId' }
 })
 
 module.exports = mongoose.model('product', productSchema)

@@ -8,6 +8,7 @@ var cartController = require("../controller/cartController");
 var categoryController = require("../controller/categoryController");
 var userController = require("../controller/userController");
 var pathImage = require("../utilities/path");
+var userRoutes = require('./users');
 
 var middle = [upload.single("imgProduct")];
 // router.use(auth.authenticate); // check login for all

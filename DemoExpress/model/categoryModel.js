@@ -3,8 +3,9 @@ const Schema = mongoose.Schema
 const ObjectId = Schema.ObjectId;
 
 const categorySchema = new Schema({
-    id: { type: ObjectId },
-    nameCategory: { type: String }
+    categoryId: { type: ObjectId },
+    categoryName: { type: String },
+    image: { type: String },
 })
 
 module.exports = mongoose.model('category', categorySchema)

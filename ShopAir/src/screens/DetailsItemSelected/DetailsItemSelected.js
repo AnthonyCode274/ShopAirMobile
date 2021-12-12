@@ -25,43 +25,48 @@ import {connect_api} from 'config/connect_api';
 import {pathUrl} from 'config/helper';
 import SlideDetailsImage from './SlideDetailsImage';
 import {TextDirectory} from 'helper/TextDirectory';
+import styles from './styles';
 
 // const value = await AsyncStorage.getItem('CART_STORAGE');
 const DetailsItemSelected = ({route}) => {
   const navigation = useNavigation();
   const {productId} = route.params;
   const [loadCart, setCart] = useState(0);
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState({
+    id: '',
+    productName: '',
+    price: '',
+    date: '',
+    imgProduct: '',
+    detailsProduct: '',
+    saleUpTo: '',
+  });
+  const [user, setUser] = useState({});
   const [loadImage, setImageView] = useState([]);
   const [isLoading, setLoading] = useState(true);
 
-  const [dataFix, setDataDix] = useState({
-    id: 0,
-    name: 'Username0',
-    price: 234,
-  });
-
-  // useEffect(() => {
-  //   // fetch(`${api_url + connect_api.method.GET.productsDetails + productId}`)
-  //   fetch(`http://10.0.2.2:9000/api/products/details/${productId}`)
-  //     .then((res) => res.json())
-  //     .then((resJson) => setData(resJson))
-  //     .then(console.log(data))
-  //     .finally(() => setLoading(false))
-  //     .catch((error) =>
-  //       console.log(
-  //         'Call api failed DetailsItemSelected at>>> ' + error.message,
-  //       ),
-  //     );
-  // }, []);
-
   const getDetailsProductWithId = async () => {
     try {
-      const response = await axios.get(
-        `${api_url + connect_api.method.GET.productsDetails + productId}`,
-      );
-      let jsonParser = JSON.stringify(response.data);
-      setItems(jsonParser);
+      await axios
+        .get(`${api_url + connect_api.method.GET.productsDetails + productId}`)
+        .then((res) => {
+          // let jsonParser = JSON.stringify(res.data);
+          setItems((newItem) => ({
+            ...newItem,
+            id: res.data._id,
+            productName: res.data.productName,
+            price: res.data.price,
+            date: res.data.date,
+            imgProduct: res.data.imgProduct,
+            detailsProduct: res.data.detailsProduct,
+            saleUpTo: res.data.saleUpTo,
+          }));
+          // console.log(res.data);
+          console.log(items.imgProduct);
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
     } catch (error) {
       // handle error
       console.log('Call api failed DetailsItemSelected at>>> ' + error.message);
@@ -70,11 +75,14 @@ const DetailsItemSelected = ({route}) => {
 
   useEffect(() => {
     getDetailsProductWithId();
-    console.log('>>>', items);
-  }, [items]);
+  }, []);
+
+  // console.log('>>>', Object.keys(items));
 
   const addCartPressed = () => {
     setCart(loadCart + 1);
+    console.log('get id product', items.id);
+    console.log('get id user', user);
     console.log(loadCart);
   };
 
@@ -113,7 +121,7 @@ const DetailsItemSelected = ({route}) => {
         <Block maxHeight={Sizes.height / 2.5}>
           <Image
             source={{uri: pathUrl.imageUrl + items.imgProduct}}
-            style={{width: '100%', height: '100%'}}
+            style={styles.imageProduct}
             resizeMode="contain"
           />
         </Block>
@@ -147,57 +155,29 @@ const DetailsItemSelected = ({route}) => {
 
               <Block row marginHorizontal={10}>
                 <Block row marginRight={5}>
-                  <TextStyle
-                    text={'Rate'}
-                    fontSize={14}
-                    color={Colors.black}
-                    fontFamily={Fonts.Roboto_Regular}
-                  />
+                  <Text style={styles.text_rate_product}>Rate</Text>
                 </Block>
                 <TouchableOpacity onPress={() => console.log('Rate selected')}>
-                  <TextStyle
-                    text={'1.2K'}
-                    fontSize={14}
-                    isUnderline={true}
-                    color={Colors.black}
-                    fontFamily={Fonts.Roboto_Regular}
-                  />
+                  <Text style={styles.value_rate_product}>1.2K</Text>
                 </TouchableOpacity>
               </Block>
               <Block row marginHorizontal={10}>
                 <Block row marginRight={5}>
-                  <TextStyle
-                    text={'Sold'}
-                    fontSize={14}
-                    color={Colors.black}
-                    fontFamily={Fonts.Roboto_Regular}
-                  />
+                  <Text style={styles.text_rate_product}>Sold</Text>
                 </Block>
                 <TouchableOpacity onPress={() => console.log('Sold selected')}>
-                  <TextStyle
-                    text={'2.3K'}
-                    fontSize={14}
-                    color={Colors.black}
-                    isUnderline={true}
-                    fontFamily={Fonts.Roboto_Regular}
-                  />
+                  <Text style={styles.value_rate_product}>2.3K</Text>
                 </TouchableOpacity>
               </Block>
             </Block>
 
             <Block marginHorizontal={10} column marginBottom={10}>
-              <TextStyle
-                text={items.productName}
-                fontSize={16}
-                color={Colors.black}
-                fontFamily={Fonts.Roboto_Regular}
-              />
-              <TextStyle
-                text={items.price}
-                fontSize={20}
-                color={Colors.black}
-                fontFamily={Fonts.Roboto_Bold}
-              />
+              <Block marginTop={10}>
+                <Text style={styles.titleText}>{items.productName}</Text>
+              </Block>
+              <Block marginVertical={10}>
+                <Text style={styles.priceTextStyle}>{items.price}</Text>
+              </Block>
             </Block>
           </Block>
           <Block
@@ -211,30 +191,21 @@ const DetailsItemSelected = ({route}) => {
             elevation={6}>
             <Block column alignCenter maxWidth={100}>
               <Protected iconName={icons.like} />
-              <ProtectedText
-                text={'See warranty details here'}
-                fontSize={14}
-                color={Colors.black}
-                fontFamily={Fonts.Roboto_Bold}
-              />
+              <Text style={styles.protected_text_container}>
+                See warranty details here
+              </Text>
             </Block>
             <Block column alignCenter maxWidth={100}>
               <Protected iconName={icons.gift} />
-              <ProtectedText
-                text={'7 days return for free'}
-                fontSize={14}
-                color={Colors.black}
-                fontFamily={Fonts.Roboto_Bold}
-              />
+              <Text style={styles.protected_text_container}>
+                7 days return for free
+              </Text>
             </Block>
             <Block column alignCenter maxWidth={100}>
               <Protected iconName={icons.protected} />
-              <ProtectedText
-                text={'100% genuine product'}
-                fontSize={14}
-                color={Colors.black}
-                fontFamily={Fonts.Roboto_Bold}
-              />
+              <Text style={styles.protected_text_container}>
+                100% genuine product
+              </Text>
             </Block>
           </Block>
           <Block
@@ -252,7 +223,7 @@ const DetailsItemSelected = ({route}) => {
               }}>
               Infomation
             </Text>
-            <Text>{items}</Text>
+            <Text>{items.detailsProduct}</Text>
           </Block>
         </Block>
       </Animated.ScrollView>
@@ -268,14 +239,16 @@ const DetailsItemSelected = ({route}) => {
           <TouchableOpacity onPress={() => console.log('Chat..')}>
             <Block column marginLeft={20} alignCenter marginVertical={10}>
               <IconFooter iconName={icons.chat} />
-              <ProtectedText fontSize={10} text={'Chat trực tiếp'} />
+              <Text style={styles.bottom_text_container}>Chat trực tiếp</Text>
             </Block>
           </TouchableOpacity>
 
           <TouchableOpacity onPress={() => addCartPressed()}>
             <Block column alignCenter>
               <IconFooter iconName={icons.cart} />
-              <ProtectedText fontSize={10} text={'Thêm vào giỏ hàng'} />
+              <Text style={styles.bottom_text_container}>
+                Thêm vào giỏ hàng
+              </Text>
             </Block>
           </TouchableOpacity>
 
@@ -287,11 +260,8 @@ const DetailsItemSelected = ({route}) => {
               paddingVertical={20}
               radius={5}
               backgroundColor={Colors.black}>
-              <ProtectedText
-                color={Colors.white}
-                fontFamily={Fonts.Roboto_Regular}
-                text={'MUA NGAY'}
-              />
+              <Text style={styles.bottom_text_container}>Chat trực tiếp</Text>
+              <Text style={styles.buy_text}>MUA NGAY</Text>
             </Block>
           </TouchableOpacity>
         </Block>
@@ -310,21 +280,6 @@ const TextStyle = ({text, fontFamily, fontSize, color, isUnderline}) => {
         fontSize: fontSize,
         color: color,
         textDecorationLine: isUnderline ? 'underline' : 'none',
-      }}>
-      {text}
-    </Text>
-  );
-};
-
-const ProtectedText = ({text, fontFamily, fontSize, color, isUnderline}) => {
-  return (
-    <Text
-      style={{
-        fontFamily: fontFamily,
-        fontSize: fontSize,
-        color: color,
-        textDecorationLine: isUnderline ? 'underline' : 'none',
-        textAlign: 'center',
       }}>
       {text}
     </Text>
@@ -364,11 +319,9 @@ const Protected = ({iconName}) => {
       source={iconName}
       resizeMode="center"
       style={{
-        width: 30,
-        height: 30,
+        width: 24,
+        height: 24,
       }}
     />
   );
 };
-
-const styles = StyleSheet.create({});
